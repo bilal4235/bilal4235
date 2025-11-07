@@ -252,17 +252,10 @@ async def fetch_and_store_quran_data():
                     # Fetch all verses for this surah
                     for verse_num in range(1, verse_count + 1):
                         try:
-                            # Get verse with Diyanet meal
+                            # Get verse with Diyanet meal (single API call - faster!)
                             verse_response = await client.get(
                                 f"{QURAN_API_BASE}/surah/{surah_id}/verse/{verse_num}",
                                 params={"author": DIYANET_AUTHOR_ID},
-                                timeout=10.0
-                            )
-                            
-                            # Get clean Arabic text from Quran.com
-                            quran_response = await client.get(
-                                f"https://api.quran.com/api/v4/verses/by_key/{surah_id}:{verse_num}",
-                                params={"fields": "text_uthmani"},
                                 timeout=10.0
                             )
                             
@@ -272,12 +265,7 @@ async def fetch_and_store_quran_data():
                                 # Extract data
                                 turkish_translation = verse_data.get("translation", {}).get("text", "")
                                 transcription = verse_data.get("transcription", "")
-                                
-                                # Get clean Uthmani Arabic text from Quran.com
-                                arabic_text = verse_data.get("verse", "")  # fallback
-                                if quran_response.status_code == 200:
-                                    quran_data = quran_response.json()
-                                    arabic_text = quran_data.get("verse", {}).get("text_uthmani", arabic_text)
+                                arabic_text = verse_data.get("verse", "")
                                 
                                 # Add verse ending marker (۝)
                                 if arabic_text and not arabic_text.endswith('۝'):
@@ -299,8 +287,8 @@ async def fetch_and_store_quran_data():
                                 surah_verses.append(verse_doc)
                                 verse_counter += 1
                             
-                            # Small delay to avoid rate limiting
-                            await asyncio.sleep(0.08)
+                            # Minimal delay
+                            await asyncio.sleep(0.02)
                         except Exception as verse_error:
                             print(f"⚠️  {surah_name_tr} {verse_num}. ayet hatası: {verse_error}")
                             continue
