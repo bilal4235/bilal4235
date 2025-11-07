@@ -1,21 +1,35 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "Bir Ayet Bir Yorum",
+    "slug": "bir-ayet-bir-yorum",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "frontend",
+    "scheme": "birayetbiryorum",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "description": "Her gün bir Kuran ayeti ve tefsiri - Diyanet İşleri Başkanlığı resmi kaynağı",
+    "primaryColor": "#2C5F2D",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.birayetbiryorum.app",
+      "buildNumber": "1.0.0",
+      "infoPlist": {
+        "NSUserNotificationsUsageDescription": "Günlük ayet bildirimleri almak için izin gereklidir."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#000"
+        "backgroundColor": "#2C5F2D"
       },
+      "package": "com.birayetbiryorum.app",
+      "versionCode": 1,
+      "permissions": [
+        "RECEIVE_BOOT_COMPLETED",
+        "VIBRATE",
+        "SCHEDULE_EXACT_ALARM"
+      ],
       "edgeToEdgeEnabled": true
     },
     "web": {
@@ -31,7 +45,7 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#000"
+          "backgroundColor": "#2C5F2D"
         }
       ],
       [
@@ -45,6 +59,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id"
+      }
     }
   }
 }
