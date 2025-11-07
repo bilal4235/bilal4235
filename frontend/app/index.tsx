@@ -219,6 +219,13 @@ export default function App() {
             </View>
             <View style={styles.headerButtons}>
               <TouchableOpacity
+                onPress={() => router.push('/browse')}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="book" size={20} color={colors.surface} />
+              </TouchableOpacity>
+              <TouchableOpacity
                 onPress={() => router.push('/search')}
                 style={[styles.iconButton, { backgroundColor: colors.primary }]}
                 activeOpacity={0.7}
