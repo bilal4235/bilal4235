@@ -213,7 +213,7 @@ export default function App() {
         {/* Header */}
         <View style={[styles.header, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
           <View style={styles.headerContent}>
-            <Text style={[styles.appTitle, { color: colors.text }]}>1 Ayet 1 Yorum</Text>
+            <Text style={[styles.appTitle, { color: colors.text }]}>Bir Ayet Bir Yorum</Text>
           </View>
           <View style={styles.headerButtons}>
             <TouchableOpacity
