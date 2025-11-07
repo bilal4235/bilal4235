@@ -33,13 +33,9 @@ DIYANET_AUTHOR_ID = 11  # Diyanet İşleri Başkanlığı
 
 @app.on_event("startup")
 async def startup_event():
-    """Initialize database with Quran verses if empty"""
-    count = await verses_collection.count_documents({})
-    if count == 0:
-        print("Database is empty. Fetching Quran data...")
-        await fetch_and_store_quran_data()
-    else:
-        print(f"Database already contains {count} verses")
+    """Initialize database with Quran verses if empty - non-blocking"""
+    # Don't block startup - check async
+    asyncio.create_task(initialize_database())
 
 @app.get("/api/health")
 async def health_check():
