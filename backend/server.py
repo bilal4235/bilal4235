@@ -115,6 +115,46 @@ async def get_stats():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/api/search")
+async def search_verses(q: str = "", surah: int = None, limit: int = 20):
+    """Search verses by text or surah"""
+    try:
+        if not q and not surah:
+            raise HTTPException(status_code=400, detail="Query parameter 'q' or 'surah' is required")
+        
+        # Build search query
+        search_query = {}
+        
+        if surah:
+            search_query["surah_number"] = surah
+        
+        if q:
+            # Search in Turkish translation, Arabic text, or surah names
+            search_query["$or"] = [
+                {"text_turkish": {"$regex": q, "$options": "i"}},
+                {"text_arabic": {"$regex": q, "$options": "i"}},
+                {"surah_name_turkish": {"$regex": q, "$options": "i"}},
+                {"surah_name_arabic": {"$regex": q, "$options": "i"}}
+            ]
+        
+        # Find matching verses
+        cursor = verses_collection.find(search_query).limit(limit)
+        verses = await cursor.to_list(length=limit)
+        
+        # Convert ObjectId to string
+        for verse in verses:
+            verse["_id"] = str(verse["_id"])
+        
+        return {
+            "results": verses,
+            "count": len(verses),
+            "query": q,
+            "surah": surah
+        }
+    except Exception as e:
+        print(f"Error searching verses: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 async def fetch_and_store_quran_data():
     """Fetch Quran data from Diyanet İşleri Başkanlığı API and store in MongoDB"""
     try:
