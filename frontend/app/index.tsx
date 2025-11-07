@@ -365,23 +365,19 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   headerContent: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  logoContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
+    marginBottom: 12,
   },
   appTitle: {
     fontSize: 20,
     fontWeight: '700',
     letterSpacing: 0.5,
+    textAlign: 'center',
   },
   headerButtons: {
     flexDirection: 'row',
     gap: 12,
+    justifyContent: 'center',
   },
   iconButton: {
     width: 40,
