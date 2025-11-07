@@ -31,6 +31,18 @@ verses_collection = db.verses
 QURAN_API_BASE = "https://api.acikkuran.com"
 DIYANET_AUTHOR_ID = 11  # Diyanet İşleri Başkanlığı
 
+async def initialize_database():
+    """Background task to initialize database"""
+    try:
+        count = await verses_collection.count_documents({})
+        if count == 0:
+            print("🌙 Veritabanı boş. Diyanet İşleri Başkanlığı verilerini yüklüyorum...")
+            await fetch_and_store_quran_data()
+        else:
+            print(f"✅ Veritabanında {count} ayet mevcut.")
+    except Exception as e:
+        print(f"❌ Veritabanı başlatma hatası: {e}")
+
 @app.on_event("startup")
 async def startup_event():
     """Initialize database with Quran verses if empty - non-blocking"""
