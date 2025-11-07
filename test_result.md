@@ -131,6 +131,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "GET /api/stats endpoint tested successfully. Returns correct total_verses count of 6236 and status 'ready'. Database is properly populated."
+      - working: true
+        agent: "testing"
+        comment: "FINAL COMPREHENSIVE TEST PASSED. Stats endpoint verified - exactly 6236 verses from Diyanet İşleri Başkanlığı loaded successfully. Database status: ready."
 
   - task: "Daily Verse Endpoint"
     implemented: true
