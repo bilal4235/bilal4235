@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -24,14 +24,59 @@ interface SearchResult {
   tafsir: string;
 }
 
+interface Surah {
+  surah_number: number;
+  name_turkish: string;
+  name_arabic: string;
+  verse_count: number;
+  revelation_type: string;
+}
+
 export default function SearchScreen() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
+  const [surahs, setSurahs] = useState<Surah[]>([]);
   const [loading, setLoading] = useState(false);
   const [searched, setSearched] = useState(false);
+  const [activeTab, setActiveTab] = useState<'search' | 'surahs'>('search');
+  const [surahVerses, setSurahVerses] = useState<SearchResult[]>([]);
+  const [selectedSurah, setSelectedSurah] = useState<number | null>(null);
 
   const backendUrl = Constants.expoConfig?.extra?.backendUrl || process.env.EXPO_PUBLIC_BACKEND_URL || '';
+
+  useEffect(() => {
+    if (activeTab === 'surahs') {
+      loadSurahs();
+    }
+  }, [activeTab]);
+
+  const loadSurahs = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(`${backendUrl}/api/surahs`);
+      const data = await response.json();
+      setSurahs(data.surahs || []);
+    } catch (error) {
+      console.error('Error loading surahs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const loadSurahVerses = async (surahNumber: number) => {
+    try {
+      setLoading(true);
+      setSelectedSurah(surahNumber);
+      const response = await fetch(`${backendUrl}/api/surah/${surahNumber}`);
+      const data = await response.json();
+      setSurahVerses(data.verses || []);
+    } catch (error) {
+      console.error('Error loading surah verses:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleSearch = async () => {
     if (!searchQuery.trim()) return;
@@ -62,85 +107,170 @@ export default function SearchScreen() {
         <View style={styles.placeholder} />
       </View>
 
-      <View style={styles.searchContainer}>
-        <View style={styles.searchBox}>
-          <Ionicons name="search" size={20} color="#4A4A4A" />
-          <TextInput
-            style={styles.searchInput}
-            placeholder="Ayet veya sure ara..."
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-            onSubmitEditing={handleSearch}
-            returnKeyType="search"
-          />
-          {searchQuery.length > 0 && (
-            <TouchableOpacity onPress={() => {
-              setSearchQuery('');
-              setResults([]);
-              setSearched(false);
-            }}>
-              <Ionicons name="close-circle" size={20} color="#4A4A4A" />
-            </TouchableOpacity>
-          )}
-        </View>
+      {/* Tabs */}
+      <View style={styles.tabContainer}>
         <TouchableOpacity
-          style={styles.searchButton}
-          onPress={handleSearch}
-          disabled={!searchQuery.trim() || loading}
+          style={[styles.tab, activeTab === 'search' && styles.tabActive]}
+          onPress={() => setActiveTab('search')}
         >
-          <Text style={styles.searchButtonText}>Ara</Text>
+          <Ionicons name="search" size={20} color={activeTab === 'search' ? '#FFFFFF' : '#2C5F2D'} />
+          <Text style={[styles.tabText, activeTab === 'search' && styles.tabTextActive]}>Ara</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[styles.tab, activeTab === 'surahs' && styles.tabActive]}
+          onPress={() => setActiveTab('surahs')}
+        >
+          <Ionicons name="book" size={20} color={activeTab === 'surahs' ? '#FFFFFF' : '#2C5F2D'} />
+          <Text style={[styles.tabText, activeTab === 'surahs' && styles.tabTextActive]}>Sureler</Text>
         </TouchableOpacity>
       </View>
 
-      <ScrollView style={styles.results}>
-        {loading ? (
-          <View style={styles.centerContainer}>
-            <ActivityIndicator size="large" color="#2C5F2D" />
-            <Text style={styles.loadingText}>Aranıyor...</Text>
+      {activeTab === 'search' ? (
+        <>
+          <View style={styles.searchContainer}>
+            <View style={styles.searchBox}>
+              <Ionicons name="search" size={20} color="#4A4A4A" />
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Ayet veya sure ara..."
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+                onSubmitEditing={handleSearch}
+                returnKeyType="search"
+              />
+              {searchQuery.length > 0 && (
+                <TouchableOpacity onPress={() => {
+                  setSearchQuery('');
+                  setResults([]);
+                  setSearched(false);
+                }}>
+                  <Ionicons name="close-circle" size={20} color="#4A4A4A" />
+                </TouchableOpacity>
+              )}
+            </View>
+            <TouchableOpacity
+              style={styles.searchButton}
+              onPress={handleSearch}
+              disabled={!searchQuery.trim() || loading}
+            >
+              <Text style={styles.searchButtonText}>Ara</Text>
+            </TouchableOpacity>
           </View>
-        ) : searched && results.length === 0 ? (
-          <View style={styles.centerContainer}>
-            <Ionicons name="search-outline" size={64} color="#D4C5A9" />
-            <Text style={styles.noResultsText}>Sonuç bulunamadı</Text>
-            <Text style={styles.noResultsSubtext}>
-              Farklı bir kelime veya sure adı deneyin
-            </Text>
-          </View>
-        ) : results.length > 0 ? (
-          <>
-            <Text style={styles.resultCount}>
-              {results.length} sonuç bulundu
-            </Text>
-            {results.map((verse) => (
-              <View key={verse.verse_number} style={styles.resultCard}>
-                <View style={styles.resultHeader}>
-                  <View style={styles.surahInfo}>
-                    <Ionicons name="book" size={16} color="#2C5F2D" />
-                    <Text style={styles.surahName}>
-                      {verse.surah_name_turkish} {verse.ayah_number_in_surah}
-                    </Text>
-                  </View>
-                  <Text style={styles.verseNumber}>#{verse.verse_number}</Text>
-                </View>
 
-                <View style={styles.verseContent}>
-                  <Text style={styles.arabicText}>{verse.text_arabic}</Text>
-                  
-                  <View style={styles.divider} />
-                  
-                  <Text style={styles.turkishText}>{verse.text_turkish}</Text>
-                </View>
+          <ScrollView style={styles.results}>
+            {loading ? (
+              <View style={styles.centerContainer}>
+                <ActivityIndicator size="large" color="#2C5F2D" />
+                <Text style={styles.loadingText}>Aranıyor...</Text>
               </View>
-            ))}
-          </>
-        ) : (
-          <View style={styles.centerContainer}>
-            <Ionicons name="search" size={64} color="#D4C5A9" />
-            <Text style={styles.emptyText}>Ayet veya sure aramak için</Text>
-            <Text style={styles.emptyText}>yukarıdaki arama kutusunu kullanın</Text>
-          </View>
-        )}
-      </ScrollView>
+            ) : searched && results.length === 0 ? (
+              <View style={styles.centerContainer}>
+                <Ionicons name="search-outline" size={64} color="#D4C5A9" />
+                <Text style={styles.noResultsText}>Sonuç bulunamadı</Text>
+                <Text style={styles.noResultsSubtext}>
+                  Farklı bir kelime veya sure adı deneyin
+                </Text>
+              </View>
+            ) : results.length > 0 ? (
+              <>
+                <Text style={styles.resultCount}>
+                  {results.length} sonuç bulundu
+                </Text>
+                {results.map((verse) => (
+                  <View key={verse.verse_number} style={styles.resultCard}>
+                    <View style={styles.resultHeader}>
+                      <View style={styles.surahInfo}>
+                        <Ionicons name="book" size={16} color="#2C5F2D" />
+                        <Text style={styles.surahName}>
+                          {verse.surah_name_turkish} {verse.ayah_number_in_surah}
+                        </Text>
+                      </View>
+                      <Text style={styles.verseNumber}>#{verse.verse_number}</Text>
+                    </View>
+
+                    <View style={styles.verseContent}>
+                      <Text style={styles.arabicText}>{verse.text_arabic}</Text>
+                      
+                      <View style={styles.divider} />
+                      
+                      <Text style={styles.turkishText}>{verse.text_turkish}</Text>
+                    </View>
+                  </View>
+                ))}
+              </>
+            ) : (
+              <View style={styles.centerContainer}>
+                <Ionicons name="search" size={64} color="#D4C5A9" />
+                <Text style={styles.emptyText}>Ayet veya sure aramak için</Text>
+                <Text style={styles.emptyText}>yukarıdaki arama kutusunu kullanın</Text>
+              </View>
+            )}
+          </ScrollView>
+        </>
+      ) : (
+        <ScrollView style={styles.results}>
+          {selectedSurah ? (
+            <>
+              <TouchableOpacity
+                style={styles.backToList}
+                onPress={() => {
+                  setSelectedSurah(null);
+                  setSurahVerses([]);
+                }}
+              >
+                <Ionicons name="arrow-back" size={20} color="#2C5F2D" />
+                <Text style={styles.backToListText}>Surelere Dön</Text>
+              </TouchableOpacity>
+
+              {loading ? (
+                <View style={styles.centerContainer}>
+                  <ActivityIndicator size="large" color="#2C5F2D" />
+                </View>
+              ) : (
+                surahVerses.map((verse) => (
+                  <View key={verse.verse_number} style={styles.resultCard}>
+                    <View style={styles.resultHeader}>
+                      <Text style={styles.surahName}>
+                        Ayet {verse.ayah_number_in_surah}
+                      </Text>
+                    </View>
+
+                    <View style={styles.verseContent}>
+                      <Text style={styles.arabicText}>{verse.text_arabic}</Text>
+                      <View style={styles.divider} />
+                      <Text style={styles.turkishText}>{verse.text_turkish}</Text>
+                    </View>
+                  </View>
+                ))
+              )}
+            </>
+          ) : loading ? (
+            <View style={styles.centerContainer}>
+              <ActivityIndicator size="large" color="#2C5F2D" />
+            </View>
+          ) : (
+            surahs.map((surah) => (
+              <TouchableOpacity
+                key={surah.surah_number}
+                style={styles.surahCard}
+                onPress={() => loadSurahVerses(surah.surah_number)}
+              >
+                <View style={styles.surahNumber}>
+                  <Text style={styles.surahNumberText}>{surah.surah_number}</Text>
+                </View>
+                <View style={styles.surahDetails}>
+                  <Text style={styles.surahNameTurkish}>{surah.name_turkish}</Text>
+                  <Text style={styles.surahNameArabic}>{surah.name_arabic}</Text>
+                  <Text style={styles.surahMeta}>
+                    {surah.verse_count} Ayet • {surah.revelation_type === 'Meccan' ? 'Mekki' : 'Medeni'}
+                  </Text>
+                </View>
+                <Ionicons name="chevron-forward" size={24} color="#D4C5A9" />
+              </TouchableOpacity>
+            ))
+          )}
+        </ScrollView>
+      )}
     </View>
   );
 }
@@ -171,6 +301,32 @@ const styles = StyleSheet.create({
   },
   placeholder: {
     width: 40,
+  },
+  tabContainer: {
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderBottomWidth: 1,
+    borderBottomColor: '#D4C5A9',
+  },
+  tab: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 16,
+    backgroundColor: '#F5F5DC',
+  },
+  tabActive: {
+    backgroundColor: '#2C5F2D',
+  },
+  tabText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#2C5F2D',
+  },
+  tabTextActive: {
+    color: '#FFFFFF',
   },
   searchContainer: {
     flexDirection: 'row',
@@ -293,5 +449,63 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 26,
     color: '#1A1A1A',
+  },
+  surahCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#D4C5A9',
+  },
+  surahNumber: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: '#2C5F2D',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  surahNumberText: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  surahDetails: {
+    flex: 1,
+  },
+  surahNameTurkish: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#1A1A1A',
+    marginBottom: 4,
+  },
+  surahNameArabic: {
+    fontSize: 16,
+    color: '#2C5F2D',
+    marginBottom: 4,
+  },
+  surahMeta: {
+    fontSize: 14,
+    color: '#4A4A4A',
+  },
+  backToList: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    padding: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#D4C5A9',
+  },
+  backToListText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#2C5F2D',
   },
 });
