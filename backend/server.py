@@ -27,8 +27,9 @@ client = AsyncIOMotorClient(MONGO_URL)
 db = client.quran_app
 verses_collection = db.verses
 
-# Quran.com API base URL (more reliable and verified)
-QURAN_API_BASE = "https://api.quran.com/api/v4"
+# Diyanet İşleri Başkanlığı Açık Kaynak Kuran API
+QURAN_API_BASE = "https://api.acikkuran.com"
+DIYANET_AUTHOR_ID = 11  # Diyanet İşleri Başkanlığı
 
 @app.on_event("startup")
 async def startup_event():
