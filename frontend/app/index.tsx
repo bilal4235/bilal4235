@@ -374,7 +374,6 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     textAlign: 'center',
     fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
-    textTransform: 'uppercase',
   },
   headerButtons: {
     flexDirection: 'row',
