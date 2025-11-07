@@ -107,10 +107,10 @@ async def get_stats():
         raise HTTPException(status_code=500, detail=str(e))
 
 async def fetch_and_store_quran_data():
-    """Fetch Quran data from Al-Quran API and store in MongoDB"""
+    """Fetch Quran data from Quran.com API (more reliable) and store in MongoDB"""
     try:
-        print("Starting to fetch Quran data...")
-        async with httpx.AsyncClient(timeout=30.0) as client:
+        print("Starting to fetch Quran data from Quran.com API...")
+        async with httpx.AsyncClient(timeout=60.0) as client:
             verses_to_insert = []
             verse_counter = 1
             
@@ -119,40 +119,46 @@ async def fetch_and_store_quran_data():
                 print(f"Fetching Surah {surah_number}/114...")
                 
                 try:
-                    # Get Arabic text
-                    arabic_response = await client.get(
-                        f"{QURAN_API_BASE}/surah/{surah_number}/ar.alafasy"
+                    # Get verses with Arabic (Uthmani) text and Turkish (Diyanet) translation
+                    # Translation ID 77 is official Diyanet translation
+                    response = await client.get(
+                        f"{QURAN_API_BASE}/verses/by_chapter/{surah_number}",
+                        params={
+                            "language": "tr",
+                            "words": "false",
+                            "translations": "77",  # Diyanet translation
+                            "fields": "text_uthmani",
+                            "per_page": "300"  # Max verses per surah
+                        }
                     )
-                    arabic_data = arabic_response.json()
                     
-                    # Get Turkish translation
-                    turkish_response = await client.get(
-                        f"{QURAN_API_BASE}/surah/{surah_number}/tr.diyanet"
-                    )
-                    turkish_data = turkish_response.json()
-                    
-                    if arabic_data.get("code") == 200 and turkish_data.get("code") == 200:
-                        surah_info = arabic_data["data"]
-                        turkish_ayahs = turkish_data["data"]["ayahs"]
+                    if response.status_code == 200:
+                        data = response.json()
+                        verses = data.get("verses", [])
                         
-                        for idx, ayah in enumerate(surah_info["ayahs"]):
+                        for verse in verses:
+                            # Extract translation text
+                            turkish_text = ""
+                            if verse.get("translations") and len(verse["translations"]) > 0:
+                                turkish_text = verse["translations"][0].get("text", "")
+                            
                             verse_doc = {
                                 "verse_number": verse_counter,
                                 "surah_number": surah_number,
-                                "surah_name_arabic": surah_info["name"],
+                                "surah_name_arabic": get_arabic_surah_name(surah_number),
                                 "surah_name_turkish": get_turkish_surah_name(surah_number),
-                                "ayah_number_in_surah": ayah["numberInSurah"],
-                                "text_arabic": ayah["text"],
-                                "text_turkish": turkish_ayahs[idx]["text"] if idx < len(turkish_ayahs) else "",
-                                "tafsir": get_basic_tafsir(surah_number, ayah["numberInSurah"]),
-                                "revelation_type": surah_info.get("revelationType", "Meccan"),
+                                "ayah_number_in_surah": verse.get("verse_number"),
+                                "text_arabic": verse.get("text_uthmani", ""),
+                                "text_turkish": turkish_text,
+                                "tafsir": get_basic_tafsir(surah_number, verse.get("verse_number")),
+                                "revelation_type": get_revelation_type(surah_number),
                                 "created_at": datetime.utcnow()
                             }
                             verses_to_insert.append(verse_doc)
                             verse_counter += 1
                     
                     # Small delay to avoid rate limiting
-                    await asyncio.sleep(0.1)
+                    await asyncio.sleep(0.2)
                     
                 except Exception as e:
                     print(f"Error fetching surah {surah_number}: {e}")
@@ -168,6 +174,41 @@ async def fetch_and_store_quran_data():
     except Exception as e:
         print(f"Error in fetch_and_store_quran_data: {e}")
         raise
+
+def get_arabic_surah_name(surah_number: int) -> str:
+    """Get Arabic name of surah"""
+    arabic_names = {
+        1: "الفَاتِحة", 2: "البَقَرَة", 3: "آل عِمرَان", 4: "النِّسَاء", 5: "المَائدة",
+        6: "الأنعَام", 7: "الأعرَاف", 8: "الأنفَال", 9: "التوبَة", 10: "يُونس",
+        11: "هُود", 12: "يُوسُف", 13: "الرَّعْد", 14: "إبراهِيم", 15: "الحِجْر",
+        16: "النَّحْل", 17: "الإسْرَاء", 18: "الكهْف", 19: "مَريَم", 20: "طه",
+        21: "الأنبيَاء", 22: "الحَج", 23: "المُؤمنون", 24: "النُّور", 25: "الفُرْقان",
+        26: "الشُّعَرَاء", 27: "النَّمْل", 28: "القَصَص", 29: "العَنكبوت", 30: "الرُّوم",
+        31: "لقمَان", 32: "السَّجدَة", 33: "الأحزَاب", 34: "سَبَأ", 35: "فَاطِر",
+        36: "يس", 37: "الصَّافات", 38: "ص", 39: "الزُّمَر", 40: "غَافِر",
+        41: "فُصِّلَتْ", 42: "الشُّورَى", 43: "الزخْرُف", 44: "الدخَان", 45: "الجَاثيَة",
+        46: "الأحْقاف", 47: "مُحَمَّد", 48: "الفَتْح", 49: "الحُجُرَات", 50: "ق",
+        51: "الذَّاريَات", 52: "الطُّور", 53: "النَّجْم", 54: "القَمَر", 55: "الرَّحْمن",
+        56: "الوَاقِعَة", 57: "الحَديد", 58: "المجَادلة", 59: "الحَشر", 60: "المُمتَحنَة",
+        61: "الصَّف", 62: "الجُمُعَة", 63: "المنَافِقون", 64: "التَّغَابُن", 65: "الطَّلاق",
+        66: "التَّحْريم", 67: "المُلْك", 68: "القَلـَم", 69: "الحَاقَّة", 70: "المعَارج",
+        71: "نُوح", 72: "الجِن", 73: "المُزَّمِّل", 74: "المُدَّثِّر", 75: "القِيَامَة",
+        76: "الإنسَان", 77: "المُرسَلات", 78: "النَّبَأ", 79: "النَّازعَات", 80: "عَبَس",
+        81: "التَّكوير", 82: "الانفِطار", 83: "المطفِّفِين", 84: "الانْشِقاق", 85: "البرُوج",
+        86: "الطَّارِق", 87: "الأعْلى", 88: "الغَاشِيَة", 89: "الفَجْر", 90: "البَلَد",
+        91: "الشَّمْس", 92: "اللَّيْل", 93: "الضُّحَى", 94: "الشَّرْح", 95: "التِّين",
+        96: "العَلَق", 97: "القَدْر", 98: "البَيِّنَة", 99: "الزلزَلة", 100: "العَادِيات",
+        101: "القَارِعَة", 102: "التَّكَاثر", 103: "العَصْر", 104: "الهُمَزَة", 105: "الفِيل",
+        106: "قُرَيْش", 107: "المَاعُون", 108: "الكَوْثَر", 109: "الكَافِرُون", 110: "النَّصْر",
+        111: "المَسَد", 112: "الإخْلَاص", 113: "الفَلَق", 114: "النَّاس"
+    }
+    return arabic_names.get(surah_number, f"سورة {surah_number}")
+
+def get_revelation_type(surah_number: int) -> str:
+    """Get revelation type (Meccan or Medinan)"""
+    # Medinan surahs (all others are Meccan)
+    medinan_surahs = {2, 3, 4, 5, 8, 9, 13, 22, 24, 33, 47, 48, 49, 55, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 76, 98, 110}
+    return "Medinan" if surah_number in medinan_surahs else "Meccan"
 
 def get_turkish_surah_name(surah_number: int) -> str:
     """Get Turkish name of surah"""
