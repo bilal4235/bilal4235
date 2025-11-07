@@ -202,15 +202,6 @@ export default function App() {
   const colors = isDark ? darkColors : lightColors;
   const themeValue = { isDark, toggleTheme, colors };
 
-  // İlk açılış kontrolü yapılıyorsa boş ekran göster
-  if (checkingWelcome) {
-    return (
-      <View style={[styles.container, { backgroundColor: colors.background, justifyContent: 'center', alignItems: 'center' }]}>
-        <ActivityIndicator size="large" color={colors.primary} />
-      </View>
-    );
-  }
-
   return (
     <ThemeContext.Provider value={themeValue}>
       <View style={[styles.container, { backgroundColor: colors.background }]}>
