@@ -213,6 +213,42 @@ backend:
         agent: "testing"
         comment: "PRODUCTION READY TEST PASSED. Arabic and Turkish encoding flawless across all tested verses. Arabic text displays correctly with proper Unicode characters (بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحيمِ, يَٓا اَيُّهَا الَّذينَ اٰمَنُوا). Turkish text readable and properly encoded. No encoding issues detected."
 
+  - task: "Search API Endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "PRODUCTION READY TEST PASSED. GET /api/search?q=rahman returns 200 OK with 20 results. GET /api/search?q=fatiha returns 200 OK with 7 results (all Fatiha verses). Search functionality working correctly for both text search and surah name search. Results include proper verse data with Arabic and Turkish text."
+
+  - task: "Surahs List Endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "PRODUCTION READY TEST PASSED. GET /api/surahs returns 200 OK with exactly 114 surahs. Response structure correct: {surahs: [...], total: 114}. First surah: Fatiha (سُورَةُ ٱلْفَاتِحَةِ) with 7 verses. Last surah: Nas (سورة الناس) with 6 verses. All surah data includes Turkish name, Arabic name, verse count, and revelation type."
+
+  - task: "Surah by Number Endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "PRODUCTION READY TEST PASSED. GET /api/surah/1 returns 200 OK with Fatiha surah containing exactly 7 verses. All verses have complete Arabic text and Turkish translation. Response structure: {surah_number: 1, surah_name: 'Fatiha', verses: [...], count: 7}. No empty fields detected."
+
 frontend:
   - task: "Frontend Implementation"
     implemented: true
