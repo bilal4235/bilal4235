@@ -1,75 +1,208 @@
-from fastapi import FastAPI, APIRouter
-from dotenv import load_dotenv
-from starlette.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
+from datetime import datetime, timedelta
 import os
-import logging
-from pathlib import Path
-from pydantic import BaseModel, Field
-from typing import List
-import uuid
-from datetime import datetime
+from dotenv import load_dotenv
+import httpx
+from typing import List, Dict
+import asyncio
 
+load_dotenv()
 
-ROOT_DIR = Path(__file__).parent
-load_dotenv(ROOT_DIR / '.env')
-
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
-
-# Create the main app without a prefix
 app = FastAPI()
 
-# Create a router with the /api prefix
-api_router = APIRouter(prefix="/api")
-
-
-# Define Models
-class StatusCheck(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    client_name: str
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
-
-class StatusCheckCreate(BaseModel):
-    client_name: str
-
-# Add your routes to the router instead of directly to app
-@api_router.get("/")
-async def root():
-    return {"message": "Hello World"}
-
-@api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
-    status_dict = input.dict()
-    status_obj = StatusCheck(**status_dict)
-    _ = await db.status_checks.insert_one(status_obj.dict())
-    return status_obj
-
-@api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
-    status_checks = await db.status_checks.find().to_list(1000)
-    return [StatusCheck(**status_check) for status_check in status_checks]
-
-# Include the router in the main app
-app.include_router(api_router)
-
+# CORS configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_credentials=True,
     allow_origins=["*"],
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Configure logging
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+# MongoDB connection
+MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017")
+client = AsyncIOMotorClient(MONGO_URL)
+db = client.quran_app
+verses_collection = db.verses
 
-@app.on_event("shutdown")
-async def shutdown_db_client():
-    client.close()
+# Al-Quran API base URL
+QURAN_API_BASE = "https://api.alquran.cloud/v1"
+
+@app.on_event("startup")
+async def startup_event():
+    """Initialize database with Quran verses if empty"""
+    count = await verses_collection.count_documents({})
+    if count == 0:
+        print("Database is empty. Fetching Quran data...")
+        await fetch_and_store_quran_data()
+    else:
+        print(f"Database already contains {count} verses")
+
+@app.get("/api/health")
+async def health_check():
+    return {"status": "healthy", "service": "1 Ayet 1 Yorum API"}
+
+@app.get("/api/verse/daily")
+async def get_daily_verse():
+    """Get daily verse based on current date"""
+    try:
+        # Calculate which verse to show based on days since epoch
+        # This creates a repeating cycle through all verses
+        epoch = datetime(2024, 1, 1)  # Starting point
+        today = datetime.now()
+        days_diff = (today - epoch).days
+        
+        # Get total verse count
+        total_verses = await verses_collection.count_documents({})
+        if total_verses == 0:
+            raise HTTPException(status_code=500, detail="No verses in database")
+        
+        # Calculate verse index (0-based)
+        verse_index = days_diff % total_verses
+        
+        # Get the verse
+        verse = await verses_collection.find_one(
+            {},
+            skip=verse_index,
+            sort=[("verse_number", 1)]
+        )
+        
+        if not verse:
+            raise HTTPException(status_code=404, detail="Verse not found")
+        
+        # Convert ObjectId to string
+        verse["_id"] = str(verse["_id"])
+        
+        return verse
+    except Exception as e:
+        print(f"Error getting daily verse: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/verse/{verse_id}")
+async def get_verse_by_id(verse_id: int):
+    """Get specific verse by its sequential ID"""
+    try:
+        verse = await verses_collection.find_one({"verse_number": verse_id})
+        if not verse:
+            raise HTTPException(status_code=404, detail="Verse not found")
+        
+        verse["_id"] = str(verse["_id"])
+        return verse
+    except Exception as e:
+        print(f"Error getting verse: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/stats")
+async def get_stats():
+    """Get database statistics"""
+    try:
+        total_verses = await verses_collection.count_documents({})
+        return {
+            "total_verses": total_verses,
+            "status": "ready" if total_verses > 0 else "initializing"
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+async def fetch_and_store_quran_data():
+    """Fetch Quran data from Al-Quran API and store in MongoDB"""
+    try:
+        print("Starting to fetch Quran data...")
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            verses_to_insert = []
+            verse_counter = 1
+            
+            # Fetch all 114 surahs
+            for surah_number in range(1, 115):
+                print(f"Fetching Surah {surah_number}/114...")
+                
+                try:
+                    # Get Arabic text
+                    arabic_response = await client.get(
+                        f"{QURAN_API_BASE}/surah/{surah_number}/ar.alafasy"
+                    )
+                    arabic_data = arabic_response.json()
+                    
+                    # Get Turkish translation
+                    turkish_response = await client.get(
+                        f"{QURAN_API_BASE}/surah/{surah_number}/tr.diyanet"
+                    )
+                    turkish_data = turkish_response.json()
+                    
+                    if arabic_data.get("code") == 200 and turkish_data.get("code") == 200:
+                        surah_info = arabic_data["data"]
+                        turkish_ayahs = turkish_data["data"]["ayahs"]
+                        
+                        for idx, ayah in enumerate(surah_info["ayahs"]):
+                            verse_doc = {
+                                "verse_number": verse_counter,
+                                "surah_number": surah_number,
+                                "surah_name_arabic": surah_info["name"],
+                                "surah_name_turkish": get_turkish_surah_name(surah_number),
+                                "ayah_number_in_surah": ayah["numberInSurah"],
+                                "text_arabic": ayah["text"],
+                                "text_turkish": turkish_ayahs[idx]["text"] if idx < len(turkish_ayahs) else "",
+                                "tafsir": get_basic_tafsir(surah_number, ayah["numberInSurah"]),
+                                "revelation_type": surah_info.get("revelationType", "Meccan"),
+                                "created_at": datetime.utcnow()
+                            }
+                            verses_to_insert.append(verse_doc)
+                            verse_counter += 1
+                    
+                    # Small delay to avoid rate limiting
+                    await asyncio.sleep(0.1)
+                    
+                except Exception as e:
+                    print(f"Error fetching surah {surah_number}: {e}")
+                    continue
+            
+            # Insert all verses into MongoDB
+            if verses_to_insert:
+                result = await verses_collection.insert_many(verses_to_insert)
+                print(f"Successfully inserted {len(result.inserted_ids)} verses into database")
+            else:
+                print("No verses to insert")
+                
+    except Exception as e:
+        print(f"Error in fetch_and_store_quran_data: {e}")
+        raise
+
+def get_turkish_surah_name(surah_number: int) -> str:
+    """Get Turkish name of surah"""
+    surah_names = {
+        1: "Fatiha", 2: "Bakara", 3: "Âl-i İmran", 4: "Nisa", 5: "Maide",
+        6: "En'am", 7: "A'raf", 8: "Enfal", 9: "Tevbe", 10: "Yunus",
+        11: "Hud", 12: "Yusuf", 13: "Ra'd", 14: "İbrahim", 15: "Hicr",
+        16: "Nahl", 17: "İsra", 18: "Kehf", 19: "Meryem", 20: "Taha",
+        21: "Enbiya", 22: "Hac", 23: "Mü'minun", 24: "Nur", 25: "Furkan",
+        26: "Şuara", 27: "Neml", 28: "Kasas", 29: "Ankebut", 30: "Rum",
+        31: "Lokman", 32: "Secde", 33: "Ahzab", 34: "Sebe'", 35: "Fatır",
+        36: "Yasin", 37: "Saffat", 38: "Sad", 39: "Zümer", 40: "Mü'min",
+        41: "Fussilet", 42: "Şura", 43: "Zuhruf", 44: "Duhan", 45: "Casiye",
+        46: "Ahkaf", 47: "Muhammed", 48: "Fetih", 49: "Hucurat", 50: "Kaf",
+        51: "Zariyat", 52: "Tur", 53: "Necm", 54: "Kamer", 55: "Rahman",
+        56: "Vakia", 57: "Hadid", 58: "Mücadele", 59: "Haşr", 60: "Mümtehine",
+        61: "Saff", 62: "Cuma", 63: "Münafikun", 64: "Teğabun", 65: "Talak",
+        66: "Tahrim", 67: "Mülk", 68: "Kalem", 69: "Hakka", 70: "Mearic",
+        71: "Nuh", 72: "Cin", 73: "Müzzemmil", 74: "Müddessir", 75: "Kıyame",
+        76: "İnsan", 77: "Mürselat", 78: "Nebe'", 79: "Naziat", 80: "Abese",
+        81: "Tekvir", 82: "İnfitar", 83: "Mutaffifin", 84: "İnşikak", 85: "Buruc",
+        86: "Tarık", 87: "A'la", 88: "Ğaşiye", 89: "Fecr", 90: "Beled",
+        91: "Şems", 92: "Leyl", 93: "Duha", 94: "İnşirah", 95: "Tin",
+        96: "Alak", 97: "Kadir", 98: "Beyyine", 99: "Zilzal", 100: "Adiyat",
+        101: "Karia", 102: "Tekasür", 103: "Asr", 104: "Hümeze", 105: "Fil",
+        106: "Kureyş", 107: "Maun", 108: "Kevser", 109: "Kafirun", 110: "Nasr",
+        111: "Tebbet", 112: "İhlas", 113: "Felak", 114: "Nas"
+    }
+    return surah_names.get(surah_number, f"Sure {surah_number}")
+
+def get_basic_tafsir(surah_number: int, ayah_number: int) -> str:
+    """Get basic tafsir/commentary for the verse"""
+    # This is a simplified version. In production, you'd fetch from a proper tafsir API
+    return f"Bu ayet {get_turkish_surah_name(surah_number)} Suresinin {ayah_number}. ayetidir. Allah'ın kelâmı olan bu mübarek ayet, inananlar için hidayet ve rahmet kaynağıdır. Her ayet derin mânâlar içerir ve üzerinde düşünülmeye değerdir."
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8001)

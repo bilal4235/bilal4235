@@ -1,30 +1,456 @@
-import { Text, View, StyleSheet, Image } from "react-native";
+import React, { useState, useEffect, createContext, useContext } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+  StatusBar,
+  Platform,
+  Alert,
+} from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Notifications from 'expo-notifications';
+import Constants from 'expo-constants';
 
-const EXPO_PUBLIC_BACKEND_URL = process.env.EXPO_PUBLIC_BACKEND_URL;
+// Theme Context
+interface ThemeContextType {
+  isDark: boolean;
+  toggleTheme: () => void;
+  colors: ColorScheme;
+}
 
-export default function Index() {
-  console.log(EXPO_PUBLIC_BACKEND_URL, "EXPO_PUBLIC_BACKEND_URL");
+interface ColorScheme {
+  background: string;
+  surface: string;
+  primary: string;
+  secondary: string;
+  text: string;
+  textSecondary: string;
+  border: string;
+  accent: string;
+}
+
+const lightColors: ColorScheme = {
+  background: '#F5F5DC',
+  surface: '#FFFFFF',
+  primary: '#2C5F2D',
+  secondary: '#97BC62',
+  text: '#1A1A1A',
+  textSecondary: '#4A4A4A',
+  border: '#D4C5A9',
+  accent: '#D4AF37',
+};
+
+const darkColors: ColorScheme = {
+  background: '#1A1A1A',
+  surface: '#2A2A2A',
+  primary: '#4A7C4E',
+  secondary: '#2C5F2D',
+  text: '#F5F5DC',
+  textSecondary: '#C0C0A0',
+  border: '#3A3A3A',
+  accent: '#FFD700',
+};
+
+const ThemeContext = createContext<ThemeContextType>({
+  isDark: false,
+  toggleTheme: () => {},
+  colors: lightColors,
+});
+
+// Notification configuration
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: true,
+    shouldSetBadge: false,
+  }),
+});
+
+interface Verse {
+  verse_number: number;
+  surah_number: number;
+  surah_name_arabic: string;
+  surah_name_turkish: string;
+  ayah_number_in_surah: number;
+  text_arabic: string;
+  text_turkish: string;
+  tafsir: string;
+  revelation_type: string;
+}
+
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+  const [verse, setVerse] = useState<Verse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const backendUrl = Constants.expoConfig?.extra?.backendUrl || process.env.EXPO_PUBLIC_BACKEND_URL || '';
+
+  useEffect(() => {
+    initializeApp();
+  }, []);
+
+  const initializeApp = async () => {
+    try {
+      // Load theme preference
+      const savedTheme = await AsyncStorage.getItem('theme');
+      if (savedTheme === 'dark') {
+        setIsDark(true);
+      }
+
+      // Request notification permissions
+      await requestNotificationPermissions();
+
+      // Schedule daily notifications
+      await scheduleDailyNotifications();
+
+      // Fetch daily verse
+      await fetchDailyVerse();
+    } catch (err) {
+      console.error('Initialization error:', err);
+      setError('Uygulama başlatılamadı');
+      setLoading(false);
+    }
+  };
+
+  const requestNotificationPermissions = async () => {
+    try {
+      const { status: existingStatus } = await Notifications.getPermissionsAsync();
+      let finalStatus = existingStatus;
+
+      if (existingStatus !== 'granted') {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+
+      if (finalStatus !== 'granted') {
+        console.log('Notification permissions not granted');
+      }
+    } catch (err) {
+      console.error('Error requesting notification permissions:', err);
+    }
+  };
+
+  const scheduleDailyNotifications = async () => {
+    try {
+      // Cancel all existing notifications
+      await Notifications.cancelAllScheduledNotificationsAsync();
+
+      // Schedule daily notification at 00:00 Turkey time (UTC+3)
+      const trigger = {
+        hour: 0,
+        minute: 0,
+        repeats: true,
+      };
+
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: '🌙 Günün Ayeti',
+          body: 'Bugünün ayetini okumak için uygulamayı açın',
+          sound: true,
+        },
+        trigger,
+      });
+
+      console.log('Daily notifications scheduled successfully');
+    } catch (err) {
+      console.error('Error scheduling notifications:', err);
+    }
+  };
+
+  const fetchDailyVerse = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const response = await fetch(`${backendUrl}/api/verse/daily`);
+      
+      if (!response.ok) {
+        throw new Error('Ayet yüklenemedi');
+      }
+
+      const data = await response.json();
+      setVerse(data);
+    } catch (err) {
+      console.error('Error fetching verse:', err);
+      setError('Ayet yüklenirken hata oluştu. Lütfen tekrar deneyin.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const toggleTheme = async () => {
+    const newTheme = !isDark;
+    setIsDark(newTheme);
+    await AsyncStorage.setItem('theme', newTheme ? 'dark' : 'light');
+  };
+
+  const colors = isDark ? darkColors : lightColors;
+  const themeValue = { isDark, toggleTheme, colors };
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={require("../assets/images/app-image.png")}
-        style={styles.image}
-      />
-    </View>
+    <ThemeContext.Provider value={themeValue}>
+      <View style={[styles.container, { backgroundColor: colors.background }]}>
+        <StatusBar
+          barStyle={isDark ? 'light-content' : 'dark-content'}
+          backgroundColor={colors.background}
+        />
+        
+        {/* Header */}
+        <View style={[styles.header, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
+          <View style={styles.headerContent}>
+            <View style={styles.logoContainer}>
+              <Ionicons name="book" size={28} color={colors.primary} />
+              <Text style={[styles.appTitle, { color: colors.text }]}>1 Ayet 1 Yorum</Text>
+            </View>
+            <TouchableOpacity
+              onPress={toggleTheme}
+              style={[styles.themeButton, { backgroundColor: colors.primary }]}
+              activeOpacity={0.7}
+            >
+              <Ionicons
+                name={isDark ? 'sunny' : 'moon'}
+                size={20}
+                color={colors.surface}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Content */}
+        <ScrollView
+          style={styles.scrollView}
+          contentContainerStyle={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          {loading ? (
+            <View style={styles.centerContainer}>
+              <ActivityIndicator size="large" color={colors.primary} />
+              <Text style={[styles.loadingText, { color: colors.textSecondary }]}>
+                Ayet yükleniyor...
+              </Text>
+            </View>
+          ) : error ? (
+            <View style={styles.centerContainer}>
+              <Ionicons name="alert-circle" size={48} color={colors.primary} />
+              <Text style={[styles.errorText, { color: colors.text }]}>{error}</Text>
+              <TouchableOpacity
+                onPress={fetchDailyVerse}
+                style={[styles.retryButton, { backgroundColor: colors.primary }]}
+              >
+                <Text style={[styles.retryButtonText, { color: colors.surface }]}>
+                  Tekrar Dene
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : verse ? (
+            <View style={styles.verseContainer}>
+              {/* Surah Info */}
+              <View style={[styles.surahInfo, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+                <View style={styles.surahHeader}>
+                  <Ionicons name="star" size={20} color={colors.accent} />
+                  <Text style={[styles.surahName, { color: colors.text }]}>
+                    {verse.surah_name_turkish}
+                  </Text>
+                </View>
+                <Text style={[styles.surahDetails, { color: colors.textSecondary }]}>
+                  {verse.surah_number}. Sure • {verse.ayah_number_in_surah}. Ayet
+                </Text>
+                <Text style={[styles.surahNameArabic, { color: colors.primary }]}>
+                  {verse.surah_name_arabic}
+                </Text>
+              </View>
+
+              {/* Arabic Text */}
+              <View style={[styles.textCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+                <View style={[styles.cardHeader, { borderBottomColor: colors.border }]}>
+                  <Ionicons name="book-outline" size={18} color={colors.primary} />
+                  <Text style={[styles.cardTitle, { color: colors.primary }]}>Arapça Metin</Text>
+                </View>
+                <Text style={[styles.arabicText, { color: colors.text }]}>
+                  {verse.text_arabic}
+                </Text>
+              </View>
+
+              {/* Turkish Translation */}
+              <View style={[styles.textCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+                <View style={[styles.cardHeader, { borderBottomColor: colors.border }]}>
+                  <Ionicons name="language" size={18} color={colors.primary} />
+                  <Text style={[styles.cardTitle, { color: colors.primary }]}>Türkçe Meal</Text>
+                </View>
+                <Text style={[styles.turkishText, { color: colors.text }]}>
+                  {verse.text_turkish}
+                </Text>
+              </View>
+
+              {/* Tafsir */}
+              <View style={[styles.textCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+                <View style={[styles.cardHeader, { borderBottomColor: colors.border }]}>
+                  <Ionicons name="bulb-outline" size={18} color={colors.accent} />
+                  <Text style={[styles.cardTitle, { color: colors.accent }]}>Tefsir ve Yorum</Text>
+                </View>
+                <Text style={[styles.tafsirText, { color: colors.text }]}>
+                  {verse.tafsir}
+                </Text>
+              </View>
+
+              {/* Footer Info */}
+              <View style={styles.footerInfo}>
+                <Ionicons name="notifications" size={16} color={colors.textSecondary} />
+                <Text style={[styles.footerText, { color: colors.textSecondary }]}>
+                  Her gün saat 00:00'da yeni ayet bildirimi alacaksınız
+                </Text>
+              </View>
+            </View>
+          ) : null}
+        </ScrollView>
+      </View>
+    </ThemeContext.Provider>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#0c0c0c",
-    alignItems: "center",
-    justifyContent: "center",
   },
-  image: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "contain",
+  header: {
+    paddingTop: Platform.OS === 'ios' ? 50 : 40,
+    paddingBottom: 16,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+  },
+  headerContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  appTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+  },
+  themeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    padding: 16,
+  },
+  centerContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingVertical: 100,
+  },
+  loadingText: {
+    marginTop: 16,
+    fontSize: 16,
+  },
+  errorText: {
+    marginTop: 16,
+    fontSize: 16,
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  retryButton: {
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+  },
+  retryButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  verseContainer: {
+    gap: 16,
+  },
+  surahInfo: {
+    padding: 20,
+    borderRadius: 12,
+    borderWidth: 1,
+    alignItems: 'center',
+  },
+  surahHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 8,
+  },
+  surahName: {
+    fontSize: 24,
+    fontWeight: '700',
+  },
+  surahDetails: {
+    fontSize: 14,
+    marginBottom: 12,
+  },
+  surahNameArabic: {
+    fontSize: 28,
+    fontWeight: '600',
+  },
+  textCard: {
+    borderRadius: 12,
+    borderWidth: 1,
+    overflow: 'hidden',
+  },
+  cardHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    padding: 16,
+    borderBottomWidth: 1,
+  },
+  cardTitle: {
+    fontSize: 16,
+    fontWeight: '600',
+  },
+  arabicText: {
+    fontSize: 28,
+    lineHeight: 48,
+    textAlign: 'right',
+    padding: 20,
+    fontWeight: '500',
+  },
+  turkishText: {
+    fontSize: 18,
+    lineHeight: 30,
+    padding: 20,
+  },
+  tafsirText: {
+    fontSize: 16,
+    lineHeight: 26,
+    padding: 20,
+  },
+  footerInfo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginTop: 8,
+    marginBottom: 24,
+  },
+  footerText: {
+    fontSize: 13,
+    textAlign: 'center',
   },
 });
