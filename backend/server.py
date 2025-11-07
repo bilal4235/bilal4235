@@ -267,6 +267,12 @@ async def fetch_and_store_quran_data():
                                 transcription = verse_data.get("transcription", "")
                                 arabic_text = verse_data.get("verse", "")
                                 
+                                # Clean unwanted characters from Arabic text
+                                # Remove: ۪ (U+06EA), ۖ (U+0656), ۗ (U+0657), ۘ (U+0658), ۙ (U+0659), ۚ (U+065A), ۛ (U+065B), ۜ (U+065C), ۞ (U+06DE)
+                                unwanted_chars = ['\u06ea', '\u0656', '\u0657', '\u0658', '\u0659', '\u065a', '\u065b', '\u065c', '\u06de']
+                                for char in unwanted_chars:
+                                    arabic_text = arabic_text.replace(char, '')
+                                
                                 # Add verse ending marker (۝)
                                 if arabic_text and not arabic_text.endswith('۝'):
                                     arabic_text = arabic_text + ' ۝'
