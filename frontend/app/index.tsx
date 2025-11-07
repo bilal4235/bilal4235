@@ -88,32 +88,12 @@ export default function App() {
   const [verse, setVerse] = useState<Verse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [checkingWelcome, setCheckingWelcome] = useState(true);
 
   const backendUrl = Constants.expoConfig?.extra?.backendUrl || process.env.EXPO_PUBLIC_BACKEND_URL || '';
 
   useEffect(() => {
-    checkFirstLaunch();
+    initializeApp();
   }, []);
-
-  const checkFirstLaunch = async () => {
-    try {
-      const hasSeenWelcome = await AsyncStorage.getItem('hasSeenWelcome');
-      
-      if (!hasSeenWelcome) {
-        // İlk açılış - hoş geldiniz ekranına yönlendir
-        router.replace('/welcome');
-      } else {
-        // Daha önce açılmış - normal başlatma
-        setCheckingWelcome(false);
-        initializeApp();
-      }
-    } catch (err) {
-      console.error('Error checking first launch:', err);
-      setCheckingWelcome(false);
-      initializeApp();
-    }
-  };
 
   const initializeApp = async () => {
     try {
