@@ -193,6 +193,10 @@ backend:
     status_history:
       - working: true
         agent: "testing"
+        comment: "FINAL COMPREHENSIVE TEST PASSED. Arabic and Turkish text encoding verified across multiple verses. Arabic text contains proper Unicode characters in the range U+0600 to U+06FF. Turkish text is readable and properly encoded. Sample verified: Verse 1 (Besmele) displays correctly in both languages."
+
+      - working: true
+        agent: "testing"
         comment: "Text encoding tested successfully. Arabic text contains proper Arabic Unicode characters (U+0600 to U+06FF range). Turkish text is present and readable. Sample verified from verse 1: Arabic 'بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ' and Turkish 'Rahman ve Rahim olan Allah'ın adıyla:' both display correctly."
 
 frontend:
