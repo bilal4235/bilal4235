@@ -19,7 +19,8 @@ export default function Layout() {
       
       if (!seen) {
         // İlk açılış - splash'i 3 saniye göster
-        setTimeout(() => {
+        setTimeout(async () => {
+          await AsyncStorage.setItem('hasSeenWelcome', 'true');
           setShowSplash(false);
           setHasSeenWelcome(false);
         }, 3000);
