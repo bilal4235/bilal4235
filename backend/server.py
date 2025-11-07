@@ -213,6 +213,10 @@ async def fetch_and_store_quran_data():
                                     quran_data = quran_response.json()
                                     arabic_text = quran_data.get("verse", {}).get("text_uthmani", arabic_text)
                                 
+                                # Add verse ending marker (۝)
+                                if arabic_text and not arabic_text.endswith('۝'):
+                                    arabic_text = arabic_text + ' ۝'
+                                
                                 verse_doc = {
                                     "verse_number": verse_counter,
                                     "surah_number": surah_id,
