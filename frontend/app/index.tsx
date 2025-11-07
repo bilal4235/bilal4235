@@ -136,6 +136,12 @@ export default function App() {
   };
 
   const scheduleDailyNotifications = async () => {
+    // Skip notification scheduling on web platform
+    if (Platform.OS === 'web') {
+      console.log('Notifications not available on web platform');
+      return;
+    }
+
     try {
       // Cancel all existing notifications
       await Notifications.cancelAllScheduledNotificationsAsync();
