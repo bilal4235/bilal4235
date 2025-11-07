@@ -200,8 +200,54 @@ def get_turkish_surah_name(surah_number: int) -> str:
 
 def get_basic_tafsir(surah_number: int, ayah_number: int) -> str:
     """Get basic tafsir/commentary for the verse"""
-    # This is a simplified version. In production, you'd fetch from a proper tafsir API
-    return f"Bu ayet {get_turkish_surah_name(surah_number)} Suresinin {ayah_number}. ayetidir. Allah'ın kelâmı olan bu mübarek ayet, inananlar için hidayet ve rahmet kaynağıdır. Her ayet derin mânâlar içerir ve üzerinde düşünülmeye değerdir."
+    
+    # Special tafsir for famous verses
+    famous_verses = {
+        (1, 1): "Besmele, Kuran'ın ve her surenin başlangıcıdır. Allah'ın Rahman ve Rahim isimlerini hatırlatarak, O'nun sonsuz merhameti ve şefkatini vurgular. Müslümanlar her işe besmele ile başlayarak Allah'ı anarlar.",
+        
+        (1, 2): "Hamd, Allah'a yapılan övgüdür. Sadece O'na hamd edilir çünkü tüm nimetlerin sahibi O'dur. 'Alemlerin Rabbi' ifadesi, Allah'ın tüm varlıkların yaratıcısı ve yöneticisi olduğunu gösterir.",
+        
+        (2, 255): "Ayetel Kürsi, Kuran'ın en yüce ayetlerinden biridir. Allah'ın birliği, büyüklüğü, ilmi, kudreti ve saltanatını anlatır. Bu ayetin okunması, korunma ve bereket vesilesidir. Hz. Peygamber (s.a.v), bu ayetin Kuran'ın efendisi olduğunu bildirmiştir.",
+        
+        (112, 1): "İhlas Suresi, tevhid (Allah'ın birliği) inancının özüdür. Allah'ın bir ve tek olduğunu, eşi ve benzerinin bulunmadığını açıklar. Bu sure, Kuran'ın üçte biri değerindedir.",
+        
+        (112, 2): "Allah Samed'dir, yani herkes O'na muhtaçtır, O ise hiç kimseye muhtaç değildir. Her şey O'ndan ister, O kimseye ihtiyaç duymaz. Tüm varlıklar O'na dayanır.",
+        
+        (2, 156): "Müminlerin musibetlere karşı tavrını gösterir. 'İnna lillahi ve inna ileyhi raciun' sözü, sabır ve teslimiyetin ifadesidir. Her şeyin Allah'a ait olduğunu ve O'na döneceğimizi hatırlatır.",
+        
+        (2, 185): "Ramazan ayının Kuran'ın indirildiği ay olduğunu bildirir. Oruç farzının gerekçesini ve kolaylık prensibini açıklar. Allah kullarına zorluk değil, kolaylık ister.",
+        
+        (55, 13): "Rahman Suresinde tekrarlanan bu ayet, Allah'ın nimetlerini inkâr etmemenin önemini vurgular. Hem dünya hem ahiret nimetlerine şükretmek gerektiğini hatırlatır.",
+        
+        (36, 1): "Yasin Suresi, Kuran'ın kalbidir. Ölen kişilere, hastalara ve sıkıntıdaki insanlara okunan mübarek bir suredir. Hz. Peygamber (s.a.v), bu surenin okunmasını teşvik etmiştir.",
+        
+        (18, 10): "Kehf Suresinin başında anlatılan Ashab-ı Kehf kıssasının başlangıcıdır. İmanlarını korumak için mağaraya sığınan gençlerin hikayesi, iman ve sabır derslerini içerir.",
+    }
+    
+    # Check if this is a famous verse
+    if (surah_number, ayah_number) in famous_verses:
+        return famous_verses[(surah_number, ayah_number)]
+    
+    # Generate contextual tafsir based on surah
+    surah_name = get_turkish_surah_name(surah_number)
+    
+    # Surah-specific contexts
+    surah_contexts = {
+        1: "Fatiha Suresi, namazda okunan ve Kuran'ın özeti olan suredir.",
+        2: "Bakara Suresi, Kuran'ın en uzun suresidir ve birçok hüküm içerir.",
+        3: "Âl-i İmran Suresi, iman ve cihad konularını işler.",
+        18: "Kehf Suresi, dört önemli kıssa içerir ve Cuma günleri okunması tavsiye edilir.",
+        36: "Yasin Suresi, Kuran'ın kalbi olarak bilinir.",
+        55: "Rahman Suresi, Allah'ın nimetlerini sayar.",
+        67: "Mülk Suresi, kabir azabından koruyucu olarak bilinir.",
+        112: "İhlas Suresi, tevhid inancının özüdür ve Kuran'ın üçte biri değerindedir.",
+        113: "Felak Suresi, şerlerden Allah'a sığınmayı öğretir.",
+        114: "Nas Suresi, şeytandan ve vesveselerden Allah'a sığınmayı öğretir.",
+    }
+    
+    context = surah_contexts.get(surah_number, f"{surah_name} Suresi, Kuran-ı Kerim'in önemli surelerinden biridir.")
+    
+    return f"{context} Bu ayet ({surah_name} {ayah_number}), Allah'ın kelâmıdır ve üzerinde tefekkür edilmesi gereken derin mânâlar içerir. Her ayet, hidayet ve öğüt kaynağıdır."
 
 if __name__ == "__main__":
     import uvicorn
