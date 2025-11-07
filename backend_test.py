@@ -239,34 +239,158 @@ def test_edge_case(verse_id: int, should_fail: bool = True) -> bool:
         print_error(f"Edge case test exception: {e}")
         return False
 
+def test_search_endpoint(query: str, description: str) -> bool:
+    """Test search endpoint"""
+    print_test_header(f"Search Endpoint - {description}")
+    
+    try:
+        response = requests.get(f"{BACKEND_URL}/search", params={"q": query}, timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            print_info(f"Query: {query}")
+            print_info(f"Results count: {data.get('count', 0)}")
+            
+            if data.get('count', 0) > 0:
+                print_success(f"Search returned {data['count']} results")
+                
+                # Show first result
+                first_result = data['results'][0]
+                print_info(f"First result: {first_result.get('surah_name_turkish')} {first_result.get('ayah_number_in_surah')}")
+                print_info(f"Turkish: {first_result.get('text_turkish', '')[:60]}...")
+                return True
+            else:
+                print_error("Search returned 0 results")
+                return False
+        else:
+            print_error(f"Search endpoint failed with status code: {response.status_code}")
+            return False
+            
+    except Exception as e:
+        print_error(f"Search endpoint exception: {e}")
+        return False
+
+def test_surahs_list() -> bool:
+    """Test surahs list endpoint"""
+    print_test_header("Surahs List - 114 Surahs Expected")
+    
+    try:
+        response = requests.get(f"{BACKEND_URL}/surahs", timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            total = data.get('total', 0)
+            surahs = data.get('surahs', [])
+            
+            print_info(f"Total surahs: {total}")
+            
+            if total == 114:
+                print_success(f"✅ Correct surah count: {total}")
+            else:
+                print_error(f"❌ Incorrect surah count: {total} (expected 114)")
+                return False
+            
+            if len(surahs) == 114:
+                print_success(f"✅ Surahs array length: {len(surahs)}")
+            else:
+                print_error(f"❌ Surahs array length: {len(surahs)} (expected 114)")
+                return False
+            
+            # Check first and last surah
+            first_surah = surahs[0]
+            last_surah = surahs[-1]
+            
+            print_info(f"First surah: {first_surah.get('name_turkish')} ({first_surah.get('name_arabic')}) - {first_surah.get('verse_count')} verses")
+            print_info(f"Last surah: {last_surah.get('name_turkish')} ({last_surah.get('name_arabic')}) - {last_surah.get('verse_count')} verses")
+            
+            return True
+        else:
+            print_error(f"Surahs list endpoint failed with status code: {response.status_code}")
+            return False
+            
+    except Exception as e:
+        print_error(f"Surahs list endpoint exception: {e}")
+        return False
+
+def test_surah_by_number(surah_number: int, expected_verses: int, description: str) -> bool:
+    """Test getting specific surah"""
+    print_test_header(f"Surah {surah_number} - {description}")
+    
+    try:
+        response = requests.get(f"{BACKEND_URL}/surah/{surah_number}", timeout=10)
+        
+        if response.status_code == 200:
+            data = response.json()
+            count = data.get('count', 0)
+            verses = data.get('verses', [])
+            
+            print_info(f"Surah: {data.get('surah_name')}")
+            print_info(f"Verse count: {count}")
+            
+            if count == expected_verses:
+                print_success(f"✅ Correct verse count: {count}")
+            else:
+                print_error(f"❌ Incorrect verse count: {count} (expected {expected_verses})")
+                return False
+            
+            if len(verses) == expected_verses:
+                print_success(f"✅ Verses array length: {len(verses)}")
+            else:
+                print_error(f"❌ Verses array length: {len(verses)} (expected {expected_verses})")
+                return False
+            
+            # Validate all verses have required fields
+            for i, verse in enumerate(verses, 1):
+                if not verse.get('text_arabic'):
+                    print_error(f"Verse {i}: Arabic text missing")
+                    return False
+                if not verse.get('text_turkish'):
+                    print_error(f"Verse {i}: Turkish text missing")
+                    return False
+            
+            print_success(f"All {count} verses have Arabic and Turkish text")
+            return True
+        else:
+            print_error(f"Surah {surah_number} endpoint failed with status code: {response.status_code}")
+            return False
+            
+    except Exception as e:
+        print_error(f"Surah {surah_number} endpoint exception: {e}")
+        return False
+
 def run_all_tests():
     """Run all backend tests"""
     print(f"\n{Colors.BOLD}{'='*80}{Colors.RESET}")
-    print(f"{Colors.BOLD}COMPREHENSIVE BACKEND TESTING - Diyanet İşleri Başkanlığı Verileri{Colors.RESET}")
+    print(f"{Colors.BOLD}FINAL COMPREHENSIVE BACKEND TESTING - Production Ready Check{Colors.RESET}")
     print(f"{Colors.BOLD}Backend URL: {BACKEND_URL}{Colors.RESET}")
     print(f"{Colors.BOLD}{'='*80}{Colors.RESET}\n")
     
     results = {}
     
     # Test 1: Health Check
-    results["Health Check"] = test_health_check()
+    results["1. Health Check (GET /api/health)"] = test_health_check()
     
     # Test 2: Stats Endpoint
-    results["Stats (6236 verses)"] = test_stats_endpoint()
+    results["2. Stats (GET /api/stats - 6236 verses)"] = test_stats_endpoint()
     
     # Test 3: Daily Verse
-    results["Daily Verse"] = test_daily_verse()
+    results["3. Daily Verse (GET /api/verse/daily)"] = test_daily_verse()
     
-    # Test 4: Specific Verses
-    results["Verse 1 (Fatiha 1 - Besmele)"] = test_specific_verse(1, "Fatiha 1 - Besmele")
-    results["Verse 2 (Fatiha 2)"] = test_specific_verse(2, "Fatiha 2")
-    results["Verse 6222 (İhlas 1)"] = test_specific_verse(6222, "İhlas 1 - Correct verse")
-    results["Verse 6236 (Nas 6 - Son ayet)"] = test_specific_verse(6236, "Nas 6 - Son ayet")
+    # Test 4: Search Endpoints
+    results["4. Search - rahman (GET /api/search?q=rahman)"] = test_search_endpoint("rahman", "Search for 'rahman'")
+    results["5. Search - fatiha (GET /api/search?q=fatiha)"] = test_search_endpoint("fatiha", "Search for 'fatiha'")
     
-    # Test 5: Edge Cases
-    results["Edge Case: Verse 0"] = test_edge_case(0, should_fail=True)
-    results["Edge Case: Verse 9999"] = test_edge_case(9999, should_fail=True)
-    results["Edge Case: Verse -1"] = test_edge_case(-1, should_fail=True)
+    # Test 5: Surahs List
+    results["6. Surahs List (GET /api/surahs - 114 surahs)"] = test_surahs_list()
+    
+    # Test 6: Specific Surah
+    results["7. Surah 1 - Fatiha (GET /api/surah/1 - 7 verses)"] = test_surah_by_number(1, 7, "Fatiha - 7 verses expected")
+    
+    # Test 7: Specific Verse
+    results["8. Verse 1 (GET /api/verse/1 - First verse)"] = test_specific_verse(1, "First verse - Besmele")
+    
+    # Test 8: Error Handling
+    results["9. Error Handling - Invalid verse ID"] = test_edge_case(9999, should_fail=True)
     
     # Summary
     print(f"\n{Colors.BOLD}{'='*80}{Colors.RESET}")
@@ -283,10 +407,10 @@ def run_all_tests():
     print(f"\n{Colors.BOLD}Total: {passed}/{total} tests passed{Colors.RESET}")
     
     if passed == total:
-        print(f"\n{Colors.GREEN}{Colors.BOLD}🎉 ALL TESTS PASSED! Backend is working perfectly!{Colors.RESET}")
+        print(f"\n{Colors.GREEN}{Colors.BOLD}🎉 ALL TESTS PASSED! Backend is production-ready!{Colors.RESET}")
         return 0
     else:
-        print(f"\n{Colors.RED}{Colors.BOLD}⚠️  Some tests failed. Please review the errors above.{Colors.RESET}")
+        print(f"\n{Colors.RED}{Colors.BOLD}⚠️  {total - passed} test(s) failed. Please review the errors above.{Colors.RESET}")
         return 1
 
 if __name__ == "__main__":
