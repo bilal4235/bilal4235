@@ -161,6 +161,10 @@ backend:
     status_history:
       - working: true
         agent: "testing"
+      - working: true
+        agent: "testing"
+        comment: "FINAL COMPREHENSIVE TEST PASSED. Verse by ID endpoint tested with specific verses: Verse 1 (Fatiha 1 - Besmele), Verse 2 (Fatiha 2), Verse 6222 (İhlas 1), Verse 6236 (Nas 6 - last verse). All verses retrieved successfully with complete data. Edge cases tested (verse IDs 0, 9999, -1) - correctly rejected with appropriate error codes. Note: User's request mentioned verse 6203 as İhlas 1, but actual İhlas surah starts at verse 6222."
+
         comment: "Minor: GET /api/verse/{verse_id} endpoint tested. Core functionality works correctly - successfully retrieves verses by ID (tested with IDs 1, 100, 6236). All verse data is accurate and verse_number matches requested ID. MINOR ISSUE: Invalid verse IDs return 500 instead of 404 due to exception handling catching HTTPException and re-raising as 500. This doesn't affect core functionality."
 
   - task: "Database Population"
