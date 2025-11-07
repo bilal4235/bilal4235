@@ -108,72 +108,80 @@ async def get_stats():
         raise HTTPException(status_code=500, detail=str(e))
 
 async def fetch_and_store_quran_data():
-    """Fetch Quran data from Quran.com API (more reliable) and store in MongoDB"""
+    """Fetch Quran data from Diyanet İşleri Başkanlığı API and store in MongoDB"""
     try:
-        print("Starting to fetch Quran data from Quran.com API...")
+        print("🌙 Diyanet İşleri Başkanlığı resmi Kuran API'sinden veri çekiliyor...")
         async with httpx.AsyncClient(timeout=60.0) as client:
             verses_to_insert = []
             verse_counter = 1
             
+            # First, get list of all surahs
+            surahs_response = await client.get(f"{QURAN_API_BASE}/surahs")
+            if surahs_response.status_code != 200:
+                raise Exception("Sureleri çekerken hata oluştu")
+            
+            surahs_data = surahs_response.json()
+            all_surahs = surahs_data.get("data", [])
+            
             # Fetch all 114 surahs
-            for surah_number in range(1, 115):
-                print(f"Fetching Surah {surah_number}/114...")
+            for surah in all_surahs:
+                surah_id = surah["id"]
+                surah_name_tr = surah["name"]
+                surah_name_ar = surah["name_original"]
+                verse_count = surah["verse_count"]
+                
+                print(f"Fetching {surah_name_tr} Suresi ({surah_id}/114) - {verse_count} ayet...")
                 
                 try:
-                    # Get verses with Arabic (Uthmani) text and Turkish (Diyanet) translation
-                    # Translation ID 77 is official Diyanet translation
-                    response = await client.get(
-                        f"{QURAN_API_BASE}/verses/by_chapter/{surah_number}",
-                        params={
-                            "language": "tr",
-                            "words": "false",
-                            "translations": "77",  # Diyanet translation
-                            "fields": "text_uthmani",
-                            "per_page": "300"  # Max verses per surah
-                        }
-                    )
-                    
-                    if response.status_code == 200:
-                        data = response.json()
-                        verses = data.get("verses", [])
+                    # Fetch all verses for this surah
+                    for verse_num in range(1, verse_count + 1):
+                        # Get verse with Diyanet meal
+                        verse_response = await client.get(
+                            f"{QURAN_API_BASE}/surah/{surah_id}/verse/{verse_num}",
+                            params={"author": DIYANET_AUTHOR_ID}
+                        )
                         
-                        for verse in verses:
-                            # Extract translation text
-                            turkish_text = ""
-                            if verse.get("translations") and len(verse["translations"]) > 0:
-                                turkish_text = verse["translations"][0].get("text", "")
+                        if verse_response.status_code == 200:
+                            verse_data = verse_response.json().get("data", {})
+                            
+                            # Extract data
+                            arabic_text = verse_data.get("verse", "")
+                            turkish_translation = verse_data.get("translation", {}).get("text", "")
+                            transcription = verse_data.get("transcription", "")
                             
                             verse_doc = {
                                 "verse_number": verse_counter,
-                                "surah_number": surah_number,
-                                "surah_name_arabic": get_arabic_surah_name(surah_number),
-                                "surah_name_turkish": get_turkish_surah_name(surah_number),
-                                "ayah_number_in_surah": verse.get("verse_number"),
-                                "text_arabic": verse.get("text_uthmani", ""),
-                                "text_turkish": turkish_text,
-                                "tafsir": get_basic_tafsir(surah_number, verse.get("verse_number")),
-                                "revelation_type": get_revelation_type(surah_number),
+                                "surah_number": surah_id,
+                                "surah_name_arabic": surah_name_ar,
+                                "surah_name_turkish": surah_name_tr,
+                                "ayah_number_in_surah": verse_num,
+                                "text_arabic": arabic_text,
+                                "text_turkish": turkish_translation,
+                                "transcription": transcription,
+                                "tafsir": get_basic_tafsir(surah_id, verse_num),
+                                "revelation_type": get_revelation_type(surah_id),
                                 "created_at": datetime.utcnow()
                             }
                             verses_to_insert.append(verse_doc)
                             verse_counter += 1
-                    
-                    # Small delay to avoid rate limiting
-                    await asyncio.sleep(0.2)
+                        
+                        # Small delay to avoid rate limiting
+                        await asyncio.sleep(0.05)
                     
                 except Exception as e:
-                    print(f"Error fetching surah {surah_number}: {e}")
+                    print(f"Error fetching {surah_name_tr} Suresi: {e}")
                     continue
             
             # Insert all verses into MongoDB
             if verses_to_insert:
                 result = await verses_collection.insert_many(verses_to_insert)
-                print(f"Successfully inserted {len(result.inserted_ids)} verses into database")
+                print(f"✅ {len(result.inserted_ids)} ayet başarıyla veritabanına kaydedildi!")
+                print("✅ Tüm veriler Diyanet İşleri Başkanlığı resmi kaynağından alındı.")
             else:
-                print("No verses to insert")
+                print("❌ Kaydedilecek ayet bulunamadı")
                 
     except Exception as e:
-        print(f"Error in fetch_and_store_quran_data: {e}")
+        print(f"❌ Veri çekme hatası: {e}")
         raise
 
 def get_arabic_surah_name(surah_number: int) -> str:
