@@ -193,13 +193,25 @@ async def fetch_and_store_quran_data():
                                 timeout=10.0
                             )
                             
+                            # Get clean Arabic text from Quran.com
+                            quran_response = await client.get(
+                                f"https://api.quran.com/api/v4/verses/by_key/{surah_id}:{verse_num}",
+                                params={"fields": "text_uthmani"},
+                                timeout=10.0
+                            )
+                            
                             if verse_response.status_code == 200:
                                 verse_data = verse_response.json().get("data", {})
                                 
                                 # Extract data
-                                arabic_text = verse_data.get("verse", "")
                                 turkish_translation = verse_data.get("translation", {}).get("text", "")
                                 transcription = verse_data.get("transcription", "")
+                                
+                                # Get clean Uthmani Arabic text from Quran.com
+                                arabic_text = verse_data.get("verse", "")  # fallback
+                                if quran_response.status_code == 200:
+                                    quran_data = quran_response.json()
+                                    arabic_text = quran_data.get("verse", {}).get("text_uthmani", arabic_text)
                                 
                                 verse_doc = {
                                     "verse_number": verse_counter,
@@ -218,7 +230,7 @@ async def fetch_and_store_quran_data():
                                 verse_counter += 1
                             
                             # Small delay to avoid rate limiting
-                            await asyncio.sleep(0.05)
+                            await asyncio.sleep(0.08)
                         except Exception as verse_error:
                             print(f"⚠️  {surah_name_tr} {verse_num}. ayet hatası: {verse_error}")
                             continue
