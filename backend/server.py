@@ -23,8 +23,9 @@ app.add_middleware(
 
 # MongoDB connection
 MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017")
+DB_NAME = os.getenv("DB_NAME", "quran_app")
 client = AsyncIOMotorClient(MONGO_URL)
-db = client.quran_app
+db = client[DB_NAME]
 verses_collection = db.verses
 
 # Diyanet İşleri Başkanlığı Açık Kaynak Kuran API
