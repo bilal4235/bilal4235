@@ -260,7 +260,7 @@ def run_all_tests():
     # Test 4: Specific Verses
     results["Verse 1 (Fatiha 1 - Besmele)"] = test_specific_verse(1, "Fatiha 1 - Besmele")
     results["Verse 2 (Fatiha 2)"] = test_specific_verse(2, "Fatiha 2")
-    results["Verse 6203 (İhlas 1)"] = test_specific_verse(6203, "İhlas 1")
+    results["Verse 6222 (İhlas 1)"] = test_specific_verse(6222, "İhlas 1 - Correct verse")
     results["Verse 6236 (Nas 6 - Son ayet)"] = test_specific_verse(6236, "Nas 6 - Son ayet")
     
     # Test 5: Edge Cases
