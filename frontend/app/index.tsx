@@ -369,10 +369,12 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   appTitle: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: '700',
-    letterSpacing: 0.5,
+    letterSpacing: 1,
     textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    textTransform: 'uppercase',
   },
   headerButtons: {
     flexDirection: 'row',
