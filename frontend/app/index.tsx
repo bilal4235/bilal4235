@@ -213,44 +213,41 @@ export default function App() {
         {/* Header */}
         <View style={[styles.header, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
           <View style={styles.headerContent}>
-            <View style={styles.logoContainer}>
-              <Ionicons name="book" size={28} color={colors.primary} />
-              <Text style={[styles.appTitle, { color: colors.text }]}>1 Ayet 1 Yorum</Text>
-            </View>
-            <View style={styles.headerButtons}>
-              <TouchableOpacity
-                onPress={() => router.push('/browse')}
-                style={[styles.iconButton, { backgroundColor: colors.primary }]}
-                activeOpacity={0.7}
-              >
-                <Ionicons name="book" size={20} color={colors.surface} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => router.push('/search')}
-                style={[styles.iconButton, { backgroundColor: colors.primary }]}
-                activeOpacity={0.7}
-              >
-                <Ionicons name="search" size={20} color={colors.surface} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => router.push('/settings')}
-                style={[styles.iconButton, { backgroundColor: colors.primary }]}
-                activeOpacity={0.7}
-              >
-                <Ionicons name="settings" size={20} color={colors.surface} />
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={toggleTheme}
-                style={[styles.iconButton, { backgroundColor: colors.primary }]}
-                activeOpacity={0.7}
-              >
-                <Ionicons
-                  name={isDark ? 'sunny' : 'moon'}
-                  size={20}
-                  color={colors.surface}
-                />
-              </TouchableOpacity>
-            </View>
+            <Text style={[styles.appTitle, { color: colors.text }]}>1 Ayet 1 Yorum</Text>
+          </View>
+          <View style={styles.headerButtons}>
+            <TouchableOpacity
+              onPress={() => router.push('/browse')}
+              style={[styles.iconButton, { backgroundColor: colors.primary }]}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="book" size={20} color={colors.surface} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => router.push('/search')}
+              style={[styles.iconButton, { backgroundColor: colors.primary }]}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="search" size={20} color={colors.surface} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => router.push('/settings')}
+              style={[styles.iconButton, { backgroundColor: colors.primary }]}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="settings" size={20} color={colors.surface} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={toggleTheme}
+              style={[styles.iconButton, { backgroundColor: colors.primary }]}
+              activeOpacity={0.7}
+            >
+              <Ionicons
+                name={isDark ? 'sunny' : 'moon'}
+                size={20}
+                color={colors.surface}
+              />
+            </TouchableOpacity>
           </View>
         </View>
 
