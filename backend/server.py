@@ -132,61 +132,73 @@ async def fetch_and_store_quran_data():
             all_surahs = surahs_data.get("data", [])
             
             # Fetch all 114 surahs
+            total_inserted = 0
             for surah in all_surahs:
                 surah_id = surah["id"]
                 surah_name_tr = surah["name"]
                 surah_name_ar = surah["name_original"]
                 verse_count = surah["verse_count"]
                 
-                print(f"Fetching {surah_name_tr} Suresi ({surah_id}/114) - {verse_count} ayet...")
+                print(f"🔄 {surah_name_tr} Suresi ({surah_id}/114) - {verse_count} ayet çekiliyor...")
                 
                 try:
+                    surah_verses = []
                     # Fetch all verses for this surah
                     for verse_num in range(1, verse_count + 1):
-                        # Get verse with Diyanet meal
-                        verse_response = await client.get(
-                            f"{QURAN_API_BASE}/surah/{surah_id}/verse/{verse_num}",
-                            params={"author": DIYANET_AUTHOR_ID}
-                        )
-                        
-                        if verse_response.status_code == 200:
-                            verse_data = verse_response.json().get("data", {})
+                        try:
+                            # Get verse with Diyanet meal
+                            verse_response = await client.get(
+                                f"{QURAN_API_BASE}/surah/{surah_id}/verse/{verse_num}",
+                                params={"author": DIYANET_AUTHOR_ID},
+                                timeout=10.0
+                            )
                             
-                            # Extract data
-                            arabic_text = verse_data.get("verse", "")
-                            turkish_translation = verse_data.get("translation", {}).get("text", "")
-                            transcription = verse_data.get("transcription", "")
+                            if verse_response.status_code == 200:
+                                verse_data = verse_response.json().get("data", {})
+                                
+                                # Extract data
+                                arabic_text = verse_data.get("verse", "")
+                                turkish_translation = verse_data.get("translation", {}).get("text", "")
+                                transcription = verse_data.get("transcription", "")
+                                
+                                verse_doc = {
+                                    "verse_number": verse_counter,
+                                    "surah_number": surah_id,
+                                    "surah_name_arabic": surah_name_ar,
+                                    "surah_name_turkish": surah_name_tr,
+                                    "ayah_number_in_surah": verse_num,
+                                    "text_arabic": arabic_text,
+                                    "text_turkish": turkish_translation,
+                                    "transcription": transcription,
+                                    "tafsir": get_basic_tafsir(surah_id, verse_num),
+                                    "revelation_type": get_revelation_type(surah_id),
+                                    "created_at": datetime.utcnow()
+                                }
+                                surah_verses.append(verse_doc)
+                                verse_counter += 1
                             
-                            verse_doc = {
-                                "verse_number": verse_counter,
-                                "surah_number": surah_id,
-                                "surah_name_arabic": surah_name_ar,
-                                "surah_name_turkish": surah_name_tr,
-                                "ayah_number_in_surah": verse_num,
-                                "text_arabic": arabic_text,
-                                "text_turkish": turkish_translation,
-                                "transcription": transcription,
-                                "tafsir": get_basic_tafsir(surah_id, verse_num),
-                                "revelation_type": get_revelation_type(surah_id),
-                                "created_at": datetime.utcnow()
-                            }
-                            verses_to_insert.append(verse_doc)
-                            verse_counter += 1
-                        
-                        # Small delay to avoid rate limiting
-                        await asyncio.sleep(0.05)
+                            # Small delay to avoid rate limiting
+                            await asyncio.sleep(0.05)
+                        except Exception as verse_error:
+                            print(f"⚠️  {surah_name_tr} {verse_num}. ayet hatası: {verse_error}")
+                            continue
+                    
+                    # Insert this surah's verses into MongoDB
+                    if surah_verses:
+                        result = await verses_collection.insert_many(surah_verses)
+                        total_inserted += len(result.inserted_ids)
+                        print(f"✅ {surah_name_tr} Suresi kaydedildi ({len(result.inserted_ids)} ayet) - Toplam: {total_inserted}/6236")
                     
                 except Exception as e:
-                    print(f"Error fetching {surah_name_tr} Suresi: {e}")
+                    print(f"❌ {surah_name_tr} Suresi hatası: {e}")
                     continue
             
-            # Insert all verses into MongoDB
-            if verses_to_insert:
-                result = await verses_collection.insert_many(verses_to_insert)
-                print(f"✅ {len(result.inserted_ids)} ayet başarıyla veritabanına kaydedildi!")
+            # Final summary
+            if total_inserted > 0:
+                print(f"\n🎉 TAMAMLANDI! {total_inserted} ayet başarıyla veritabanına kaydedildi!")
                 print("✅ Tüm veriler Diyanet İşleri Başkanlığı resmi kaynağından alındı.")
             else:
-                print("❌ Kaydedilecek ayet bulunamadı")
+                print("❌ Hiç ayet kaydedilemedi")
                 
     except Exception as e:
         print(f"❌ Veri çekme hatası: {e}")
