@@ -115,6 +115,72 @@ async def get_stats():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/api/surahs")
+async def get_all_surahs():
+    """Get list of all surahs with verse counts"""
+    try:
+        # Aggregate to get surah info
+        pipeline = [
+            {
+                "$group": {
+                    "_id": "$surah_number",
+                    "surah_name_turkish": {"$first": "$surah_name_turkish"},
+                    "surah_name_arabic": {"$first": "$surah_name_arabic"},
+                    "revelation_type": {"$first": "$revelation_type"},
+                    "verse_count": {"$sum": 1}
+                }
+            },
+            {"$sort": {"_id": 1}}
+        ]
+        
+        cursor = verses_collection.aggregate(pipeline)
+        surahs = await cursor.to_list(length=114)
+        
+        # Format response
+        result = []
+        for surah in surahs:
+            result.append({
+                "surah_number": surah["_id"],
+                "name_turkish": surah["surah_name_turkish"],
+                "name_arabic": surah["surah_name_arabic"],
+                "verse_count": surah["verse_count"],
+                "revelation_type": surah["revelation_type"]
+            })
+        
+        return {"surahs": result, "total": len(result)}
+    except Exception as e:
+        print(f"Error getting surahs: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/surah/{surah_number}")
+async def get_surah_verses(surah_number: int):
+    """Get all verses from a specific surah"""
+    try:
+        if surah_number < 1 or surah_number > 114:
+            raise HTTPException(status_code=400, detail="Surah number must be between 1 and 114")
+        
+        cursor = verses_collection.find({"surah_number": surah_number}).sort("ayah_number_in_surah", 1)
+        verses = await cursor.to_list(length=300)
+        
+        if not verses:
+            raise HTTPException(status_code=404, detail="Surah not found")
+        
+        # Convert ObjectId to string
+        for verse in verses:
+            verse["_id"] = str(verse["_id"])
+        
+        return {
+            "surah_number": surah_number,
+            "surah_name": verses[0]["surah_name_turkish"],
+            "verses": verses,
+            "count": len(verses)
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error getting surah verses: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/api/search")
 async def search_verses(q: str = "", surah: int = None, limit: int = 20):
     """Search verses by text or surah"""
