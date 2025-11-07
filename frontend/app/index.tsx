@@ -8,12 +8,12 @@ import {
   ActivityIndicator,
   StatusBar,
   Platform,
-  Alert,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
+import { useRouter } from 'expo-router';
 
 // Theme Context
 interface ThemeContextType {
@@ -83,12 +83,13 @@ interface Verse {
 }
 
 export default function App() {
+  const router = useRouter();
   const [isDark, setIsDark] = useState(false);
   const [verse, setVerse] = useState<Verse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL || 'https://verse-comment.preview.emergentagent.com';
+  const backendUrl = Constants.expoConfig?.extra?.backendUrl || process.env.EXPO_PUBLIC_BACKEND_URL || '';
 
   useEffect(() => {
     initializeApp();
@@ -119,6 +120,8 @@ export default function App() {
 
   const requestNotificationPermissions = async () => {
     try {
+      if (Platform.OS === 'web') return;
+      
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
 
@@ -136,30 +139,31 @@ export default function App() {
   };
 
   const scheduleDailyNotifications = async () => {
-    // Skip notification scheduling on web platform
     if (Platform.OS === 'web') {
       console.log('Notifications not available on web platform');
       return;
     }
 
     try {
+      // Get saved notification time or use default (00:00)
+      const savedTime = await AsyncStorage.getItem('notificationTime');
+      const time = savedTime ? JSON.parse(savedTime) : { hour: 0, minute: 0 };
+
       // Cancel all existing notifications
       await Notifications.cancelAllScheduledNotificationsAsync();
 
-      // Schedule daily notification at 00:00 Turkey time (UTC+3)
-      const trigger = {
-        hour: 0,
-        minute: 0,
-        repeats: true,
-      };
-
+      // Schedule daily notification
       await Notifications.scheduleNotificationAsync({
         content: {
           title: '🌙 Günün Ayeti',
           body: 'Bugünün ayetini okumak için uygulamayı açın',
           sound: true,
         },
-        trigger,
+        trigger: {
+          hour: time.hour,
+          minute: time.minute,
+          repeats: true,
+        },
       });
 
       console.log('Daily notifications scheduled successfully');
@@ -213,17 +217,33 @@ export default function App() {
               <Ionicons name="book" size={28} color={colors.primary} />
               <Text style={[styles.appTitle, { color: colors.text }]}>1 Ayet 1 Yorum</Text>
             </View>
-            <TouchableOpacity
-              onPress={toggleTheme}
-              style={[styles.themeButton, { backgroundColor: colors.primary }]}
-              activeOpacity={0.7}
-            >
-              <Ionicons
-                name={isDark ? 'sunny' : 'moon'}
-                size={20}
-                color={colors.surface}
-              />
-            </TouchableOpacity>
+            <View style={styles.headerButtons}>
+              <TouchableOpacity
+                onPress={() => router.push('/search')}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="search" size={20} color={colors.surface} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => router.push('/settings')}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="settings" size={20} color={colors.surface} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={toggleTheme}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons
+                  name={isDark ? 'sunny' : 'moon'}
+                  size={20}
+                  color={colors.surface}
+                />
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
 
@@ -272,32 +292,38 @@ export default function App() {
               </View>
 
               {/* Arabic Text */}
-              <View style={[styles.textCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-                <View style={[styles.cardHeader, { borderBottomColor: colors.border }]}>
+              <View style={[styles.section, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+                <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
                   <Ionicons name="book-outline" size={18} color={colors.primary} />
-                  <Text style={[styles.cardTitle, { color: colors.primary }]}>Arapça Metin</Text>
+                  <Text style={[styles.sectionTitle, { color: colors.primary }]}>Arapça Metin</Text>
                 </View>
                 <Text style={[styles.arabicText, { color: colors.text }]}>
                   {verse.text_arabic}
                 </Text>
               </View>
 
+              {/* Spacer */}
+              <View style={styles.spacer} />
+
               {/* Turkish Translation */}
-              <View style={[styles.textCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-                <View style={[styles.cardHeader, { borderBottomColor: colors.border }]}>
+              <View style={[styles.section, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+                <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
                   <Ionicons name="language" size={18} color={colors.primary} />
-                  <Text style={[styles.cardTitle, { color: colors.primary }]}>Türkçe Meal</Text>
+                  <Text style={[styles.sectionTitle, { color: colors.primary }]}>Türkçe Meal (Diyanet)</Text>
                 </View>
                 <Text style={[styles.turkishText, { color: colors.text }]}>
                   {verse.text_turkish}
                 </Text>
               </View>
 
+              {/* Spacer */}
+              <View style={styles.spacer} />
+
               {/* Tafsir */}
-              <View style={[styles.textCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-                <View style={[styles.cardHeader, { borderBottomColor: colors.border }]}>
+              <View style={[styles.section, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+                <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
                   <Ionicons name="bulb-outline" size={18} color={colors.accent} />
-                  <Text style={[styles.cardTitle, { color: colors.accent }]}>Tefsir ve Yorum</Text>
+                  <Text style={[styles.sectionTitle, { color: colors.accent }]}>Tefsir ve Yorum</Text>
                 </View>
                 <Text style={[styles.tafsirText, { color: colors.text }]}>
                   {verse.tafsir}
@@ -306,9 +332,9 @@ export default function App() {
 
               {/* Footer Info */}
               <View style={styles.footerInfo}>
-                <Ionicons name="notifications" size={16} color={colors.textSecondary} />
+                <Ionicons name="information-circle" size={16} color={colors.textSecondary} />
                 <Text style={[styles.footerText, { color: colors.textSecondary }]}>
-                  Her gün saat 00:00'da yeni ayet bildirimi alacaksınız
+                  Diyanet İşleri Başkanlığı resmi kaynağı
                 </Text>
               </View>
             </View>
@@ -349,7 +375,11 @@ const styles = StyleSheet.create({
     fontWeight: '700',
     letterSpacing: 0.5,
   },
-  themeButton: {
+  headerButtons: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  iconButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -388,13 +418,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   verseContainer: {
-    gap: 16,
+    gap: 0,
   },
   surahInfo: {
     padding: 20,
     borderRadius: 12,
     borderWidth: 1,
     alignItems: 'center',
+    marginBottom: 24,
   },
   surahHeader: {
     flexDirection: 'row',
@@ -414,19 +445,19 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: '600',
   },
-  textCard: {
+  section: {
     borderRadius: 12,
     borderWidth: 1,
     overflow: 'hidden',
   },
-  cardHeader: {
+  sectionHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
     padding: 16,
     borderBottomWidth: 1,
   },
-  cardTitle: {
+  sectionTitle: {
     fontSize: 16,
     fontWeight: '600',
   },
@@ -447,12 +478,15 @@ const styles = StyleSheet.create({
     lineHeight: 26,
     padding: 20,
   },
+  spacer: {
+    height: 24,
+  },
   footerInfo: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-    marginTop: 8,
+    marginTop: 24,
     marginBottom: 24,
   },
   footerText: {
