@@ -410,6 +410,38 @@ export default function App() {
                 </Text>
               </View>
 
+              {/* Spacer */}
+              <View style={styles.spacer} />
+
+              {/* Action Buttons */}
+              <View style={styles.actionButtons}>
+                <TouchableOpacity
+                  onPress={toggleFavorite}
+                  style={[styles.actionButton, { backgroundColor: colors.surface, borderColor: colors.border }]}
+                  activeOpacity={0.7}
+                >
+                  <Ionicons
+                    name={isFavorite ? 'heart' : 'heart-outline'}
+                    size={24}
+                    color={isFavorite ? colors.accent : colors.text}
+                  />
+                  <Text style={[styles.actionButtonText, { color: colors.text }]}>
+                    {isFavorite ? 'Favorilerde' : 'Favorilere Ekle'}
+                  </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                  onPress={shareVerse}
+                  style={[styles.actionButton, { backgroundColor: colors.primary }]}
+                  activeOpacity={0.7}
+                >
+                  <Ionicons name="share-outline" size={24} color="#FFFFFF" />
+                  <Text style={[styles.actionButtonText, { color: '#FFFFFF' }]}>
+                    Paylaş
+                  </Text>
+                </TouchableOpacity>
+              </View>
+
               {/* Footer Info */}
               <View style={styles.footerInfo}>
                 <Ionicons name="information-circle" size={16} color={colors.textSecondary} />
