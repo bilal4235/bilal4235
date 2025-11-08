@@ -231,6 +231,20 @@ export default function App() {
               <Ionicons name="search" size={20} color={colors.surface} />
             </TouchableOpacity>
             <TouchableOpacity
+              onPress={() => router.push('/favorites')}
+              style={[styles.iconButton, { backgroundColor: colors.primary }]}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="heart" size={20} color={colors.surface} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => router.push('/statistics')}
+              style={[styles.iconButton, { backgroundColor: colors.primary }]}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="stats-chart" size={20} color={colors.surface} />
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={() => router.push('/settings')}
               style={[styles.iconButton, { backgroundColor: colors.primary }]}
               activeOpacity={0.7}
