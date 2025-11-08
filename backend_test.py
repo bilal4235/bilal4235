@@ -505,8 +505,8 @@ def test_reading_history_add(verse_id: int = 1) -> bool:
     print_test_header(f"Add Reading History - Verse {verse_id}")
     
     try:
-        payload = {"verse_id": verse_id}
-        response = requests.post(f"{BACKEND_URL}/reading-history", json=payload, timeout=10)
+        params = {"verse_id": verse_id}
+        response = requests.post(f"{BACKEND_URL}/reading-history", params=params, timeout=10)
         
         if response.status_code == 200:
             data = response.json()
