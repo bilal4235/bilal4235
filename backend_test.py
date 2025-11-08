@@ -598,8 +598,8 @@ def test_favorites_invalid_verse() -> bool:
     print_test_header("Error Handling - Invalid Verse ID for Favorites")
     
     try:
-        payload = {"verse_id": 99999}
-        response = requests.post(f"{BACKEND_URL}/favorites", json=payload, timeout=10)
+        params = {"verse_id": 99999}
+        response = requests.post(f"{BACKEND_URL}/favorites", params=params, timeout=10)
         
         if response.status_code in [404, 500]:
             print_success(f"Correctly rejected invalid verse ID (status: {response.status_code})")
