@@ -27,6 +27,8 @@ DB_NAME = os.getenv("DB_NAME", "quran_app")
 client = AsyncIOMotorClient(MONGO_URL)
 db = client[DB_NAME]
 verses_collection = db.verses
+favorites_collection = db.favorites
+reading_history_collection = db.reading_history
 
 # Diyanet İşleri Başkanlığı Açık Kaynak Kuran API
 QURAN_API_BASE = "https://api.acikkuran.com"
