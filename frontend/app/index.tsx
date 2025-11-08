@@ -590,6 +590,25 @@ const styles = StyleSheet.create({
   spacer: {
     height: 24,
   },
+  actionButtons: {
+    flexDirection: 'row',
+    gap: 12,
+  },
+  actionButton: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  actionButtonText: {
+    fontSize: 15,
+    fontWeight: '600',
+  },
   footerInfo: {
     flexDirection: 'row',
     alignItems: 'center',
