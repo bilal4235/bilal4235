@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 COMPREHENSIVE Backend Testing for 1 Ayet 1 Yorum API
-Testing all endpoints with Diyanet İşleri Başkanlığı data validation
+Testing all endpoints including NEW FEATURES: Favorites, Reading History, Statistics
 """
 
 import requests
