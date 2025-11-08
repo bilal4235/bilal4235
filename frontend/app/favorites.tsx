@@ -13,7 +13,7 @@ import { useRouter } from 'expo-router';
 import Constants from 'expo-constants';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function Favorites Screen() {
+export default function FavoritesScreen() {
   const router = useRouter();
   const [favorites, setFavorites] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
