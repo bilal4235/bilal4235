@@ -121,6 +121,65 @@ export default function App() {
     }
   };
 
+  const checkIfFavorite = async () => {
+    if (!verse) return;
+    try {
+      const response = await fetch(`${backendUrl}/api/favorites/check/${verse.verse_number}`);
+      const data = await response.json();
+      setIsFavorite(data.is_favorite);
+    } catch (error) {
+      console.error('Error checking favorite:', error);
+    }
+  };
+
+  const toggleFavorite = async () => {
+    if (!verse) return;
+    
+    try {
+      if (isFavorite) {
+        // Remove from favorites
+        await fetch(`${backendUrl}/api/favorites/${verse.verse_number}`, {
+          method: 'DELETE',
+        });
+        setIsFavorite(false);
+        Alert.alert('Başarılı', 'Favorilerden çıkarıldı');
+      } else {
+        // Add to favorites
+        await fetch(`${backendUrl}/api/favorites`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ verse_id: verse.verse_number }),
+        });
+        setIsFavorite(true);
+        Alert.alert('Başarılı', 'Favorilere eklendi');
+      }
+    } catch (error) {
+      console.error('Error toggling favorite:', error);
+      Alert.alert('Hata', 'İşlem gerçekleştirilemedi');
+    }
+  };
+
+  const shareVerse = async () => {
+    if (!verse) return;
+    
+    try {
+      const message = `🌙 Bir Ayet Bir Yorum\n\n${verse.text_arabic}\n\n${verse.text_turkish}\n\n${verse.surah_name_turkish} Suresi - ${verse.ayah_number_in_surah}. Ayet`;
+      
+      await Share.share({
+        message,
+      });
+      
+      // Record reading when shared
+      await fetch(`${backendUrl}/api/reading-history`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ verse_id: verse.verse_number }),
+      });
+    } catch (error) {
+      console.error('Error sharing verse:', error);
+    }
+  };
+
   const requestNotificationPermissions = async () => {
     try {
       if (Platform.OS === 'web') return;
