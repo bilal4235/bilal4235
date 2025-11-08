@@ -247,6 +247,20 @@ export default function App() {
 
       const data = await response.json();
       setVerse(data);
+      
+      // Check if this verse is favorited
+      if (data.verse_number) {
+        const favResponse = await fetch(`${backendUrl}/api/favorites/check/${data.verse_number}`);
+        const favData = await favResponse.json();
+        setIsFavorite(favData.is_favorite);
+        
+        // Record reading
+        await fetch(`${backendUrl}/api/reading-history`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ verse_id: data.verse_number }),
+        });
+      }
     } catch (err) {
       console.error('Error fetching verse:', err);
       setError('Ayet yüklenirken hata oluştu. Lütfen tekrar deneyin.');
