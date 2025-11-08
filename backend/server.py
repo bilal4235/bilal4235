@@ -438,6 +438,232 @@ def get_basic_tafsir(surah_number: int, ayah_number: int) -> str:
     
     return f"{context} Bu ayet ({surah_name} {ayah_number}), Allah'ın kelâmıdır ve üzerinde tefekkür edilmesi gereken derin mânâlar içerir. Her ayet, hidayet ve öğüt kaynağıdır."
 
+# ==================== FAVORITES ENDPOINTS ====================
+
+@app.post("/api/favorites")
+async def add_favorite(verse_id: int, user_id: str = "default"):
+    """Add verse to favorites"""
+    try:
+        # Check if verse exists
+        verse = await verses_collection.find_one({"verse_number": verse_id})
+        if not verse:
+            raise HTTPException(status_code=404, detail="Verse not found")
+        
+        # Check if already favorited
+        existing = await favorites_collection.find_one({
+            "user_id": user_id,
+            "verse_id": verse_id
+        })
+        
+        if existing:
+            return {"message": "Already in favorites", "status": "exists"}
+        
+        # Add to favorites
+        favorite_doc = {
+            "user_id": user_id,
+            "verse_id": verse_id,
+            "surah_number": verse["surah_number"],
+            "surah_name": verse["surah_name_turkish"],
+            "ayah_number": verse["ayah_number_in_surah"],
+            "created_at": datetime.utcnow()
+        }
+        
+        await favorites_collection.insert_one(favorite_doc)
+        return {"message": "Added to favorites", "status": "success"}
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error adding favorite: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.delete("/api/favorites/{verse_id}")
+async def remove_favorite(verse_id: int, user_id: str = "default"):
+    """Remove verse from favorites"""
+    try:
+        result = await favorites_collection.delete_one({
+            "user_id": user_id,
+            "verse_id": verse_id
+        })
+        
+        if result.deleted_count == 0:
+            raise HTTPException(status_code=404, detail="Favorite not found")
+        
+        return {"message": "Removed from favorites", "status": "success"}
+    
+    except HTTPException:
+        raise
+    except Exception as e:
+        print(f"Error removing favorite: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/favorites")
+async def get_favorites(user_id: str = "default"):
+    """Get all favorite verses"""
+    try:
+        cursor = favorites_collection.find({"user_id": user_id}).sort("created_at", -1)
+        favorites = await cursor.to_list(length=1000)
+        
+        # Get full verse details for each favorite
+        result = []
+        for fav in favorites:
+            verse = await verses_collection.find_one({"verse_number": fav["verse_id"]})
+            if verse:
+                verse["_id"] = str(verse["_id"])
+                verse["favorited_at"] = fav["created_at"]
+                result.append(verse)
+        
+        return {"favorites": result, "count": len(result)}
+    
+    except Exception as e:
+        print(f"Error getting favorites: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/favorites/check/{verse_id}")
+async def check_favorite(verse_id: int, user_id: str = "default"):
+    """Check if verse is favorited"""
+    try:
+        favorite = await favorites_collection.find_one({
+            "user_id": user_id,
+            "verse_id": verse_id
+        })
+        
+        return {"is_favorite": favorite is not None}
+    
+    except Exception as e:
+        print(f"Error checking favorite: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+# ==================== STATISTICS ENDPOINTS ====================
+
+@app.post("/api/reading-history")
+async def record_reading(verse_id: int, user_id: str = "default"):
+    """Record that user read a verse"""
+    try:
+        # Check if already read today
+        today_start = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+        existing = await reading_history_collection.find_one({
+            "user_id": user_id,
+            "verse_id": verse_id,
+            "read_at": {"$gte": today_start}
+        })
+        
+        if existing:
+            return {"message": "Already recorded today", "status": "exists"}
+        
+        # Record reading
+        reading_doc = {
+            "user_id": user_id,
+            "verse_id": verse_id,
+            "read_at": datetime.utcnow()
+        }
+        
+        await reading_history_collection.insert_one(reading_doc)
+        return {"message": "Reading recorded", "status": "success"}
+    
+    except Exception as e:
+        print(f"Error recording reading: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/api/statistics")
+async def get_user_statistics(user_id: str = "default"):
+    """Get reading statistics for user"""
+    try:
+        # Total verses read
+        total_read = await reading_history_collection.count_documents({"user_id": user_id})
+        
+        # Verses read this month
+        month_start = datetime.utcnow().replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        month_read = await reading_history_collection.count_documents({
+            "user_id": user_id,
+            "read_at": {"$gte": month_start}
+        })
+        
+        # Calculate streak (consecutive days)
+        streak = await calculate_reading_streak(user_id)
+        
+        # Most read surahs (top 3)
+        pipeline = [
+            {"$match": {"user_id": user_id}},
+            {
+                "$lookup": {
+                    "from": "verses",
+                    "localField": "verse_id",
+                    "foreignField": "verse_number",
+                    "as": "verse_info"
+                }
+            },
+            {"$unwind": "$verse_info"},
+            {
+                "$group": {
+                    "_id": "$verse_info.surah_number",
+                    "surah_name": {"$first": "$verse_info.surah_name_turkish"},
+                    "count": {"$sum": 1}
+                }
+            },
+            {"$sort": {"count": -1}},
+            {"$limit": 3}
+        ]
+        
+        cursor = reading_history_collection.aggregate(pipeline)
+        top_surahs = await cursor.to_list(length=3)
+        
+        return {
+            "total_verses_read": total_read,
+            "verses_this_month": month_read,
+            "reading_streak": streak,
+            "top_surahs": [
+                {
+                    "surah_number": s["_id"],
+                    "surah_name": s["surah_name"],
+                    "read_count": s["count"]
+                }
+                for s in top_surahs
+            ]
+        }
+    
+    except Exception as e:
+        print(f"Error getting statistics: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+async def calculate_reading_streak(user_id: str) -> int:
+    """Calculate consecutive days of reading"""
+    try:
+        # Get all reading dates
+        cursor = reading_history_collection.find(
+            {"user_id": user_id},
+            {"read_at": 1}
+        ).sort("read_at", -1)
+        
+        readings = await cursor.to_list(length=1000)
+        
+        if not readings:
+            return 0
+        
+        # Get unique dates (ignore time)
+        reading_dates = list(set([
+            r["read_at"].replace(hour=0, minute=0, second=0, microsecond=0)
+            for r in readings
+        ]))
+        reading_dates.sort(reverse=True)
+        
+        # Calculate streak
+        streak = 0
+        expected_date = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+        
+        for date in reading_dates:
+            if date == expected_date:
+                streak += 1
+                expected_date = expected_date - timedelta(days=1)
+            else:
+                break
+        
+        return streak
+    
+    except Exception as e:
+        print(f"Error calculating streak: {e}")
+        return 0
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8001)
