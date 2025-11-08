@@ -225,6 +225,54 @@ backend:
         agent: "testing"
         comment: "PRODUCTION READY TEST PASSED. GET /api/search?q=rahman returns 200 OK with 20 results. GET /api/search?q=fatiha returns 200 OK with 7 results (all Fatiha verses). Search functionality working correctly for both text search and surah name search. Results include proper verse data with Arabic and Turkish text."
 
+  - task: "Favorites API Endpoints"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "NEW FEATURE TESTING COMPLETED ✅. All favorites endpoints working correctly: POST /api/favorites (add favorite), GET /api/favorites (list favorites), GET /api/favorites/check/{verse_id} (check favorite status), DELETE /api/favorites/{verse_id} (remove favorite). Duplicate detection working properly. Error handling for invalid verse IDs working (returns 404). API uses query parameters correctly."
+
+  - task: "Reading History API Endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "NEW FEATURE TESTING COMPLETED ✅. POST /api/reading-history endpoint working correctly. Records verse reading with proper duplicate detection (same day). API uses query parameters correctly. Reading history properly stored with timestamps."
+
+  - task: "Statistics API Endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "NEW FEATURE TESTING COMPLETED ✅. GET /api/statistics endpoint working correctly. Returns all required fields: total_verses_read, verses_this_month, reading_streak, top_surahs. Statistics calculation working properly based on reading history data. Aggregation pipeline functioning correctly."
+
+  - task: "Database Population Issue"
+    implemented: true
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUE FOUND ❌. Database only contains 7 verses (Fatiha surah) instead of expected 6236 verses. Only 1 surah instead of 114 surahs. Database population process started but stopped after loading Fatiha. This affects Stats endpoint (shows 7 instead of 6236) and Surahs List endpoint (shows 1 instead of 114). External API connectivity or timeout issue suspected during data loading from Diyanet İşleri Başkanlığı API."
+
   - task: "Surahs List Endpoint"
     implemented: true
     working: true
