@@ -125,9 +125,9 @@ backend:
 
   - task: "Stats Endpoint"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -140,6 +140,9 @@ backend:
       - working: true
         agent: "testing"
         comment: "PRODUCTION READY TEST PASSED. GET /api/stats returns 200 OK with exact verse count: 6236 verses. Database status: 'ready'. All data from Diyanet İşleri Başkanlığı successfully loaded."
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUE CONFIRMED (2025-01-08): GET /api/stats returns 200 OK but shows only 7 verses instead of 6236. Database population incomplete - only Fatiha surah loaded. This is the same issue identified in 'Database Population Issue' task. Stats endpoint working correctly but showing wrong data due to incomplete database."
 
   - task: "Daily Verse Endpoint"
     implemented: true
