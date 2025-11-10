@@ -190,10 +190,13 @@ export default function App() {
     }
   };
 
-  const requestNotificationPermissions = async () => {
+  const requestNotificationPermissions = async (): Promise<boolean> => {
+    if (Platform.OS === 'web') {
+      console.log('Notifications not available on web platform');
+      return false;
+    }
+
     try {
-      if (Platform.OS === 'web') return;
-      
       const { status: existingStatus } = await Notifications.getPermissionsAsync();
       let finalStatus = existingStatus;
 
@@ -204,9 +207,13 @@ export default function App() {
 
       if (finalStatus !== 'granted') {
         console.log('Notification permissions not granted');
+        return false;
       }
+      
+      return true;
     } catch (err) {
       console.error('Error requesting notification permissions:', err);
+      return false;
     }
   };
 
