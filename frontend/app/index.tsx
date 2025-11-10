@@ -107,19 +107,9 @@ export default function App() {
       }
 
       // Request notification permissions
-      const permissionGranted = await requestNotificationPermissions();
+      await requestNotificationPermissions();
 
-      // Check if notification time has been set
-      const hasSetTime = await AsyncStorage.getItem('hasSetNotificationTime');
-      
-      if (permissionGranted && !hasSetTime) {
-        // Permission granted but time not set - redirect to settings
-        setLoading(false);
-        router.push('/settings');
-        return;
-      }
-
-      // Schedule daily notifications (if time already set)
+      // Schedule daily notifications
       await scheduleDailyNotifications();
 
       // Fetch daily verse
