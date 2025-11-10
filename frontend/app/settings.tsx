@@ -144,7 +144,42 @@ export default function SettingsScreen() {
         <View style={styles.placeholder} />
       </View>
 
-      <ScrollView style={styles.content}>
+      {showAdminLogin && (
+        <View style={styles.adminLoginContainer}>
+          <View style={styles.adminLoginBox}>
+            <Text style={styles.adminLoginTitle}>Yönetici Girişi</Text>
+            <Text style={styles.adminLoginDescription}>
+              Ayarları değiştirmek için PIN kodunu girin
+            </Text>
+            <TextInput
+              style={styles.adminPinInput}
+              value={adminPin}
+              onChangeText={setAdminPin}
+              placeholder="PIN Kodu"
+              secureTextEntry
+              keyboardType="numeric"
+              maxLength={4}
+            />
+            <View style={styles.adminButtonContainer}>
+              <TouchableOpacity
+                style={styles.adminCancelButton}
+                onPress={() => router.replace('/')}
+              >
+                <Text style={styles.adminCancelButtonText}>İptal</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.adminLoginButton}
+                onPress={handleAdminLogin}
+              >
+                <Text style={styles.adminLoginButtonText}>Giriş</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      )}
+
+      {isAdmin && (
+        <ScrollView style={styles.content}>
         <View style={styles.section}>
           <View style={styles.sectionHeader}>
             <Ionicons name="notifications" size={24} color="#2C5F2D" />
