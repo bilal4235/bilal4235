@@ -338,6 +338,13 @@ export default function App() {
               <Ionicons name="stats-chart" size={20} color={colors.surface} />
             </TouchableOpacity>
             <TouchableOpacity
+              onPress={() => router.push('/settings')}
+              style={[styles.iconButton, { backgroundColor: colors.primary }]}
+              activeOpacity={0.7}
+            >
+              <Ionicons name="settings" size={20} color={colors.surface} />
+            </TouchableOpacity>
+            <TouchableOpacity
               onPress={toggleTheme}
               style={[styles.iconButton, { backgroundColor: colors.primary }]}
               activeOpacity={0.7}
