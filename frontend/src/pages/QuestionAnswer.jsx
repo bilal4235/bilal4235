@@ -55,24 +55,31 @@ const QuestionAnswer = () => {
     if (isPlaying) return;
     
     setIsPlaying(true);
+    
     try {
-      const response = await axios.post(`${API}/text-to-speech`, {
-        text: answer
-      });
-      
-      const audioBlob = new Blob(
-        [Uint8Array.from(atob(response.data.audio_base64), c => c.charCodeAt(0))],
-        { type: 'audio/mpeg' }
-      );
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      
-      audio.onended = () => {
+      // Use browser's Speech Synthesis API
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(answer);
+        utterance.lang = 'tr-TR';
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+        
+        utterance.onend = () => {
+          setIsPlaying(false);
+        };
+        
+        utterance.onerror = (event) => {
+          console.error('Speech synthesis error:', event);
+          setIsPlaying(false);
+          toast.error('Sesli okuma sırasında hata oluştu.');
+        };
+        
+        window.speechSynthesis.speak(utterance);
+        toast.success('Sesli okuma başlatıldı');
+      } else {
+        toast.error('Tarayıcınız sesli okuma özelliğini desteklemiyor.');
         setIsPlaying(false);
-        URL.revokeObjectURL(audioUrl);
-      };
-      
-      audio.play();
+      }
     } catch (error) {
       console.error('Error playing audio:', error);
       toast.error('Sesli okuma sırasında hata oluştu.');
