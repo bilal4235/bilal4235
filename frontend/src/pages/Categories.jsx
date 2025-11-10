@@ -15,6 +15,8 @@ const Categories = () => {
   const navigate = useNavigate();
   const [category] = useState(location.state?.category);
   const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   // Sample FAQ data for each category
   const faqData = {
