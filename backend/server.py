@@ -152,6 +152,7 @@ async def init_categories():
 @app.on_event("startup")
 async def startup_event():
     await init_categories()
+    await init_diyanet_database()
 
 # Routes
 @api_router.get("/")
