@@ -11,6 +11,8 @@ import uuid
 from datetime import datetime, timezone
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 import base64
+from diyanet_data import DIYANET_QA_DATABASE
+import difflib
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -28,6 +30,51 @@ api_router = APIRouter(prefix="/api")
 
 # Get API key
 api_key = os.environ.get('EMERGENT_LLM_KEY')
+
+# Initialize Diyanet database
+async def init_diyanet_database():
+    """Diyanet İşleri Başkanlığı soru-cevaplarını veritabanına yükle"""
+    existing = await db.diyanet_qa.count_documents({})
+    if existing == 0:
+        for qa in DIYANET_QA_DATABASE:
+            qa['id'] = str(uuid.uuid4())
+            qa['timestamp'] = datetime.now(timezone.utc).isoformat()
+        await db.diyanet_qa.insert_many(DIYANET_QA_DATABASE)
+        logging.info(f"Diyanet veritabanı yüklendi: {len(DIYANET_QA_DATABASE)} soru-cevap")
+
+def find_similar_question(user_question: str, threshold: float = 0.6):
+    """Kullanıcı sorusuna benzer Diyanet sorusu bul"""
+    user_q_lower = user_question.lower().strip()
+    
+    best_match = None
+    best_ratio = 0
+    
+    for qa in DIYANET_QA_DATABASE:
+        diyanet_q_lower = qa['question'].lower().strip()
+        
+        # Tam eşleşme kontrolü
+        if user_q_lower == diyanet_q_lower:
+            return qa, 1.0
+        
+        # Benzerlik oranı hesapla
+        ratio = difflib.SequenceMatcher(None, user_q_lower, diyanet_q_lower).ratio()
+        
+        # Anahtar kelime kontrolü
+        user_words = set(user_q_lower.split())
+        diyanet_words = set(diyanet_q_lower.split())
+        common_words = user_words & diyanet_words
+        
+        if len(common_words) >= 2:  # En az 2 ortak kelime
+            ratio += 0.2
+        
+        if ratio > best_ratio:
+            best_ratio = ratio
+            best_match = qa
+    
+    if best_ratio >= threshold:
+        return best_match, best_ratio
+    
+    return None, 0
 
 # Define Models
 class Question(BaseModel):
