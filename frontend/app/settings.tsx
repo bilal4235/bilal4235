@@ -17,20 +17,34 @@ export default function SettingsScreen() {
   const router = useRouter();
   const [notificationTime, setNotificationTime] = useState({ hour: 0, minute: 0 });
   const [isEnabled, setIsEnabled] = useState(true);
+  const [isFirstTime, setIsFirstTime] = useState(false);
 
   useEffect(() => {
-    loadSettings();
+    checkFirstTimeSetup();
   }, []);
 
-  const loadSettings = async () => {
+  const checkFirstTimeSetup = async () => {
     try {
+      // Check if notification time has been set before
+      const hasSetTime = await AsyncStorage.getItem('hasSetNotificationTime');
+      setIsFirstTime(!hasSetTime);
+
+      if (!hasSetTime) {
+        // First time - show time picker (settings page will be shown)
+        console.log('First time setup - showing settings');
+      } else {
+        // Already set - redirect to home
+        router.replace('/');
+      }
+
+      // Load saved time
       const savedTime = await AsyncStorage.getItem('notificationTime');
       if (savedTime) {
         const time = JSON.parse(savedTime);
         setNotificationTime(time);
       }
     } catch (error) {
-      console.error('Error loading settings:', error);
+      console.error('Error checking first time setup:', error);
     }
   };
 
