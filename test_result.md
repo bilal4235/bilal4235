@@ -278,15 +278,18 @@ backend:
 
   - task: "Surahs List Endpoint"
     implemented: true
-    working: true
+    working: false
     file: "/app/backend/server.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
       - working: true
         agent: "testing"
         comment: "PRODUCTION READY TEST PASSED. GET /api/surahs returns 200 OK with exactly 114 surahs. Response structure correct: {surahs: [...], total: 114}. First surah: Fatiha (سُورَةُ ٱلْفَاتِحَةِ) with 7 verses. Last surah: Nas (سورة الناس) with 6 verses. All surah data includes Turkish name, Arabic name, verse count, and revelation type."
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUE CONFIRMED (2025-01-08): GET /api/surahs returns 200 OK but shows only 1 surah instead of 114. Response: {surahs: [Fatiha], total: 1}. Endpoint working correctly but showing wrong data due to incomplete database population. Same root cause as Stats endpoint issue."
 
   - task: "Surah by Number Endpoint"
     implemented: true
