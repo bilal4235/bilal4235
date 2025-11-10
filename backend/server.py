@@ -252,6 +252,34 @@ async def get_diyanet_questions(category: Optional[str] = None):
         questions = DIYANET_QA_DATABASE
     return {"total": len(questions), "questions": questions}
 
+@api_router.get("/autocomplete")
+async def autocomplete_questions(query: str, limit: int = 10):
+    """Kullanıcı yazarken Diyanet sorularından öneri getir"""
+    if not query or len(query) < 2:
+        return {"suggestions": []}
+    
+    query_lower = query.lower().strip()
+    suggestions = []
+    
+    for qa in DIYANET_QA_DATABASE:
+        question_lower = qa['question'].lower()
+        
+        # Başlangıç eşleşmesi veya kelime içi eşleşme
+        if question_lower.startswith(query_lower) or query_lower in question_lower:
+            suggestions.append({
+                "question": qa['question'],
+                "category": qa['category'],
+                "preview": qa['answer'][:100] + "..."
+            })
+    
+    # En alakalı olanları önce getir (başlangıç eşleşmeleri)
+    suggestions.sort(key=lambda x: (
+        not x['question'].lower().startswith(query_lower),  # Başlangıç eşleşmeleri önce
+        len(x['question'])  # Kısa sorular önce
+    ))
+    
+    return {"suggestions": suggestions[:limit]}
+
 @api_router.get("/history", response_model=List[Question])
 async def get_history(session_id: Optional[str] = None, limit: int = 50):
     query = {"session_id": session_id} if session_id else {}
