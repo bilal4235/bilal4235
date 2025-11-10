@@ -243,6 +243,15 @@ async def get_categories():
     categories = await db.categories.find({}, {"_id": 0}).to_list(100)
     return categories
 
+@api_router.get("/diyanet-questions")
+async def get_diyanet_questions(category: Optional[str] = None):
+    """Diyanet İşleri Başkanlığı kaynaklı soru-cevapları getir"""
+    if category:
+        questions = [qa for qa in DIYANET_QA_DATABASE if qa['category'] == category]
+    else:
+        questions = DIYANET_QA_DATABASE
+    return {"total": len(questions), "questions": questions}
+
 @api_router.get("/history", response_model=List[Question])
 async def get_history(session_id: Optional[str] = None, limit: int = 50):
     query = {"session_id": session_id} if session_id else {}
