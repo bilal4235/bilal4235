@@ -228,7 +228,8 @@ export default function SettingsScreen() {
             </Text>
           </View>
         )}
-      </ScrollView>
+        </ScrollView>
+      )}
     </View>
   );
 }
