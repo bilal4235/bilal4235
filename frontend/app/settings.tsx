@@ -52,6 +52,10 @@ export default function SettingsScreen() {
     try {
       const time = { hour, minute };
       await AsyncStorage.setItem('notificationTime', JSON.stringify(time));
+      
+      // Mark that notification time has been set
+      await AsyncStorage.setItem('hasSetNotificationTime', 'true');
+      
       setNotificationTime(time);
 
       // Reschedule notifications
@@ -71,7 +75,17 @@ export default function SettingsScreen() {
         });
       }
 
-      Alert.alert('Başarılı', `Bildirim saati ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')} olarak ayarlandı`);
+      Alert.alert('Başarılı', `Bildirim saati ${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')} olarak ayarlandı`, [
+        {
+          text: 'Tamam',
+          onPress: () => {
+            // If this is first time setup, redirect to home after setting time
+            if (isFirstTime) {
+              router.replace('/');
+            }
+          }
+        }
+      ]);
     } catch (error) {
       console.error('Error saving notification time:', error);
       Alert.alert('Hata', 'Ayarlar kaydedilemedi');
