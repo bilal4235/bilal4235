@@ -104,7 +104,7 @@ const Home = () => {
       </div>
 
       <div className="max-w-2xl mx-auto mb-12">
-        <div className="search-container">
+        <div className="search-container" style={{ position: 'relative' }}>
           <Search className="search-icon" size={24} />
           <Input
             data-testid="search-input"
@@ -112,9 +112,46 @@ const Home = () => {
             placeholder="Sorunuzu yazın... (örn: Namaz kaç rekattır?)"
             className="search-input"
             value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyPress={handleKeyPress}
+            onChange={handleSearchChange}
+            onKeyDown={handleKeyPress}
+            onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}
+            onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
+            autoComplete="off"
           />
+          
+          {showSuggestions && suggestions.length > 0 && (
+            <div 
+              className="absolute w-full mt-2 bg-white rounded-xl shadow-lg border border-gray-200 max-h-96 overflow-y-auto z-50"
+              style={{ top: '100%' }}
+              data-testid="suggestions-dropdown"
+            >
+              {suggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  data-testid={`suggestion-item-${index}`}
+                  className={`p-4 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0 ${
+                    selectedIndex === index ? 'bg-[#e8f4f8]' : 'hover:bg-gray-50'
+                  }`}
+                  onClick={() => selectSuggestion(suggestion)}
+                >
+                  <div className="flex items-start gap-3">
+                    <div className="flex-shrink-0 mt-1">
+                      <div className="w-8 h-8 rounded-full bg-[#4f8c9f] bg-opacity-10 flex items-center justify-center">
+                        <Search size={16} className="text-[#4f8c9f]" />
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="font-medium text-[#2c5f6f] mb-1">{suggestion.question}</p>
+                      <p className="text-sm text-[#6b9dad] line-clamp-2">{suggestion.preview}</p>
+                      <span className="inline-block mt-2 text-xs px-2 py-1 bg-[#4f8c9f] bg-opacity-10 text-[#4f8c9f] rounded-full">
+                        {suggestion.category}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         <Button
           data-testid="search-button"
