@@ -33,18 +33,19 @@ export default function SettingsScreen() {
     checkAccess();
   }, []);
 
-  const checkFirstTimeSetup = async () => {
+  const checkAccess = async () => {
     try {
       // Check if notification time has been set before
       const hasSetTime = await AsyncStorage.getItem('hasSetNotificationTime');
       setIsFirstTime(!hasSetTime);
 
       if (!hasSetTime) {
-        // First time - show time picker (settings page will be shown)
+        // First time - allow access for initial setup
+        setIsAdmin(true);
         console.log('First time setup - showing settings');
       } else {
-        // Already set - redirect to home
-        router.replace('/');
+        // Already set - check if admin
+        setShowAdminLogin(true);
       }
 
       // Load saved time
@@ -54,7 +55,25 @@ export default function SettingsScreen() {
         setNotificationTime(time);
       }
     } catch (error) {
-      console.error('Error checking first time setup:', error);
+      console.error('Error checking access:', error);
+    }
+  };
+
+  const handleAdminLogin = () => {
+    if (adminPin === ADMIN_PIN) {
+      setIsAdmin(true);
+      setShowAdminLogin(false);
+      Alert.alert('Başarılı', 'Yönetici paneline hoş geldiniz');
+    } else {
+      Alert.alert('Hata', 'Yanlış PIN kodu', [
+        {
+          text: 'Tamam',
+          onPress: () => {
+            setAdminPin('');
+            router.replace('/');
+          }
+        }
+      ]);
     }
   };
 
