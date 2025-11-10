@@ -62,8 +62,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "your-project-id"
-      }
+        "projectId": "bir-ayet-bir-yorum-app"
+      },
+      "backendUrl": "https://api.emergent.sh"
     }
   }
 }
