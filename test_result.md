@@ -390,12 +390,15 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All Frontend Pages Comprehensive Testing Completed"
-    - "New Features (Favorites, Statistics, Share) Successfully Tested"
+    - "Database Population Issue - Critical Priority"
+    - "Stats Endpoint - Affected by Database Issue"
+    - "Surahs List Endpoint - Affected by Database Issue"
   stuck_tasks: 
     - "Database Population Issue"
-  test_all: true
-  test_priority: "high_first"
+    - "Stats Endpoint"
+    - "Surahs List Endpoint"
+  test_all: false
+  test_priority: "stuck_first"
 
 agent_communication:
   - agent: "testing"
