@@ -30,7 +30,7 @@ export default function SettingsScreen() {
   const ADMIN_PIN = '1234';
 
   useEffect(() => {
-    checkFirstTimeSetup();
+    checkAccess();
   }, []);
 
   const checkFirstTimeSetup = async () => {
