@@ -228,11 +228,12 @@ async def delete_reminder(reminder_id: str):
 @api_router.post("/text-to-speech", response_model=TextToSpeechResponse)
 async def text_to_speech(request: TextToSpeechRequest):
     try:
-        from openai import AsyncOpenAI
+        import openai
         
-        client = AsyncOpenAI(api_key=api_key)
+        # Use openai library directly with Emergent key
+        openai.api_key = api_key
         
-        response = await client.audio.speech.create(
+        response = openai.audio.speech.create(
             model="tts-1",
             voice="nova",
             input=request.text[:4096]  # Limit text length
@@ -245,7 +246,9 @@ async def text_to_speech(request: TextToSpeechRequest):
         return TextToSpeechResponse(audio_base64=audio_base64)
     except Exception as e:
         logging.error(f"Error in text_to_speech: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        # Return mock success for now since TTS requires specific OpenAI key
+        # Using browser-based speech synthesis as fallback
+        raise HTTPException(status_code=503, detail="Text-to-Speech şu anda kullanılamıyor. Lütfen tarayıcınızın sesli okuma özelliğini kullanın.")
 
 # Include the router in the main app
 app.include_router(api_router)
