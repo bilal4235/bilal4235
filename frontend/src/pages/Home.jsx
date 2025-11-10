@@ -10,6 +10,9 @@ const Home = () => {
   const [showSplash, setShowSplash] = useState(true);
   const [categories, setCategories] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(-1);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,15 +31,56 @@ const Home = () => {
     }
   };
 
+  const handleSearchChange = async (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    setSelectedIndex(-1);
+
+    if (value.length >= 2) {
+      try {
+        const response = await axios.get(`${API}/autocomplete?query=${encodeURIComponent(value)}`);
+        setSuggestions(response.data.suggestions);
+        setShowSuggestions(true);
+      } catch (error) {
+        console.error('Error fetching suggestions:', error);
+      }
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+  };
+
   const handleSearch = () => {
     if (searchQuery.trim()) {
+      setShowSuggestions(false);
       navigate('/question', { state: { question: searchQuery } });
     }
   };
 
+  const selectSuggestion = (suggestion) => {
+    setSearchQuery(suggestion.question);
+    setShowSuggestions(false);
+    setSuggestions([]);
+    navigate('/question', { state: { question: suggestion.question } });
+  };
+
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
-      handleSearch();
+      if (selectedIndex >= 0 && suggestions[selectedIndex]) {
+        selectSuggestion(suggestions[selectedIndex]);
+      } else {
+        handleSearch();
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setSelectedIndex(prev => 
+        prev < suggestions.length - 1 ? prev + 1 : prev
+      );
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      setSelectedIndex(prev => prev > 0 ? prev - 1 : -1);
+    } else if (e.key === 'Escape') {
+      setShowSuggestions(false);
     }
   };
 
