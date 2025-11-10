@@ -20,6 +20,14 @@ export default function SettingsScreen() {
   const [notificationTime, setNotificationTime] = useState({ hour: 0, minute: 0 });
   const [isEnabled, setIsEnabled] = useState(true);
   const [isFirstTime, setIsFirstTime] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [adminPin, setAdminPin] = useState('');
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+
+  const backendUrl = Constants.expoConfig?.extra?.backendUrl || process.env.EXPO_PUBLIC_BACKEND_URL || '';
+  
+  // Admin PIN - değiştirilebilir
+  const ADMIN_PIN = '1234';
 
   useEffect(() => {
     checkFirstTimeSetup();
