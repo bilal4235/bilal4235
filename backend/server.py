@@ -164,11 +164,44 @@ async def ask_question(request: AskRequest):
     try:
         session_id = request.session_id or str(uuid.uuid4())
         
+        # ÖNCE DİYANET VERİTABANINDA ARA
+        similar_qa, similarity = find_similar_question(request.question)
+        
+        if similar_qa and similarity >= 0.6:
+            # Diyanet kaynağından cevap bul
+            answer = similar_qa['answer']
+            source_note = f"\n\n📚 Kaynak: {similar_qa['source']}"
+            final_answer = answer + source_note
+            
+            logging.info(f"Diyanet kaynağından cevap bulundu (benzerlik: {similarity:.2f})")
+            
+            # Save to history
+            question_doc = {
+                "id": str(uuid.uuid4()),
+                "question": request.question,
+                "answer": final_answer,
+                "category": similar_qa['category'],
+                "session_id": session_id,
+                "source": "diyanet",
+                "similarity": similarity,
+                "timestamp": datetime.now(timezone.utc).isoformat()
+            }
+            await db.questions.insert_one(question_doc)
+            
+            return AskResponse(
+                answer=final_answer,
+                session_id=session_id,
+                timestamp=datetime.now(timezone.utc)
+            )
+        
+        # Eğer Diyanet'te yoksa AI'ya sor
+        logging.info("Diyanet'te bulunamadı, AI'ya soruluyor...")
+        
         # System message for Islamic context
         system_message = """Sen bir İslami ilmihal asistanısın. Kullanıcılara İslamiyet ile ilgili sorularını 
         Kur'an, Hadis ve güvenilir fıkıh kaynaklarına (özellikle Diyanet İşleri Başkanlığı yayınları) dayanarak 
         cevaplıyorsun. Cevapların kısa, anlaşılır ve kesin olmalı. Gerektiğinde ayet veya hadis referansı ekle. 
-        Her zaman nazik ve saygılı bir dil kullan."""
+        Her zaman nazik ve saygılı bir dil kullan. Cevaplarını Türkçe ver."""
         
         # Create chat instance
         chat = LlmChat(
@@ -181,19 +214,23 @@ async def ask_question(request: AskRequest):
         user_message = UserMessage(text=request.question)
         response = await chat.send_message(user_message)
         
+        ai_note = "\n\n🤖 AI Asistan tarafından oluşturulmuştur. Daha detaylı bilgi için güvenilir kaynaklara başvurabilirsiniz."
+        final_answer = response + ai_note
+        
         # Save to history
         question_doc = {
             "id": str(uuid.uuid4()),
             "question": request.question,
-            "answer": response,
+            "answer": final_answer,
             "category": "genel",
             "session_id": session_id,
+            "source": "ai",
             "timestamp": datetime.now(timezone.utc).isoformat()
         }
         await db.questions.insert_one(question_doc)
         
         return AskResponse(
-            answer=response,
+            answer=final_answer,
             session_id=session_id,
             timestamp=datetime.now(timezone.utc)
         )
