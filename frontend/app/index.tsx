@@ -550,18 +550,19 @@ const styles = StyleSheet.create({
     gap: 4,
   },
   iconButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     justifyContent: 'center',
     alignItems: 'center',
   },
   emojiIcon: {
-    fontSize: 20,
+    fontSize: 16,
   },
   iconLabel: {
-    fontSize: 10,
-    fontWeight: '500',
+    fontSize: 9,
+    fontWeight: '300',
+    opacity: 0.7,
   },
   scrollView: {
     flex: 1,
