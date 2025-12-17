@@ -838,6 +838,97 @@ export default function App() {
             </TouchableOpacity>
           </TouchableOpacity>
         </Modal>
+
+        {/* Friday Modal */}
+        <Modal
+          visible={showFridayModal}
+          transparent={true}
+          animationType="fade"
+          onRequestClose={() => setShowFridayModal(false)}
+        >
+          <TouchableOpacity 
+            style={styles.modalOverlay} 
+            activeOpacity={1} 
+            onPress={() => setShowFridayModal(false)}
+          >
+            <TouchableOpacity 
+              activeOpacity={1} 
+              onPress={(e) => e.stopPropagation()}
+              style={[styles.fridayModalContent, { 
+                backgroundColor: isDark ? '#1a3a2a' : '#f1f8e9'
+              }]}
+            >
+              {fridayContent && (
+                <>
+                  {/* Modal Header */}
+                  <View style={styles.fridayModalHeader}>
+                    <Text style={styles.fridayModalEmoji}>🕌</Text>
+                    <Text style={[styles.fridayModalTitle, { color: isDark ? '#81c784' : '#2e7d32' }]}>
+                      {fridayContent.title}
+                    </Text>
+                    <TouchableOpacity 
+                      onPress={() => setShowFridayModal(false)} 
+                      style={styles.fridayCloseButton}
+                    >
+                      <Ionicons name="close" size={24} color={isDark ? '#a5d6a7' : '#388e3c'} />
+                    </TouchableOpacity>
+                  </View>
+
+                  {/* Arabic text if exists */}
+                  {'arabic' in fridayContent && fridayContent.arabic && (
+                    <Text style={[styles.fridayModalArabic, { color: isDark ? '#c8e6c9' : '#1b5e20' }]}>
+                      {fridayContent.arabic}
+                    </Text>
+                  )}
+
+                  {/* Main Text */}
+                  <Text style={[styles.fridayModalText, { color: isDark ? '#e8f5e9' : '#1b5e20' }]}>
+                    {fridayContent.text}
+                  </Text>
+
+                  {/* Source if exists */}
+                  {'source' in fridayContent && fridayContent.source && (
+                    <Text style={[styles.fridayModalSource, { color: isDark ? '#a5d6a7' : '#388e3c' }]}>
+                      ({fridayContent.source})
+                    </Text>
+                  )}
+
+                  {/* Comment */}
+                  <View style={[styles.fridayCommentBox, { 
+                    backgroundColor: isDark ? '#2e5940' : '#c8e6c9',
+                    borderLeftColor: isDark ? '#81c784' : '#4caf50'
+                  }]}>
+                    <Text style={[styles.fridayCommentText, { color: isDark ? '#e8f5e9' : '#1b5e20' }]}>
+                      {fridayContent.comment}
+                    </Text>
+                  </View>
+
+                  {/* Action Button */}
+                  {!fridayActionDone ? (
+                    <TouchableOpacity 
+                      style={[styles.fridayActionButton, { backgroundColor: '#4caf50' }]}
+                      onPress={completeFridayAction}
+                    >
+                      <Ionicons name="checkmark-circle" size={22} color="#fff" />
+                      <Text style={styles.fridayActionButtonText}>
+                        {fridayContent.type === 'dua' ? 'Okudum' : 
+                         fridayContent.type === 'amel' ? 'Yaptım' : 
+                         fridayContent.type === 'bilgi' ? 'Öğrendim' : 'Okudum'}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : (
+                    <View style={[styles.fridayCompletedBadge, { backgroundColor: isDark ? '#2e5940' : '#c8e6c9' }]}>
+                      <Ionicons name="checkmark-circle" size={20} color="#4caf50" />
+                      <Text style={[styles.fridayCompletedText, { color: '#4caf50' }]}>
+                        Bugün tamamlandı
+                      </Text>
+                    </View>
+                  )}
+                </>
+              )}
+            </TouchableOpacity>
+          </TouchableOpacity>
+        </Modal>
       </View>
     </ThemeContext.Provider>
   );
