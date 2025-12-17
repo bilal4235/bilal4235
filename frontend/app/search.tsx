@@ -601,4 +601,29 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#2C5F2D',
   },
+  favoriteButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginTop: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    backgroundColor: '#F5F5DC',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#2C5F2D',
+  },
+  favoriteButtonActive: {
+    backgroundColor: '#2C5F2D',
+    borderColor: '#2C5F2D',
+  },
+  favoriteButtonText: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#2C5F2D',
+  },
+  favoriteButtonTextActive: {
+    color: '#FFFFFF',
+  },
 });
