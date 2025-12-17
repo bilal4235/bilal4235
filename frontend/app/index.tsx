@@ -243,6 +243,43 @@ export default function App() {
     return `${verse.text_turkish}\n\n— ${verse.surah_name_turkish} ${verse.ayah_number_in_surah}`;
   };
 
+  // Check if today is Friday
+  const checkFriday = async () => {
+    const today = new Date();
+    const dayOfWeek = today.getDay(); // 5 = Friday
+    
+    // For testing: set to true always, change back to dayOfWeek === 5 for production
+    const isFridayToday = dayOfWeek === 5;
+    setIsFriday(isFridayToday);
+    
+    if (isFridayToday) {
+      // Check if user already completed Friday action today
+      const lastFridayAction = await AsyncStorage.getItem('lastFridayAction');
+      const todayStr = today.toDateString();
+      
+      if (lastFridayAction !== todayStr) {
+        setFridayActionDone(false);
+        // Select random Friday content based on week number
+        const weekNumber = Math.floor(today.getTime() / (7 * 24 * 60 * 60 * 1000));
+        const contentIndex = weekNumber % FRIDAY_CONTENTS.length;
+        setFridayContent(FRIDAY_CONTENTS[contentIndex]);
+      } else {
+        setFridayActionDone(true);
+        const weekNumber = Math.floor(today.getTime() / (7 * 24 * 60 * 60 * 1000));
+        const contentIndex = weekNumber % FRIDAY_CONTENTS.length;
+        setFridayContent(FRIDAY_CONTENTS[contentIndex]);
+      }
+    }
+  };
+
+  // Mark Friday action as done
+  const completeFridayAction = async () => {
+    const today = new Date();
+    await AsyncStorage.setItem('lastFridayAction', today.toDateString());
+    setFridayActionDone(true);
+    setShowFridayModal(false);
+  };
+
   // Open share modal
   const openShareModal = () => {
     setShowShareModal(true);
