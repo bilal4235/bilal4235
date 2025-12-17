@@ -24,37 +24,97 @@ import { useRouter, usePathname } from 'expo-router';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
-// Cuma İçerikleri - 4 haftalık döngü: Ayet → Dua → Bilgi → Amel
+// Cuma İçerikleri - 12 haftalık döngü
 const FRIDAY_CONTENTS = [
-  // 1. Cuma: Ayet + Yorum
+  // 1. CUMA - Ayet
   {
     type: 'ayet',
     title: 'Cuma Ayeti',
     arabic: 'يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا نُودِيَ لِلصَّلَاةِ مِن يَوْمِ الْجُمُعَةِ فَاسْعَوْا إِلَىٰ ذِكْرِ اللَّهِ',
     text: '"Ey iman edenler! Cuma günü namaza çağrıldığınızda Allah\'ı anmaya koşun."',
-    source: 'Cum\'a Suresi, 9',
-    comment: 'Bugün kalbimizi ve vaktimizi Allah için ayıralım. Cuma, haftanın muhasebe günüdür.',
+    source: 'Cum\'a 9',
+    comment: 'Bugün vaktimizi ve kalbimizi Allah için ayıralım. Cuma, haftanın muhasebe günüdür.',
   },
-  // 2. Cuma: Dua
+  // 2. CUMA - Dua
   {
     type: 'dua',
     title: 'Cuma Duası',
-    text: '"Allah\'ım bu cumayı bize mağfiret, ailemize huzur, ümmete ferahlık eyle."',
-    comment: 'Cuma günü yapılan dualar kabul olunur.',
+    text: 'Allah\'ım! Bu cumayı bize mağfiret, ailemize huzur, ümmete ferahlık eyle.',
+    comment: '',
   },
-  // 3. Cuma: Mikro Bilgi
+  // 3. CUMA - Mikro Bilgi
   {
     type: 'bilgi',
     title: 'Cuma Bilgisi',
-    text: 'Cuma günü yapılan duaların kabulüne vesile olan özel bir vakit vardır.',
-    comment: 'Hz. Peygamber (s.a.v) bu vaktin ikindi sonrası olduğunu bildirmiştir.',
+    text: 'Cuma günü yapılan duaların kabulüne vesile olan özel bir vakit vardır. Bugün duayı ihmal etmeyelim.',
+    comment: '',
   },
-  // 4. Cuma: Amel Hatırlatması
+  // 4. CUMA - Amel
   {
     type: 'amel',
     title: 'Bugünkü Amel',
-    text: 'Bugün bol bol salavat getir.',
-    comment: '"Kim bana bir salavat getirirse, Allah ona on rahmet eder." (Müslim)',
+    text: 'Bugün en az 10 defa salavat getir.',
+    comment: 'Küçük bir amel, büyük bir bereket olabilir.',
+  },
+  // 5. CUMA - Ayet
+  {
+    type: 'ayet',
+    title: 'Cuma Ayeti',
+    arabic: 'أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ',
+    text: '"Kalpler ancak Allah\'ı anmakla huzur bulur."',
+    source: 'Ra\'d 28',
+    comment: 'Cuma, kalbi yoran düşünceleri susturup zikre yönelme vaktidir.',
+  },
+  // 6. CUMA - Dua
+  {
+    type: 'dua',
+    title: 'Cuma Duası',
+    text: 'Allah\'ım! Kalplerimizi Kur\'an\'la dirilt, hayatımıza bereket ihsan eyle.',
+    comment: '',
+  },
+  // 7. CUMA - Mikro Bilgi
+  {
+    type: 'bilgi',
+    title: 'Cuma Bilgisi',
+    text: 'Peygamber Efendimiz ﷺ, Cuma gününün günlerin en faziletlisi olduğunu bildirmiştir.',
+    comment: '',
+  },
+  // 8. CUMA - Amel
+  {
+    type: 'amel',
+    title: 'Bugünkü Amel',
+    text: 'Bugün bir kişiye gönül alıcı bir söz söyle.',
+    comment: 'Cuma, iyiliği çoğaltma günüdür.',
+  },
+  // 9. CUMA - Ayet
+  {
+    type: 'ayet',
+    title: 'Cuma Ayeti',
+    arabic: 'وَسَارِعُوا إِلَىٰ مَغْفِرَةٍ مِّن رَّبِّكُمْ وَجَنَّةٍ عَرْضُهَا السَّمَاوَاتُ وَالْأَرْضُ',
+    text: '"Rabbinizin bağışına ve genişliği göklerle yer kadar olan cennete koşun."',
+    source: 'Âl-i İmrân 133',
+    comment: 'Cuma, Allah\'ın rahmetine yönelmek için bir fırsattır.',
+  },
+  // 10. CUMA - Dua
+  {
+    type: 'dua',
+    title: 'Cuma Duası',
+    text: 'Allah\'ım! Bu cuma hürmetine bizleri affettiklerinden eyle.',
+    comment: '',
+  },
+  // 11. CUMA - Mikro Bilgi
+  {
+    type: 'bilgi',
+    title: 'Cuma Bilgisi',
+    text: 'Cuma günü Kehf Suresi okumak, iki cuma arasına nur olur.',
+    comment: '',
+  },
+  // 12. CUMA - Amel
+  {
+    type: 'amel',
+    title: 'Bugünkü Amel',
+    text: 'Bugün Kehf Suresi\'nden en az bir ayet oku.',
+    comment: 'Az da olsa devamlı olan amel değerlidir.',
   },
 ];
 
