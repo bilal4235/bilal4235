@@ -611,12 +611,13 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   surahName: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: '700',
   },
   surahDetails: {
-    fontSize: 14,
+    fontSize: 12,
     marginBottom: 12,
+    opacity: 0.6,
   },
   surahNameArabic: {
     fontSize: 28,
