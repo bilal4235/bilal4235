@@ -858,6 +858,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     lineHeight: 26,
     padding: 20,
+    paddingBottom: 8,
+  },
+  sourceText: {
+    fontSize: 10,
+    fontStyle: 'italic',
+    paddingHorizontal: 20,
+    paddingBottom: 16,
+    opacity: 0.6,
   },
   spacer: {
     height: 24,
