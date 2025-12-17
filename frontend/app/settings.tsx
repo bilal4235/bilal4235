@@ -325,10 +325,19 @@ export default function SettingsScreen() {
               <View style={styles.sourceRow}>
                 <Ionicons name="checkmark-circle" size={16} color={colors.primary} />
                 <Text style={[styles.sourceText, { color: colors.textSecondary }]}>
+                  Kur'an Yolu Tefsiri (Meal ve Tefsir)
+                </Text>
+              </View>
+              <View style={styles.sourceRow}>
+                <Ionicons name="checkmark-circle" size={16} color={colors.primary} />
+                <Text style={[styles.sourceText, { color: colors.textSecondary }]}>
                   Quran.com (Arapça Metin)
                 </Text>
               </View>
             </View>
+            <Text style={[styles.sourceDisclaimer, { color: colors.textSecondary }]}>
+              Bu uygulamadaki meal ve tefsir içerikleri, Diyanet İşleri Başkanlığı'nın Kur'an Yolu Tefsiri esas alınarak hazırlanmıştır.
+            </Text>
           </View>
 
           {/* Sürüm */}
