@@ -311,7 +311,7 @@ export default function App() {
                 style={[styles.iconButton, { backgroundColor: colors.primary }]}
                 activeOpacity={0.7}
               >
-                <Ionicons name="book" size={20} color={colors.surface} />
+                <Text style={styles.emojiIcon}>📖</Text>
               </TouchableOpacity>
               <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>Kuran</Text>
             </View>
@@ -322,7 +322,7 @@ export default function App() {
                 style={[styles.iconButton, { backgroundColor: colors.primary }]}
                 activeOpacity={0.7}
               >
-                <Ionicons name="search" size={20} color={colors.surface} />
+                <Text style={styles.emojiIcon}>🔍</Text>
               </TouchableOpacity>
               <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>Ara</Text>
             </View>
@@ -344,7 +344,7 @@ export default function App() {
                 style={[styles.iconButton, { backgroundColor: colors.primary }]}
                 activeOpacity={0.7}
               >
-                <Ionicons name="stats-chart" size={20} color={colors.surface} />
+                <Text style={styles.emojiIcon}>📊</Text>
               </TouchableOpacity>
               <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>İstatistik</Text>
             </View>
@@ -355,11 +355,7 @@ export default function App() {
                 style={[styles.iconButton, { backgroundColor: colors.primary }]}
                 activeOpacity={0.7}
               >
-                <Ionicons
-                  name={isDark ? 'sunny' : 'moon'}
-                  size={20}
-                  color={colors.surface}
-                />
+                <Text style={styles.emojiIcon}>🌙</Text>
               </TouchableOpacity>
               <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>Tema</Text>
             </View>
