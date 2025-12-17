@@ -1250,4 +1250,131 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginTop: 8,
   },
+  // Friday Section Styles
+  fridaySection: {
+    marginHorizontal: 16,
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1.5,
+  },
+  fridayHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  fridayEmoji: {
+    fontSize: 24,
+    marginRight: 10,
+  },
+  fridayTitle: {
+    fontSize: 17,
+    fontWeight: '700',
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    flex: 1,
+  },
+  fridayBadge: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  fridayText: {
+    fontSize: 15,
+    lineHeight: 22,
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+  },
+  fridayFooter: {
+    marginTop: 12,
+    alignItems: 'flex-end',
+  },
+  fridayHint: {
+    fontSize: 12,
+    fontWeight: '500',
+  },
+  // Friday Modal Styles
+  fridayModalContent: {
+    marginHorizontal: 20,
+    borderRadius: 20,
+    padding: 24,
+    maxWidth: 400,
+    alignSelf: 'center',
+    width: '90%',
+  },
+  fridayModalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  fridayModalEmoji: {
+    fontSize: 32,
+    marginRight: 12,
+  },
+  fridayModalTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    flex: 1,
+  },
+  fridayCloseButton: {
+    padding: 4,
+  },
+  fridayModalArabic: {
+    fontSize: 22,
+    fontFamily: Platform.OS === 'ios' ? 'System' : 'serif',
+    textAlign: 'right',
+    lineHeight: 36,
+    marginBottom: 16,
+  },
+  fridayModalText: {
+    fontSize: 17,
+    lineHeight: 28,
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    textAlign: 'center',
+    marginBottom: 12,
+  },
+  fridayModalSource: {
+    fontSize: 13,
+    textAlign: 'center',
+    marginBottom: 16,
+    fontStyle: 'italic',
+  },
+  fridayCommentBox: {
+    padding: 16,
+    borderRadius: 12,
+    borderLeftWidth: 4,
+    marginBottom: 20,
+  },
+  fridayCommentText: {
+    fontSize: 14,
+    lineHeight: 22,
+    fontStyle: 'italic',
+  },
+  fridayActionButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 24,
+    borderRadius: 12,
+  },
+  fridayActionButtonText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#fff',
+  },
+  fridayCompletedBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 12,
+  },
+  fridayCompletedText: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
 });
