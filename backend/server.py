@@ -13,10 +13,11 @@ from emergentintegrations.llm.chat import LlmChat, UserMessage
 import base64
 from diyanet_data import DIYANET_QA_DATABASE
 from diyanet_extended_data import EXTENDED_DIYANET_QA
+from diyanet_complete_data import COMPLETE_DIYANET_QA
 import difflib
 
 # Tüm Diyanet sorularını birleştir
-ALL_DIYANET_QA = DIYANET_QA_DATABASE + EXTENDED_DIYANET_QA
+ALL_DIYANET_QA = DIYANET_QA_DATABASE + EXTENDED_DIYANET_QA + COMPLETE_DIYANET_QA
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
