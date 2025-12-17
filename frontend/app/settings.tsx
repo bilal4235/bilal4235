@@ -18,7 +18,13 @@ export default function SettingsScreen() {
   const router = useRouter();
   const [isDark, setIsDark] = useState(false);
   const [fontSize, setFontSize] = useState('orta');
+  const [arabicFont, setArabicFont] = useState('mushaf');
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [notificationHour, setNotificationHour] = useState(9);
+  const [fridayReminder, setFridayReminder] = useState(false);
+  const [showComments, setShowComments] = useState(true);
+  const [showDua, setShowDua] = useState(true);
+  const [contentMode, setContentMode] = useState('both');
 
   useEffect(() => {
     loadSettings();
