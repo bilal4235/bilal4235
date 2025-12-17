@@ -556,6 +556,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  emojiIcon: {
+    fontSize: 20,
+  },
   iconLabel: {
     fontSize: 10,
     fontWeight: '500',
