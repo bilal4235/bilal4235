@@ -304,6 +304,7 @@ export default function SearchScreen() {
                       <Text style={styles.surahName}>
                         Ayet {verse.ayah_number_in_surah}
                       </Text>
+                      <Text style={styles.verseNumber}>#{verse.verse_number}</Text>
                     </View>
 
                     <View style={styles.verseContent}>
@@ -311,6 +312,27 @@ export default function SearchScreen() {
                       <View style={styles.divider} />
                       <Text style={styles.turkishText}>{verse.text_turkish}</Text>
                     </View>
+
+                    {/* Favorilere Ekle Butonu */}
+                    <TouchableOpacity
+                      style={[
+                        styles.favoriteButton,
+                        favorites.has(verse.verse_number) && styles.favoriteButtonActive
+                      ]}
+                      onPress={() => toggleFavorite(verse.verse_number)}
+                    >
+                      <Ionicons 
+                        name={favorites.has(verse.verse_number) ? "heart" : "heart-outline"} 
+                        size={18} 
+                        color={favorites.has(verse.verse_number) ? "#FFFFFF" : "#2C5F2D"} 
+                      />
+                      <Text style={[
+                        styles.favoriteButtonText,
+                        favorites.has(verse.verse_number) && styles.favoriteButtonTextActive
+                      ]}>
+                        {favorites.has(verse.verse_number) ? "Favorilerde" : "Favorilere Ekle"}
+                      </Text>
+                    </TouchableOpacity>
                   </View>
                 ))
               )}
