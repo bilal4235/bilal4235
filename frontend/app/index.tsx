@@ -89,6 +89,7 @@ interface Verse {
 
 export default function App() {
   const router = useRouter();
+  const pathname = usePathname();
   const [isDark, setIsDark] = useState(false);
   const [verse, setVerse] = useState<Verse | null>(null);
   const [loading, setLoading] = useState(true);
