@@ -393,8 +393,7 @@ export default function App() {
               {/* Surah Info */}
               <View style={[styles.surahInfo, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                 <View style={styles.surahHeader}>
-                  <Ionicons name="star" size={20} color={colors.accent} />
-                  <Text style={[styles.surahName, { color: colors.text }]}>
+                  <Text style={[styles.surahName, { color: colors.primary }]}>
                     {verse.surah_name_turkish}
                   </Text>
                 </View>
