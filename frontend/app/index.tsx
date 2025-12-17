@@ -305,45 +305,64 @@ export default function App() {
             <Text style={[styles.appSubtitle, { color: colors.textSecondary }]}>Her gün bir ayet, bir tefekkür.</Text>
           </View>
           <View style={styles.headerButtons}>
-            <TouchableOpacity
-              onPress={() => router.push('/browse')}
-              style={[styles.iconButton, { backgroundColor: colors.primary }]}
-              activeOpacity={0.7}
-            >
-              <Ionicons name="book" size={20} color={colors.surface} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => router.push('/search')}
-              style={[styles.iconButton, { backgroundColor: colors.primary }]}
-              activeOpacity={0.7}
-            >
-              <Ionicons name="search" size={20} color={colors.surface} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => router.push('/favorites')}
-              style={[styles.iconButton, { backgroundColor: colors.primary }]}
-              activeOpacity={0.7}
-            >
-              <Ionicons name="heart" size={20} color={colors.surface} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => router.push('/statistics')}
-              style={[styles.iconButton, { backgroundColor: colors.primary }]}
-              activeOpacity={0.7}
-            >
-              <Ionicons name="stats-chart" size={20} color={colors.surface} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={toggleTheme}
-              style={[styles.iconButton, { backgroundColor: colors.primary }]}
-              activeOpacity={0.7}
-            >
-              <Ionicons
-                name={isDark ? 'sunny' : 'moon'}
-                size={20}
-                color={colors.surface}
-              />
-            </TouchableOpacity>
+            <View style={styles.iconWrapper}>
+              <TouchableOpacity
+                onPress={() => router.push('/browse')}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="book" size={20} color={colors.surface} />
+              </TouchableOpacity>
+              <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>Kuran</Text>
+            </View>
+            
+            <View style={styles.iconWrapper}>
+              <TouchableOpacity
+                onPress={() => router.push('/search')}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="search" size={20} color={colors.surface} />
+              </TouchableOpacity>
+              <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>Ara</Text>
+            </View>
+            
+            <View style={styles.iconWrapper}>
+              <TouchableOpacity
+                onPress={() => router.push('/favorites')}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="heart" size={20} color={colors.surface} />
+              </TouchableOpacity>
+              <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>Favori</Text>
+            </View>
+            
+            <View style={styles.iconWrapper}>
+              <TouchableOpacity
+                onPress={() => router.push('/statistics')}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons name="stats-chart" size={20} color={colors.surface} />
+              </TouchableOpacity>
+              <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>İstatistik</Text>
+            </View>
+            
+            <View style={styles.iconWrapper}>
+              <TouchableOpacity
+                onPress={toggleTheme}
+                style={[styles.iconButton, { backgroundColor: colors.primary }]}
+                activeOpacity={0.7}
+              >
+                <Ionicons
+                  name={isDark ? 'sunny' : 'moon'}
+                  size={20}
+                  color={colors.surface}
+                />
+              </TouchableOpacity>
+              <Text style={[styles.iconLabel, { color: colors.textSecondary }]}>Tema</Text>
+            </View>
           </View>
         </View>
 
