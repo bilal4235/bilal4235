@@ -419,12 +419,13 @@ const styles = StyleSheet.create({
     marginBottom: 12,
     borderRadius: 12,
     borderWidth: 1,
-    padding: 16,
+    padding: Platform.OS === 'ios' ? 18 : 16,
   },
   settingRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    minHeight: Platform.OS === 'ios' ? 44 : 48,
   },
   settingLeft: {
     flexDirection: 'row',
