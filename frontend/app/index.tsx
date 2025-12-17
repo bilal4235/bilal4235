@@ -24,6 +24,62 @@ import { useRouter, usePathname } from 'expo-router';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
+// Cuma İçerikleri - Dönüşümlü olarak gösterilecek
+const FRIDAY_CONTENTS = [
+  {
+    type: 'ayet',
+    title: 'Cuma Ayeti',
+    arabic: 'يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا نُودِيَ لِلصَّلَاةِ مِن يَوْمِ الْجُمُعَةِ فَاسْعَوْا إِلَىٰ ذِكْرِ اللَّهِ',
+    text: '"Ey iman edenler! Cuma günü namaza çağrıldığınızda Allah\'ı anmaya koşun."',
+    source: 'Cum\'a Suresi, 9',
+    comment: 'Bugün kalbimizi ve vaktimizi Allah için ayıralım. Cuma, haftanın muhasebe günüdür.',
+  },
+  {
+    type: 'dua',
+    title: 'Cuma Duası',
+    text: '"Allah\'ım bu cumayı bize mağfiret, ailemize huzur, ümmete ferahlık eyle."',
+    comment: 'Cuma günü yapılan dualar kabul olunur.',
+  },
+  {
+    type: 'bilgi',
+    title: 'Cuma Bilgisi',
+    text: 'Cuma günü yapılan duaların kabulüne vesile olan özel bir vakit vardır.',
+    comment: 'Hz. Peygamber (s.a.v) bu vaktin ikindi sonrası olduğunu bildirmiştir.',
+  },
+  {
+    type: 'amel',
+    title: 'Bugünkü Amel',
+    text: 'Bugün bol bol salavat getir.',
+    comment: '"Kim bana bir salavat getirirse, Allah ona on rahmet eder." (Müslim)',
+  },
+  {
+    type: 'ayet',
+    title: 'Cuma Ayeti',
+    arabic: 'فَإِذَا قُضِيَتِ الصَّلَاةُ فَانتَشِرُوا فِي الْأَرْضِ وَابْتَغُوا مِن فَضْلِ اللَّهِ',
+    text: '"Namaz kılınınca yeryüzüne dağılın ve Allah\'ın lütfundan nasibinizi arayın."',
+    source: 'Cum\'a Suresi, 10',
+    comment: 'İbadetten sonra rızık aramak da ibadettir.',
+  },
+  {
+    type: 'amel',
+    title: 'Bugünkü Amel',
+    text: 'Kehf Suresi\'nden bir sayfa oku.',
+    comment: 'Cuma günü Kehf Suresi okuyan, iki cuma arası nurla aydınlanır.',
+  },
+  {
+    type: 'dua',
+    title: 'Cuma Duası',
+    text: '"Ya Rabbi! Bugün bizi affet, günahlarımızı bağışla, kalplerimizi nurlandır."',
+    comment: 'Cuma günü, af ve mağfiret günüdür.',
+  },
+  {
+    type: 'bilgi',
+    title: 'Cuma Bilgisi',
+    text: 'Cuma günü gusül almak, güzel koku sürünmek ve temiz elbise giymek sünnettir.',
+    comment: 'Temizlik imandandır.',
+  },
+];
+
 // Theme Context
 interface ThemeContextType {
   isDark: boolean;
