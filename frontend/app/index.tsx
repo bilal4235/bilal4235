@@ -18,7 +18,7 @@ import ViewShot from 'react-native-view-shot';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
-import { useRouter } from 'expo-router';
+import { useRouter, usePathname } from 'expo-router';
 
 // Theme Context
 interface ThemeContextType {
