@@ -251,9 +251,9 @@ async def get_categories():
 async def get_diyanet_questions(category: Optional[str] = None):
     """Diyanet İşleri Başkanlığı kaynaklı soru-cevapları getir"""
     if category:
-        questions = [qa for qa in DIYANET_QA_DATABASE if qa['category'] == category]
+        questions = [qa for qa in ALL_DIYANET_QA if qa['category'] == category]
     else:
-        questions = DIYANET_QA_DATABASE
+        questions = ALL_DIYANET_QA
     return {"total": len(questions), "questions": questions}
 
 @api_router.get("/autocomplete")
@@ -265,7 +265,7 @@ async def autocomplete_questions(query: str, limit: int = 10):
     query_lower = query.lower().strip()
     suggestions = []
     
-    for qa in DIYANET_QA_DATABASE:
+    for qa in ALL_DIYANET_QA:
         question_lower = qa['question'].lower()
         
         # Başlangıç eşleşmesi veya kelime içi eşleşme
