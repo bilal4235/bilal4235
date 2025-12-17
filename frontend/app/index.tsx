@@ -169,24 +169,132 @@ export default function App() {
     }
   };
 
-  const shareVerse = async () => {
+  // Share message generator
+  const getShareMessage = () => {
+    if (!verse) return '';
+    return `🌙 Bir Ayet Bir Yorum\n\n${verse.text_arabic}\n\n${verse.text_turkish}\n\n📖 ${verse.surah_name_turkish} Suresi - ${verse.ayah_number_in_surah}. Ayet`;
+  };
+
+  const getShareMessageShort = () => {
+    if (!verse) return '';
+    return `${verse.text_turkish}\n\n— ${verse.surah_name_turkish} ${verse.ayah_number_in_surah}`;
+  };
+
+  // Open share modal
+  const openShareModal = () => {
+    setShowShareModal(true);
+  };
+
+  // Close share modal
+  const closeShareModal = () => {
+    setShowShareModal(false);
+  };
+
+  // Share to WhatsApp
+  const shareToWhatsApp = async () => {
+    if (!verse) return;
+    const message = encodeURIComponent(getShareMessage());
+    const url = `whatsapp://send?text=${message}`;
+    
+    try {
+      const canOpen = await Linking.canOpenURL(url);
+      if (canOpen) {
+        await Linking.openURL(url);
+      } else {
+        // Fallback to web WhatsApp
+        await Linking.openURL(`https://wa.me/?text=${message}`);
+      }
+      closeShareModal();
+      recordShareReading();
+    } catch (error) {
+      Alert.alert('Hata', 'WhatsApp açılamadı');
+    }
+  };
+
+  // Share to Telegram
+  const shareToTelegram = async () => {
+    if (!verse) return;
+    const message = encodeURIComponent(getShareMessage());
+    const url = `tg://msg?text=${message}`;
+    
+    try {
+      const canOpen = await Linking.canOpenURL(url);
+      if (canOpen) {
+        await Linking.openURL(url);
+      } else {
+        // Fallback to web Telegram
+        await Linking.openURL(`https://t.me/share/url?text=${message}`);
+      }
+      closeShareModal();
+      recordShareReading();
+    } catch (error) {
+      Alert.alert('Hata', 'Telegram açılamadı');
+    }
+  };
+
+  // Share to X (Twitter)
+  const shareToX = async () => {
+    if (!verse) return;
+    const message = encodeURIComponent(getShareMessageShort());
+    const hashtags = encodeURIComponent('BirAyetBirYorum,Kuran');
+    const url = `https://twitter.com/intent/tweet?text=${message}&hashtags=${hashtags}`;
+    
+    try {
+      await Linking.openURL(url);
+      closeShareModal();
+      recordShareReading();
+    } catch (error) {
+      Alert.alert('Hata', 'X (Twitter) açılamadı');
+    }
+  };
+
+  // Copy to clipboard
+  const copyToClipboard = async () => {
+    if (!verse) return;
+    const message = getShareMessage();
+    
+    try {
+      if (Platform.OS === 'web') {
+        await navigator.clipboard.writeText(message);
+      } else {
+        Clipboard.setString(message);
+      }
+      Alert.alert('Kopyalandı', 'Ayet panoya kopyalandı');
+      closeShareModal();
+      recordShareReading();
+    } catch (error) {
+      Alert.alert('Hata', 'Kopyalama başarısız');
+    }
+  };
+
+  // Native share (for Notes, Messages, etc.)
+  const shareNative = async () => {
     if (!verse) return;
     
     try {
-      const message = `🌙 Bir Ayet Bir Yorum\n\n${verse.text_arabic}\n\n${verse.text_turkish}\n\n${verse.surah_name_turkish} Suresi - ${verse.ayah_number_in_surah}. Ayet`;
-      
+      const message = getShareMessage();
       await Share.share({
         message,
+        title: 'Bir Ayet Bir Yorum',
       });
-      
-      // Record reading when shared
+      closeShareModal();
+      recordShareReading();
+    } catch (error) {
+      console.error('Error sharing:', error);
+    }
+  };
+
+  // Record reading when shared
+  const recordShareReading = async () => {
+    if (!verse) return;
+    try {
       await fetch(`${backendUrl}/api/reading-history`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ verse_id: verse.verse_number }),
       });
     } catch (error) {
-      console.error('Error sharing verse:', error);
+      console.error('Error recording reading:', error);
     }
   };
 
