@@ -17,6 +17,9 @@ const Categories = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showNewQuestionDialog, setShowNewQuestionDialog] = useState(false);
+  const [newQuestionSearch, setNewQuestionSearch] = useState('');
+  const [filteredQuestions, setFilteredQuestions] = useState([]);
 
   // Sample FAQ data for each category
   const faqData = {
