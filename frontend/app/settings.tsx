@@ -425,7 +425,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    minHeight: Platform.OS === 'ios' ? 44 : 48,
+    minHeight: Platform.OS === 'ios' ? 58 : 54,
   },
   settingLeft: {
     flexDirection: 'row',
