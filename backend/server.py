@@ -1,11 +1,12 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 from datetime import datetime, timedelta
 import os
 from dotenv import load_dotenv
 import httpx
-from typing import List, Dict
+from typing import List, Dict, Optional
+from pydantic import BaseModel
 import asyncio
 
 load_dotenv()
