@@ -40,11 +40,11 @@ async def init_diyanet_database():
     """Diyanet İşleri Başkanlığı soru-cevaplarını veritabanına yükle"""
     existing = await db.diyanet_qa.count_documents({})
     if existing == 0:
-        for qa in DIYANET_QA_DATABASE:
+        for qa in ALL_DIYANET_QA:
             qa['id'] = str(uuid.uuid4())
             qa['timestamp'] = datetime.now(timezone.utc).isoformat()
-        await db.diyanet_qa.insert_many(DIYANET_QA_DATABASE)
-        logging.info(f"Diyanet veritabanı yüklendi: {len(DIYANET_QA_DATABASE)} soru-cevap")
+        await db.diyanet_qa.insert_many(ALL_DIYANET_QA)
+        logging.info(f"Diyanet veritabanı yüklendi: {len(ALL_DIYANET_QA)} soru-cevap")
 
 def find_similar_question(user_question: str, threshold: float = 0.6):
     """Kullanıcı sorusuna benzer Diyanet sorusu bul"""
@@ -53,7 +53,7 @@ def find_similar_question(user_question: str, threshold: float = 0.6):
     best_match = None
     best_ratio = 0
     
-    for qa in DIYANET_QA_DATABASE:
+    for qa in ALL_DIYANET_QA:
         diyanet_q_lower = qa['question'].lower().strip()
         
         # Tam eşleşme kontrolü
