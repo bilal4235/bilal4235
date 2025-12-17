@@ -430,6 +430,18 @@ export default function App() {
                 </Text>
               </View>
 
+              {/* Ayetle Dua */}
+              <View style={[styles.duaSection, { backgroundColor: colors.primary }]}>
+                <View style={styles.duaHeader}>
+                  <Ionicons name="hand-right" size={20} color="#FFD700" />
+                  <Text style={styles.duaTitle}>Ayetle Dua</Text>
+                  <Ionicons name="hand-left" size={20} color="#FFD700" />
+                </View>
+                <Text style={styles.duaText}>
+                  "Allah'ım, bu ayetin gereğiyle yaşamayı nasip et."
+                </Text>
+              </View>
+
               {/* Spacer */}
               <View style={styles.spacer} />
 
