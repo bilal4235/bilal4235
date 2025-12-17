@@ -61,6 +61,33 @@ const Categories = () => {
     navigate('/question', { state: { question: q } });
   };
 
+  const handleNewQuestionSearch = async (value) => {
+    setNewQuestionSearch(value);
+
+    if (value.length >= 1 && category) {
+      try {
+        // Kategoriye özel sorular getir
+        const response = await axios.get(`${API}/autocomplete?query=${encodeURIComponent(value)}&limit=50`);
+        // Sadece bu kategoriye ait olanları filtrele
+        const categoryQuestions = response.data.suggestions.filter(
+          s => s.category === category.id
+        );
+        setFilteredQuestions(categoryQuestions);
+      } catch (error) {
+        console.error('Error fetching questions:', error);
+      }
+    } else {
+      setFilteredQuestions([]);
+    }
+  };
+
+  const selectQuestion = (question) => {
+    setShowNewQuestionDialog(false);
+    setNewQuestionSearch('');
+    setFilteredQuestions([]);
+    navigate('/question', { state: { question: question } });
+  };
+
   return (
     <div className="page-container">
       <div className="mb-6">
