@@ -555,6 +555,9 @@ export default function App() {
                 <Text style={[styles.tafsirText, { color: colors.text }]}>
                   {verse.tafsir}
                 </Text>
+                <Text style={[styles.sourceText, { color: colors.textSecondary }]}>
+                  Kaynak: Diyanet İşleri Başkanlığı – Kur'an Yolu Tefsiri (esas alınarak hazırlanmıştır).
+                </Text>
               </View>
 
               {/* Ayetle Dua */}
