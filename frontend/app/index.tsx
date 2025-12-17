@@ -590,7 +590,7 @@ export default function App() {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={shareVerse}
+                  onPress={openShareModal}
                   style={[styles.actionButton, { backgroundColor: colors.primary }]}
                   activeOpacity={0.7}
                 >
