@@ -437,7 +437,7 @@ index 201c0d4..e69de29 100644
 --------------   const [error, setError] = useState<string | null>(null);
 -------------- 
 ---------------  const backendUrl = Constants.expoConfig?.extra?.backendUrl || process.env.EXPO_PUBLIC_BACKEND_URL || '';
---------------+  const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL || 'https://qurandaily.preview.emergentagent.com';
+--------------+  const backendUrl = process.env.EXPO_PUBLIC_BACKEND_URL || 'https://versecomment.preview.emergentagent.com';
 -------------- 
 --------------   useEffect(() => {
 --------------     initializeApp();
