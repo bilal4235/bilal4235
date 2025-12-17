@@ -210,9 +210,14 @@ export default function SettingsScreen() {
           {/* Cuma Hatırlatması */}
           <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
             <View style={styles.settingRow}>
-              <View style={styles.settingLeft}>
+              <View style={[styles.settingLeft, { flex: 1 }]}>
                 <Ionicons name="calendar-outline" size={24} color={colors.primary} />
-                <Text style={[styles.settingLabel, { color: colors.text }]}>Cuma Hatırlatması</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[styles.settingLabel, { color: colors.text }]}>Cuma Hatırlatmaları</Text>
+                  <Text style={[styles.settingDescription, { color: colors.textSecondary }]}>
+                    Cuma günleri kısa ayet, dua ve manevî hatırlatmalar al.
+                  </Text>
+                </View>
               </View>
               <Switch
                 value={fridayReminder}
