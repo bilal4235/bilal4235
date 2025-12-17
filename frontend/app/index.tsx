@@ -675,6 +675,43 @@ export default function App() {
               {/* Spacer */}
               <View style={styles.spacer} />
 
+              {/* Cuma Hatırlatması - Only visible on Fridays */}
+              {isFriday && fridayContent && (
+                <TouchableOpacity 
+                  style={[styles.fridaySection, { 
+                    backgroundColor: isDark ? '#1a3a2a' : '#e8f5e9',
+                    borderColor: isDark ? '#2e5940' : '#81c784'
+                  }]}
+                  onPress={() => setShowFridayModal(true)}
+                  activeOpacity={0.8}
+                >
+                  <View style={styles.fridayHeader}>
+                    <Text style={styles.fridayEmoji}>🕌</Text>
+                    <Text style={[styles.fridayTitle, { color: isDark ? '#81c784' : '#2e7d32' }]}>
+                      {fridayContent.title}
+                    </Text>
+                    {fridayActionDone && (
+                      <View style={[styles.fridayBadge, { backgroundColor: '#4caf50' }]}>
+                        <Ionicons name="checkmark" size={12} color="#fff" />
+                      </View>
+                    )}
+                  </View>
+                  
+                  <Text style={[styles.fridayText, { color: isDark ? '#c8e6c9' : '#1b5e20' }]} numberOfLines={2}>
+                    {fridayContent.text}
+                  </Text>
+                  
+                  <View style={styles.fridayFooter}>
+                    <Text style={[styles.fridayHint, { color: isDark ? '#a5d6a7' : '#388e3c' }]}>
+                      {fridayActionDone ? 'Tamamlandı ✓' : 'Detay için dokun →'}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+
+              {/* Spacer */}
+              {isFriday && fridayContent && <View style={styles.spacer} />}
+
               {/* Action Buttons */}
               <View style={styles.actionButtons}>
                 <TouchableOpacity
