@@ -12,6 +12,8 @@ import {
   Alert,
   Modal,
   Dimensions,
+  Linking,
+  Clipboard,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import ViewShot from 'react-native-view-shot';
@@ -19,6 +21,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Notifications from 'expo-notifications';
 import Constants from 'expo-constants';
 import { useRouter, usePathname } from 'expo-router';
+
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 // Theme Context
 interface ThemeContextType {
