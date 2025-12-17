@@ -145,14 +145,98 @@ const Categories = () => {
           <div className="mt-6">
             <Button
               data-testid="ask-new-question-button"
-              onClick={() => navigate('/question')}
-              className="w-full py-6 text-lg font-semibold bg-[#4f8c9f] hover:bg-[#3d7080] text-white rounded-xl"
+              onClick={() => setShowNewQuestionDialog(true)}
+              className="w-full py-6 text-lg font-semibold bg-[#4f8c9f] hover:bg-[#3d7080] text-white rounded-xl flex items-center justify-center gap-2"
             >
+              <Plus size={24} />
               Yeni Soru Sor
             </Button>
           </div>
         </div>
       )}
+
+      {/* Yeni Soru Sor Dialog */}
+      <Dialog open={showNewQuestionDialog} onOpenChange={setShowNewQuestionDialog}>
+        <DialogContent className="sm:max-w-2xl max-h-[80vh] overflow-hidden flex flex-col">
+          <DialogHeader>
+            <DialogTitle>
+              {category?.name} Hakkında Soru Sor
+            </DialogTitle>
+          </DialogHeader>
+          
+          <div className="space-y-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#4f8c9f]" size={20} />
+              <Input
+                data-testid="new-question-search"
+                type="text"
+                placeholder={`${category?.name} ile ilgili arama yapın... (örn: na)`}
+                className="pl-10 py-6 text-base border-2 border-[#4f8c9f] border-opacity-30 focus:border-[#4f8c9f] rounded-xl"
+                value={newQuestionSearch}
+                onChange={(e) => handleNewQuestionSearch(e.target.value)}
+                autoFocus
+              />
+            </div>
+
+            {newQuestionSearch.length >= 1 && (
+              <div className="overflow-y-auto max-h-[50vh] space-y-2">
+                {filteredQuestions.length > 0 ? (
+                  <>
+                    <p className="text-sm text-[#6b9dad] px-2">
+                      {filteredQuestions.length} soru bulundu
+                    </p>
+                    {filteredQuestions.map((q, index) => (
+                      <div
+                        key={index}
+                        data-testid={`filtered-question-${index}`}
+                        className="p-4 rounded-xl border border-gray-200 hover:border-[#4f8c9f] hover:bg-[#e8f4f8] cursor-pointer transition-all"
+                        onClick={() => selectQuestion(q.question)}
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="flex-shrink-0 mt-1">
+                            <div className="w-8 h-8 rounded-full bg-[#4f8c9f] bg-opacity-10 flex items-center justify-center">
+                              <Search size={16} className="text-[#4f8c9f]" />
+                            </div>
+                          </div>
+                          <div className="flex-1">
+                            <p className="font-semibold text-[#2c5f6f] mb-2">
+                              {q.question}
+                            </p>
+                            <p className="text-sm text-[#6b9dad] line-clamp-2">
+                              {q.preview}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-[#6b9dad]">
+                      "{newQuestionSearch}" için sonuç bulunamadı
+                    </p>
+                    <p className="text-sm text-[#6b9dad] mt-2">
+                      Farklı bir anahtar kelime deneyin
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {newQuestionSearch.length === 0 && (
+              <div className="text-center py-8">
+                <Search size={48} className="mx-auto text-[#6b9dad] mb-4" />
+                <p className="text-[#6b9dad]">
+                  Aramak için yazmaya başlayın
+                </p>
+                <p className="text-sm text-[#6b9dad] mt-2">
+                  Örnek: "na" yazarak namaz sorularını görebilirsiniz
+                </p>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
