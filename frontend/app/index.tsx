@@ -403,6 +403,22 @@ export default function App() {
     }
   };
 
+  // Sıcak ve samimi bildirim metinleri
+  const DAILY_NOTIFICATION_MESSAGES = [
+    { title: '🌙 Bir dakikan var mı?', body: 'Bugünün ayeti seni bekliyor...' },
+    { title: '🤍 Günaydın', body: 'Kalbine güzel bir söz bırakmak ister misin?' },
+    { title: '🌿 Yeni bir gün', body: 'Bir ayet, bir tefekkür... Hazır mısın?' },
+    { title: '✨ Bugün', body: 'Sana özel bir ayet seçildi.' },
+    { title: '🕊️ Merhaba', body: 'Günün ayetini birlikte okuyalım mı?' },
+  ];
+
+  const FRIDAY_NOTIFICATION_MESSAGES = [
+    { title: '🌿 Cuma geldi...', body: 'Kalbini tazelemek ister misin?' },
+    { title: '🤍 Bugün Cuma', body: 'Küçük bir hatırlatma sana iyi gelebilir.' },
+    { title: '🕌 Mübarek Cuma', body: 'Bugün özel bir gün, bir dakikan var mı?' },
+    { title: '🌿 Cuma mübarek olsun', body: 'Seni bekleyen bir hatırlatma var.' },
+  ];
+
   const scheduleDailyNotifications = async () => {
     if (Platform.OS === 'web') {
       console.log('Notifications not available on web platform');
@@ -410,18 +426,21 @@ export default function App() {
     }
 
     try {
-      // Get saved notification time or use default (00:00)
+      // Get saved notification time or use default (08:00)
       const savedTime = await AsyncStorage.getItem('notificationTime');
-      const time = savedTime ? JSON.parse(savedTime) : { hour: 0, minute: 0 };
+      const time = savedTime ? JSON.parse(savedTime) : { hour: 8, minute: 0 };
 
       // Cancel all existing notifications
       await Notifications.cancelAllScheduledNotificationsAsync();
 
-      // Schedule daily notification
+      // Get random daily message
+      const dailyMsg = DAILY_NOTIFICATION_MESSAGES[Math.floor(Math.random() * DAILY_NOTIFICATION_MESSAGES.length)];
+
+      // Schedule daily notification (her gün)
       await Notifications.scheduleNotificationAsync({
         content: {
-          title: '🌙 Günün Ayeti',
-          body: 'Bugünün ayetini okumak için uygulamayı açın',
+          title: dailyMsg.title,
+          body: dailyMsg.body,
           sound: true,
         },
         trigger: {
@@ -431,7 +450,29 @@ export default function App() {
         },
       });
 
-      console.log('Daily notifications scheduled successfully');
+      // Check if Friday notifications are enabled
+      const fridayEnabled = await AsyncStorage.getItem('fridayNotification');
+      if (fridayEnabled !== 'false') {
+        // Get random Friday message
+        const fridayMsg = FRIDAY_NOTIFICATION_MESSAGES[Math.floor(Math.random() * FRIDAY_NOTIFICATION_MESSAGES.length)];
+        
+        // Schedule Friday notification (Cuma sabahı 09:00)
+        await Notifications.scheduleNotificationAsync({
+          content: {
+            title: fridayMsg.title,
+            body: fridayMsg.body,
+            sound: true,
+          },
+          trigger: {
+            weekday: 6, // 1=Sunday, 6=Friday (expo format)
+            hour: 9,
+            minute: 0,
+            repeats: true,
+          },
+        });
+      }
+
+      console.log('Notifications scheduled successfully');
     } catch (err) {
       console.error('Error scheduling notifications:', err);
     }
