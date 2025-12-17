@@ -156,6 +156,10 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [isFavorite, setIsFavorite] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
+  const [isFriday, setIsFriday] = useState(false);
+  const [fridayContent, setFridayContent] = useState<typeof FRIDAY_CONTENTS[0] | null>(null);
+  const [fridayActionDone, setFridayActionDone] = useState(false);
+  const [showFridayModal, setShowFridayModal] = useState(false);
   const viewShotRef = useRef<ViewShot>(null);
 
   const backendUrl = Constants.expoConfig?.extra?.backendUrl || process.env.EXPO_PUBLIC_BACKEND_URL || '';
