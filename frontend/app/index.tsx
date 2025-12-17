@@ -611,6 +611,93 @@ export default function App() {
             </View>
           ) : null}
         </ScrollView>
+
+        {/* Share Modal */}
+        <Modal
+          visible={showShareModal}
+          transparent={true}
+          animationType="slide"
+          onRequestClose={closeShareModal}
+        >
+          <TouchableOpacity 
+            style={styles.modalOverlay} 
+            activeOpacity={1} 
+            onPress={closeShareModal}
+          >
+            <TouchableOpacity 
+              activeOpacity={1} 
+              onPress={(e) => e.stopPropagation()}
+              style={[styles.shareModalContent, { backgroundColor: colors.surface }]}
+            >
+              {/* Modal Header */}
+              <View style={[styles.shareModalHeader, { borderBottomColor: colors.border }]}>
+                <Text style={[styles.shareModalTitle, { color: colors.text }]}>Paylaş</Text>
+                <TouchableOpacity onPress={closeShareModal} style={styles.closeButton}>
+                  <Ionicons name="close" size={24} color={colors.textSecondary} />
+                </TouchableOpacity>
+              </View>
+
+              {/* Share Options */}
+              <View style={styles.shareOptionsContainer}>
+                {/* WhatsApp */}
+                <TouchableOpacity style={styles.shareOption} onPress={shareToWhatsApp}>
+                  <View style={[styles.shareIconCircle, { backgroundColor: '#25D366' }]}>
+                    <Ionicons name="logo-whatsapp" size={28} color="#FFFFFF" />
+                  </View>
+                  <Text style={[styles.shareOptionText, { color: colors.text }]}>WhatsApp</Text>
+                </TouchableOpacity>
+
+                {/* Telegram */}
+                <TouchableOpacity style={styles.shareOption} onPress={shareToTelegram}>
+                  <View style={[styles.shareIconCircle, { backgroundColor: '#0088cc' }]}>
+                    <Ionicons name="paper-plane" size={26} color="#FFFFFF" />
+                  </View>
+                  <Text style={[styles.shareOptionText, { color: colors.text }]}>Telegram</Text>
+                </TouchableOpacity>
+
+                {/* X (Twitter) */}
+                <TouchableOpacity style={styles.shareOption} onPress={shareToX}>
+                  <View style={[styles.shareIconCircle, { backgroundColor: '#000000' }]}>
+                    <Text style={styles.xLogo}>𝕏</Text>
+                  </View>
+                  <Text style={[styles.shareOptionText, { color: colors.text }]}>X</Text>
+                </TouchableOpacity>
+
+                {/* Copy */}
+                <TouchableOpacity style={styles.shareOption} onPress={copyToClipboard}>
+                  <View style={[styles.shareIconCircle, { backgroundColor: colors.primary }]}>
+                    <Ionicons name="copy-outline" size={26} color="#FFFFFF" />
+                  </View>
+                  <Text style={[styles.shareOptionText, { color: colors.text }]}>Kopyala</Text>
+                </TouchableOpacity>
+              </View>
+
+              {/* Divider */}
+              <View style={[styles.shareDivider, { backgroundColor: colors.border }]} />
+
+              {/* More Options */}
+              <TouchableOpacity 
+                style={[styles.moreShareButton, { borderColor: colors.border }]} 
+                onPress={shareNative}
+              >
+                <Ionicons name="ellipsis-horizontal" size={20} color={colors.textSecondary} />
+                <Text style={[styles.moreShareText, { color: colors.textSecondary }]}>
+                  Diğer Uygulamalar
+                </Text>
+              </TouchableOpacity>
+
+              {/* Preview */}
+              <View style={[styles.sharePreview, { backgroundColor: colors.background, borderColor: colors.border }]}>
+                <Text style={[styles.sharePreviewText, { color: colors.textSecondary }]} numberOfLines={3}>
+                  {verse ? `${verse.text_turkish.substring(0, 100)}...` : ''}
+                </Text>
+                <Text style={[styles.sharePreviewSource, { color: colors.primary }]}>
+                  {verse ? `${verse.surah_name_turkish} ${verse.ayah_number_in_surah}` : ''}
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        </Modal>
       </View>
     </ThemeContext.Provider>
   );
