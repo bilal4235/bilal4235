@@ -35,6 +35,15 @@ reading_history_collection = db.reading_history
 QURAN_API_BASE = "https://api.acikkuran.com"
 DIYANET_AUTHOR_ID = 11  # Diyanet İşleri Başkanlığı
 
+# Pydantic Models for Request Bodies
+class FavoriteRequest(BaseModel):
+    verse_id: int
+    user_id: str = "default"
+
+class ReadingHistoryRequest(BaseModel):
+    verse_id: int
+    user_id: str = "default"
+
 async def initialize_database():
     """Background task to initialize database"""
     try:
