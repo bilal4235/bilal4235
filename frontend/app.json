@@ -8,14 +8,24 @@
     "scheme": "birayetbiryorum",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-    "description": "Her gün bir Kuran ayeti ve tefsiri - Diyanet İşleri Başkanlığı resmi kaynağı",
+    "description": "Her gün bir Kur'an ayeti, Türkçe meal ve Diyanet tefsiri. Manevî gelişiminiz için günlük rehberiniz.",
     "primaryColor": "#2C5F2D",
+    "githubUrl": "https://github.com/rahmetstudio/bir-ayet-bir-yorum",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.birayetbiryorum.app",
-      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.rahmetstudio.birayetbiryorum",
+      "buildNumber": "1",
       "infoPlist": {
-        "NSUserNotificationsUsageDescription": "Günlük ayet bildirimleri almak için izin gereklidir."
+        "NSUserNotificationsUsageDescription": "Günlük ayet hatırlatmaları ve Cuma bildirimleri için izin gereklidir.",
+        "CFBundleLocalizations": ["tr", "en", "ar"],
+        "CFBundleDevelopmentRegion": "tr",
+        "ITSAppUsesNonExemptEncryption": false
+      },
+      "config": {
+        "usesNonExemptEncryption": false
+      },
+      "privacyManifests": {
+        "NSPrivacyAccessedAPITypes": []
       }
     },
     "android": {
@@ -23,12 +33,13 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#2C5F2D"
       },
-      "package": "com.birayetbiryorum.app",
+      "package": "com.rahmetstudio.birayetbiryorum",
       "versionCode": 1,
       "permissions": [
         "RECEIVE_BOOT_COMPLETED",
         "VIBRATE",
-        "SCHEDULE_EXACT_ALARM"
+        "SCHEDULE_EXACT_ALARM",
+        "POST_NOTIFICATIONS"
       ],
       "edgeToEdgeEnabled": true
     },
@@ -42,7 +53,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#2C5F2D"
@@ -52,19 +63,25 @@
         "expo-notifications",
         {
           "icon": "./assets/images/notification-icon.png",
-          "color": "#2C5F2D",
-          "sounds": ["./assets/notification.wav"]
+          "color": "#2C5F2D"
         }
-      ]
+      ],
+      "expo-localization"
     ],
     "experiments": {
       "typedRoutes": true
     },
     "extra": {
       "eas": {
-        "projectId": "bir-ayet-bir-yorum-app"
+        "projectId": "bir-ayet-bir-yorum"
       },
       "backendUrl": "https://api.emergent.sh"
-    }
+    },
+    "locales": {
+      "tr": "./locales/tr.json",
+      "en": "./locales/en.json",
+      "ar": "./locales/ar.json"
+    },
+    "owner": "rahmetstudio"
   }
 }
