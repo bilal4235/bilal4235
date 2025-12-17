@@ -176,6 +176,9 @@ export default function App() {
         setIsDark(true);
       }
 
+      // Check if today is Friday
+      await checkFriday();
+
       // Request notification permissions
       await requestNotificationPermissions();
 
