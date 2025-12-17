@@ -473,10 +473,7 @@ export default function App() {
   ];
 
   const FRIDAY_NOTIFICATION_MESSAGES = [
-    { title: '🌿 Cuma geldi...', body: 'Kalbini tazelemek ister misin?' },
-    { title: '🤍 Bugün Cuma', body: 'Küçük bir hatırlatma sana iyi gelebilir.' },
-    { title: '🕌 Mübarek Cuma', body: 'Bugün özel bir gün, bir dakikan var mı?' },
-    { title: '🌿 Cuma mübarek olsun', body: 'Seni bekleyen bir hatırlatma var.' },
+    { title: '🤍 Bugün Cuma', body: 'Kalbine küçük bir dokunuş...' },
   ];
 
   const scheduleDailyNotifications = async () => {
