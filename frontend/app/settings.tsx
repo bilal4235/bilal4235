@@ -357,12 +357,39 @@ export default function SettingsScreen() {
           {/* Geri Bildirim */}
           <TouchableOpacity 
             style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}
-            onPress={() => Alert.alert('Geri Bildirim', 'Bu özellik yakında eklenecek.')}
+            onPress={async () => {
+              const subject = encodeURIComponent('Bir Ayet Bir Yorum - Geri Bildirim');
+              const body = encodeURIComponent('\n\n---\nCihaz: ' + Platform.OS + '\nSürüm: 1.0.0');
+              const mailtoUrl = `mailto:${SUPPORT_EMAIL}?subject=${subject}&body=${body}`;
+              
+              try {
+                const canOpen = await Linking.canOpenURL(mailtoUrl);
+                if (canOpen) {
+                  await Linking.openURL(mailtoUrl);
+                } else {
+                  Alert.alert(
+                    'E-posta Uygulaması Bulunamadı',
+                    `Geri bildiriminizi şu adrese gönderebilirsiniz:\n\n${SUPPORT_EMAIL}`,
+                    [{ text: 'Tamam' }]
+                  );
+                }
+              } catch (error) {
+                Alert.alert(
+                  'Hata',
+                  `E-posta açılamadı. Geri bildiriminizi şu adrese gönderebilirsiniz:\n\n${SUPPORT_EMAIL}`
+                );
+              }
+            }}
           >
             <View style={styles.settingRow}>
               <View style={styles.settingLeft}>
                 <Ionicons name="mail-outline" size={24} color={colors.primary} />
-                <Text style={[styles.settingLabel, { color: colors.text }]}>Geri Bildirim</Text>
+                <View>
+                  <Text style={[styles.settingLabel, { color: colors.text }]}>Geri Bildirim</Text>
+                  <Text style={[styles.settingDescription, { color: colors.textSecondary, marginTop: 2, paddingLeft: 0 }]}>
+                    {SUPPORT_EMAIL}
+                  </Text>
+                </View>
               </View>
               <Ionicons name="chevron-forward-outline" size={20} color={colors.inactive} />
             </View>
