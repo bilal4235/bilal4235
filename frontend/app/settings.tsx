@@ -59,13 +59,14 @@ export default function SettingsScreen() {
   };
 
   const colors = isDark ? {
-    background: '#1A1A1A',
-    surface: '#2A2A2A',
-    primary: '#4A7C4E',
+    background: '#1C2A1D',
+    surface: '#2A3B2B',
+    primary: '#5A8A5C',
     text: '#F5F5DC',
-    textSecondary: '#C0C0A0',
-    border: '#3A3A3A',
-    inactive: '#666666',
+    textSecondary: '#B0B09C',
+    border: '#3D4A3E',
+    inactive: '#6B776C',
+    divider: '#404F41',
   } : {
     background: '#F5F5DC',
     surface: '#FFFFFF',
@@ -74,6 +75,7 @@ export default function SettingsScreen() {
     textSecondary: '#666666',
     border: '#D4C5A9',
     inactive: '#BBBBBB',
+    divider: '#E8E8DC',
   };
 
   return (
