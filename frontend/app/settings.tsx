@@ -8,10 +8,13 @@ import {
   Switch,
   Platform,
   Alert,
+  Linking,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const SUPPORT_EMAIL = 'destek.rahmetstudio@gmail.com';
 
 export default function SettingsScreen() {
   const router = useRouter();
