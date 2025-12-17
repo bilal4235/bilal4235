@@ -549,12 +549,20 @@ const styles = StyleSheet.create({
     gap: 12,
     justifyContent: 'center',
   },
+  iconWrapper: {
+    alignItems: 'center',
+    gap: 4,
+  },
   iconButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  iconLabel: {
+    fontSize: 10,
+    fontWeight: '500',
   },
   scrollView: {
     flex: 1,
