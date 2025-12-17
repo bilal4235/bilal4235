@@ -87,17 +87,53 @@ const QuestionAnswer = () => {
     }
   };
 
+  const [showShareDialog, setShowShareDialog] = useState(false);
+
   const shareAnswer = () => {
+    setShowShareDialog(true);
+  };
+
+  const shareToWhatsApp = () => {
+    const text = `İlmihal Asistanı\n\nSoru: ${question}\n\nCevap: ${answer}\n\nwww.ilmihalasistani.com`;
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
+    window.open(whatsappUrl, '_blank');
+    setShowShareDialog(false);
+  };
+
+  const shareToTwitter = () => {
+    const text = `${question}\n\n${answer.substring(0, 200)}...\n\n#İlmihalAsistanı #İslamiyet`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+    window.open(twitterUrl, '_blank');
+    setShowShareDialog(false);
+  };
+
+  const shareToTelegram = () => {
+    const text = `İlmihal Asistanı\n\nSoru: ${question}\n\nCevap: ${answer}`;
+    const telegramUrl = `https://t.me/share/url?url=www.ilmihalasistani.com&text=${encodeURIComponent(text)}`;
+    window.open(telegramUrl, '_blank');
+    setShowShareDialog(false);
+  };
+
+  const copyToClipboard = () => {
     const text = `Soru: ${question}\n\nCevap: ${answer}`;
-    if (navigator.share) {
-      navigator.share({
-        title: 'İlmihal Asistanı',
-        text: text
-      });
-    } else {
-      navigator.clipboard.writeText(text);
-      toast.success('Panoya kopyalandı!');
-    }
+    navigator.clipboard.writeText(text);
+    toast.success('Panoya kopyalandı!');
+    setShowShareDialog(false);
+  };
+
+  const saveAsNote = () => {
+    const text = `İlmihal Asistanı\n\nSoru: ${question}\n\nCevap: ${answer}\n\nTarih: ${new Date().toLocaleDateString('tr-TR')}`;
+    const blob = new Blob([text], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `ilmihal-${Date.now()}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    toast.success('Not olarak kaydedildi!');
+    setShowShareDialog(false);
   };
 
   return (
