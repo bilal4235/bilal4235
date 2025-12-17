@@ -409,7 +409,7 @@ export default function App() {
               <View style={[styles.section, { backgroundColor: colors.surface, borderColor: colors.border }]}>
                 <View style={[styles.sectionHeader, { borderBottomColor: colors.border }]}>
                   <Ionicons name="book-outline" size={18} color={colors.primary} />
-                  <Text style={[styles.sectionTitle, { color: colors.primary }]}>Arapça Metin</Text>
+                  <Text style={[styles.sectionTitle, { color: colors.primary }]}>Ayet (Arapça)</Text>
                 </View>
                 <Text style={[styles.arabicText, { color: colors.text }]}>
                   {verse.text_arabic}
