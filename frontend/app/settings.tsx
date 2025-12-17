@@ -489,6 +489,13 @@ const styles = StyleSheet.create({
   sourceText: {
     fontSize: 13,
   },
+  sourceDisclaimer: {
+    fontSize: 11,
+    fontStyle: 'italic',
+    marginTop: 12,
+    lineHeight: 18,
+    opacity: 0.7,
+  },
   versionText: {
     fontSize: 14,
     fontWeight: '500',
