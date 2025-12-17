@@ -550,9 +550,12 @@ async def check_favorite(verse_id: int, user_id: str = "default"):
 # ==================== STATISTICS ENDPOINTS ====================
 
 @app.post("/api/reading-history")
-async def record_reading(verse_id: int, user_id: str = "default"):
+async def record_reading(request: ReadingHistoryRequest):
     """Record that user read a verse"""
     try:
+        verse_id = request.verse_id
+        user_id = request.user_id
+        
         # Check if already read today
         today_start = datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
         existing = await reading_history_collection.find_one({
