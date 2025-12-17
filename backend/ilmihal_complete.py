@@ -91,3 +91,65 @@ COMPLETE_ILMIHAL_QA = [
         "source": "Diyanet İşleri Başkanlığı İlmihali"
     }
 ]
+    
+    # --- CEMAAT NAMAZI DETAYLI ---
+    {
+        "category": "namaz",
+        "question": "Cemaatle namaz kılmanın hükmü nedir?",
+        "answer": "Cemaatle namaz kılmak sünnet-i müekkededir.\n\n**ERKEKLER İÇİN:**\n• Sünnet-i müekkede\n• Şiddetle tavsiye\n• Terk edenlerden şahitlik kabul edilmez (bazı görüşe göre)\n• Camiye gitmek önemli\n\n**FAZİLETİ:**\nHz. Peygamber: 'Cemaatle kılınan namaz, tek başına kılınan namazdan 27 derece fazlalığa sahiptir.'\n\n**KADINLAR İÇİN:**\n• Evde kılmaları daha faziletli\n• Camiye gidebilirler (mani yoksa)\n• En arka safta dururlar\n• Tesettürlü olmalılar\n\n**ŞARTLAR:**\n• En az 2 kişi (imam ve 1 kişi)\n• Niyet (cemaat için)\n• İmama uyma\n• İmamdan önce geçmeme\n\n**SAF DÜZENİ:**\n• İlk saf en faziletli\n• Sağ taraf soldan üstün\n• Omuz omuza dizilmek\n• Boşluk bırakmamak\n• Düzgün sıra\n\n**İMAM ARKASI:**\n• Erkekler ilk saflarda\n• Çocuklar arkada\n• Kadınlar en arkada (varsa)\n\n**TEK KİŞİ:**\n• İmamın sağında durur\n• Hafif geride\n• Hizaya çeker (imam)\n\n**ÇOKLAR:**\n• Saflar halinde\n• Arkada dizilir\n• Yan yana geçilmez",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    
+    {
+        "category": "namaz",
+        "question": "İmama kim olabilir?",
+        "answer": "İmamlık şartları:\n\n**UYGUN OLANLAR (Sırayla):**\n\n**1. EN BİLGİLİ:**\n• İlim olarak en bilgili\n• Fıkıh bilen\n• Namaz bilgisi tam\n\n**2. EN İYİ KUR'AN OKUYAN:**\n• Tecvid bilen\n• Güzel okuyan\n• Doğru telaffuz\n\n**3. EN TAKVALIsayı:**\n• Günahlardan kaçınan\n• İbadete düşkün\n• Salih kişi\n\n**4. EN YAŞLI:**\n• Tecrübeli\n• Olgun\n\n**5. EV SAHİBİ:**\n• Kendi evinde\n• Ev sahibi öncelikli\n\n**İMAM OLAMAZ:**\n❌ Kadın (erkeklere)\n❌ Çocuk (ergen olmayan)\n❌ Deli\n❌ Fasık (açıktan günah işleyen)\n❌ Bid'atçı (sapkın)\n❌ Abdestsiz\n❌ Okumasını bilmeyen\n\n**KADIN İMAMLIĞI:**\n• Kadınlara imam olabilir\n• Ortada veya sağda durur\n• Erkeklere olamaz\n• Çocuklara (erkek) olabilir (küçükse)\n\n**ÇOCUK İMAM:**\n• Mümeyyiz (7+ yaş) olabilir\n• Büyüklere mekruh\n• Kendi yaşıtlarına\n• Namaz biliyorsa\n\n**FASIK İMAM:**\n• Arkasında namaz caiz\n• Mekruh\n• Tavsiye edilmez\n• Zorunluluk varsa kılınır",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    
+    # --- CUMA NAMAZI ---
+    {
+        "category": "namaz",
+        "question": "Cuma namazı kaç rekattır ve nasıl kılınır?",
+        "answer": "Cuma namazı 2 rekat farzdır.\n\n**FARZ:**\n• 2 rekat\n• Cemaatle\n• Hutbe ile birlikte\n\n**SÜNNETLER:**\n• İlk sünnet: 4 rekat (gelen)\n• Son sünnet: 4 rekat\n• Sonra 2 rekat (nafile)\n\nToplam: 4+2+4+2 = 12 rekat\n\n**KILINIŞ:**\n\n**1. İlk Sünnet (4 rekat):**\n• Öğle vaktinde\n• Camiye gelince\n• Hutbeden önce\n• İkişer ikişer\n\n**2. Tahiyyetü'l-mescid:**\n• Camiye girince\n• 2 rekat\n• Oturmadan önce\n\n**3. Hutbe:**\n• İmam minbere çıkar\n• 2 hutbe\n• Oturup dinlenir\n• Konuşulmaz\n\n**4. Cuma Farzı (2 rekat):**\n• İmamla cemaatle\n• Cehri (sesli)\n• 2 rekat\n\n**5. Son Sünnet (4 rekat):**\n• Farzdan sonra\n• İkişer ikişer\n\n**6. Nafile (2 rekat):**\n• İsteğe bağlı\n• Dua sünneti\n\n**HUTBE ADABI:**\n• Ayakta dinle\n• Konuşma\n• Telefonla oynama\n• Yan komşuyu susturma bile olmaz\n• İmama bak\n• Dikkatli ol\n\n**GEÇ GELEN:**\n• Hutbe başlamışsa\n• 2 rekat tahiyyetül-mescid kıl\n• Hızlıca\n• Otur ve dinle",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    
+    {
+        "category": "namaz",
+        "question": "Cuma namazının şartları nelerdir?",
+        "answer": "Cuma namazının şartları:\n\n**FARZ OLMA ŞARTLARI:**\n1. Müslüman olmak\n2. Erkek olmak\n3. Hür olmak\n4. Mukim olmak (yerleşik)\n5. Sağlıklı olmak\n6. Ergenlik\n\n**SIHHAT ŞARTLARI:**\n1. Vakit: Öğle vakti\n2. Şehir/kasaba\n3. Cami veya namazgâh\n4. Cemaat (en az 3 kişi - bazı görüşe göre)\n5. Hutbe\n6. İzin (yönetim/devlet izni)\n7. Kapılar açık (herkes girebilir)\n\n**HUTBE ŞARTLARI:**\n• 2 hutbe\n• Ayakta okunur\n• Arapça olmalı\n• Allah'a hamd\n• Peygambere salat\n• Nasihat\n• Kur'an ayeti\n\n**CUMA KILMAYAB İLİRLER:**\n• Kadınlar (farz değil, gelir ise caiz)\n• Çocuklar\n• Hastalar\n• Yaşlılar\n• Yolcular (musafir)\n• Köleler (eskiden)\n• Şehir dışında oturanlar\n\n**ÖZÜR SAHİPLERİ:**\n• Şiddetli yağmur\n• Fırtına, kar\n• Büyük korku\n• Hasta bakımı\n• Mahpus\n• Zorunlu iş (savaş vb.)\n\n**BİRDEN FAZLA CUMA:**\n• Büyük şehirlerde caiz\n• Her camide ayrı\n• İhtiyaç varsa\n• İlk kılınan geçerli (eskiden)\n• Günümüzde tamamı geçerli (zaruret)",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    
+    # --- BAYRAM NAMAZI ---
+    {
+        "category": "namaz",
+        "question": "Bayram namazının hükmü nedir?",
+        "answer": "Bayram namazı vaciptir.\n\n**HÜKMÜ:**\n• Vacip\n• Cemaatle kılınır\n• Ezansız ve kametsiz\n• Namazgâhta veya camide\n\n**KİMLERE VACİP:**\n• Erkeklere\n• Kadınlara değil (gelebilir)\n• Çocuklara sünnet\n• Cuma şartları taşıyanlara\n\n**VAKTİ:**\n• Güneş doğduktan sonra\n• Yaklaşık 45-50 dakika sonra\n• Kuşluk vaktinde\n• Öğleden önce\n\n**YERİ:**\n• Namazgâh (musalla) daha faziletli\n• Cami de olur\n• Açık alan tercih\n• Hz. Peygamber açıkta kılardı\n\n**RAMAZAN BAYRAMI ÖZEL:**\n• Fıtır verilir (evden çıkmadan)\n• Bir şeyler yenip içilir\n• Namazdan önce yemek sünnet\n\n**KURBAN BAYRAMI ÖZEL:**\n• Namazdan önce yemek yenmez\n• Kurban etinden yenir\n• Namazdan sonra kurban kesilir\n\n**GUSÜL:**\n• Bayram için gusül sünnet\n• En güzel elbise\n• Koku sürülür\n\n**TEKBİRLER:**\n• Evden çıkarken tekbir\n• Yolda tekbir\n• Namazgâha kadar\n\n**Ramazan Tekbiri:**\n'Allahu ekber, Allahu ekber, lâ ilâhe illallahu vallahu ekber, Allahu ekber ve lillahil-hamd'",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    
+    {
+        "category": "namaz",
+        "question": "Bayram namazı nasıl kılınır?",
+        "answer": "Bayram namazı 2 rekattır.\n\n**KILINIŞ:**\n\n**BİRİNCİ REKAT:**\n1. İftitah tekbiri (Allahu Ekber)\n2. Sübhaneke okunur\n3. **3 İLAVE TEKBİR**\n   • Allahu Ekber (eller kaldırılır)\n   • Eller salıverilir\n   • 3 defa\n4. Eûzü-Besmele\n5. Fatiha suresi\n6. Zamm-ı sure (ek sure)\n7. Rükû\n8. İki secde\n9. Kıyam\n\n**İKİNCİ REKAT:**\n1. Fatiha suresi\n2. Zamm-ı sure\n3. **3 İLAVE TEKBİR**\n   • Allahu Ekber (eller kaldırılır)\n   • 3 defa\n4. Sonra Rükû\n5. İki secde\n6. Tahiyyat (oturuş)\n7. Salavat\n8. Dua\n9. Selam\n\n**SONRA:**\n• İmam minbere çıkar (yoksa ayakta)\n• 2 hutbe okur\n• Cemaat dinler\n• Konuşulmaz\n\n**HUTBE:**\n• Namazdan sonra\n• Dinlemek vacip değil\n• Gitmek caiz\n• Ama dinlemek güzel\n\n**KAÇIRAN:**\n• Cemaat bittiyse\n• 4 rekat öğle namazı olarak kılar\n• Bayram namazı olmaz\n• Kaza yoktur\n\n**İMAM UNUTURSA:**\n• İlave tekbirleri unutursa\n• Sehiv secdesi gerekmez\n• Namaz sahih\n• Vacip terk edilmiş olur\n\n**TEKBİRLER ARASINDA:**\n• 'Sübhanallah velhamdülillah ve lâ ilâhe illallahu vallahu ekber'\n• Veya susulur\n• Her ikisi de caiz",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    
+    # --- CENAZE NAMAZI ---
+    {
+        "category": "namaz",
+        "question": "Cenaze namazı nasıl kılınır?",
+        "answer": "Cenaze namazı farz-ı kifayedir.\n\n**HÜKMÜ:**\n• Farz-ı kifaye\n• Bazıları kılarsa hepsi kurtulur\n• Kimse kılmazsa hepsi günah\n\n**KİMLERE KILINIR:**\n• Müslüman ölüye\n• Yeni doğan bebeğe (çığlık attıysa)\n• Çocuğa\n• Kadın ve erkeğe\n• Günahkâra bile\n\n**KİMLERE KILINMAZ:**\n• Kâfire\n• Mürted'e (dinden çıkana)\n• Eşkıya (zulümle ölen)\n• Şehide (savaşta)- tartışmalı\n\n**ŞARTLARI:**\n• Abdestli olmak\n• Cenaze önünde\n• Kıbleye dönük\n• Ayakta\n• Niyet\n\n**KILINIŞ (4 TEKBİR):**\n\n**1. TEKBİR:**\n• 'Allahu Ekber'\n• Eller bağlanır\n• **Sübhaneke** okunur\n\n**2. TEKBİR:**\n• 'Allahu Ekber'\n• **Salavat-ı şerife** okunur\n\n**3. TEKBİR:**\n• 'Allahu Ekber'\n• **Cenaze duası** okunur\n\n**ERKEK İÇİN:**\n'Allahümmeğfir livelinâ ve meyyitinâ ve şâhidinâ ve ğâibinâ ve sağîrinâ ve kebîrinâ ve zekerinâ ve ünsânâ. Allahümme men ahyeytehu minnâ fe ahyihî alel-İslam, ve men teveffeytehu minnâ fe teveffehû alel-îmân. Allahümmeğfir lehû verhhamhû ve âfihî va'fü anh'\n\n**KADIN İÇİN:**\n'lehû' yerine 'lehâ'\n'anhû' yerine 'anhâ'\n\n**ÇOCUK İÇİN:**\n'Allahümmec'alhü lenâ feraten ve selâfen ve ecra'\n\n**4. TEKBİR:**\n• 'Allahu Ekber'\n• Sağa-sola **selam** verilir\n\n**ÖNEMLİ:**\n• Rükû yok\n• Secde yok\n• Oturuş yok\n• Sadece ayakta\n• 4 tekbir\n• Dualar\n• Selam\n\n**CENAZE DÜZENİ:**\n• Erkek ölü: Baş kısmı imam hizasında\n• Kadın ölü: Göğüs kısmı imam hizasında\n• İmam ayakta\n• Cemaat arkada\n\n**KADINLAR:**\n• Kadınlar da kılabilir\n• En arkada\n• Defne gitmeyebilir (tercihan)",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    
+    # --- SEFERİ NAMAZ ---
+    {
+        "category": "namaz",
+        "question": "Yolculukta namaz nasıl kılınır?",
+        "answer": "Seferi (yolculuk) namazı kasredilir.\n\n**KASR (KIALTMAK):**\n• 4 rekatlı farzlar → 2 rekat\n• Öğle: 4 → 2\n• İkindi: 4 → 2\n• Yatsı: 4 → 2\n• Sabah: 2 (değişmez)\n• Akşam: 3 (değişmez)\n• Vitir: 3 (değişmez)\n\n**YOLCULUK ŞARTLARI:**\n• En az 90 km (veya 3 günlük yol)\n• Meşru sebep\n• Şehir sınırını aşmak\n\n**KASR BAŞLANGICI:**\n• Şehirden çıkınca\n• Yerleşim sınırı bitince\n• Hemen kasr başlar\n\n**KASR BİTİŞİ:**\n• Varış yerine ulaşınca\n• 15 gün kalacaksa: Mukim olur (tam)\n• 15 günden az: Kasr devam\n\n**SÜNNETLER:**\n• Vitir kılınır (vacip)\n• Diğer sünnetler terk edilebilir\n• İsteğe bağlı\n• Kılmak daha faziletli\n\n**CEM (BİRLEŞTİRME):**\nHanefi mezhebi namazları birleştirmeyi caiz görmez.\n• Öğle-İkindi birleştirilemez\n• Akşam-Yatsı birleştirilemez\n• Ayrı ayrı kılınır\n• Vaktinde kılınır\n\n**Ancak Özür Varsa:**\n• Şiddetli yağmur\n• Arafat vakfesi\n• Büyük sıkıntı\n• Zaruret hali\n→ Birleştirme caiz (bazı alimlere göre)\n\n**MUKİM ARKASINDA:**\n• Yolcu mukim arkasında tam kılar\n• İmam 4 rekat kılarsa\n• Sen de 4 tamamlarsın\n\n**SEFERİ ARKASINDA:**\n• Mukim seferi arkasında\n• İmam 2 rekat kılar\n• Sen 2 daha ilave edersin\n• Toplam 4\n\n**UÇAK-GEMI:**\n• Kasr yapılır\n• Oturarak kılınabilir\n• Kıbleye dönülmeye çalışılır\n• Mümkün değilse olduğu gibi",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    }
+]
