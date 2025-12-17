@@ -497,6 +497,16 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     textAlign: 'center',
     fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    marginBottom: 4,
+  },
+  appSubtitle: {
+    fontSize: 14,
+    fontWeight: '300',
+    letterSpacing: 0.5,
+    textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    fontStyle: 'italic',
+    opacity: 0.8,
   },
   headerButtons: {
     flexDirection: 'row',
