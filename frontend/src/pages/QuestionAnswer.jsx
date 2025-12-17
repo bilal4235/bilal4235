@@ -14,6 +14,7 @@ const QuestionAnswer = () => {
   const [loading, setLoading] = useState(false);
   const [sessionId, setSessionId] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showShareDialog, setShowShareDialog] = useState(false);
 
   useEffect(() => {
     if (question) {
@@ -88,17 +89,16 @@ const QuestionAnswer = () => {
     }
   };
 
-  const [showShareDialog, setShowShareDialog] = useState(false);
-
   const shareAnswer = () => {
     setShowShareDialog(true);
   };
 
   const shareToWhatsApp = () => {
-    const text = `İlmihal Asistanı\n\nSoru: ${question}\n\nCevap: ${answer}\n\nwww.ilmihalasistani.com`;
+    const text = `İlmihal Asistanı\n\nSoru: ${question}\n\nCevap: ${answer}`;
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(text)}`;
     window.open(whatsappUrl, '_blank');
     setShowShareDialog(false);
+    toast.success('WhatsApp\'a yönlendiriliyorsunuz');
   };
 
   const shareToTwitter = () => {
@@ -106,13 +106,15 @@ const QuestionAnswer = () => {
     const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
     window.open(twitterUrl, '_blank');
     setShowShareDialog(false);
+    toast.success('X\'e yönlendiriliyorsunuz');
   };
 
   const shareToTelegram = () => {
     const text = `İlmihal Asistanı\n\nSoru: ${question}\n\nCevap: ${answer}`;
-    const telegramUrl = `https://t.me/share/url?url=www.ilmihalasistani.com&text=${encodeURIComponent(text)}`;
+    const telegramUrl = `https://t.me/share/url?url=&text=${encodeURIComponent(text)}`;
     window.open(telegramUrl, '_blank');
     setShowShareDialog(false);
+    toast.success('Telegram\'a yönlendiriliyorsunuz');
   };
 
   const copyToClipboard = () => {
@@ -269,15 +271,6 @@ const QuestionAnswer = () => {
           </div>
         </DialogContent>
       </Dialog>
-    </div>
-  );
-};
-            </div>
-          ) : (
-            <p className="text-gray-500">Soru sorulması bekleniyor...</p>
-          )}
-        </div>
-      </div>
     </div>
   );
 };
