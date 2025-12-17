@@ -68,3 +68,26 @@ COMPLETE_ILMIHAL_QA = [
         "source": "Diyanet İşleri Başkanlığı İlmihali"
     }
 ]
+
+    # --- NAMAZ FARZLARI ---
+    {
+        "category": "namaz",
+        "question": "Namazın farzları kaç tanedir?",
+        "answer": "Namazın 12 farzı vardır.\n\n**7 ŞART (Namaz Dışı Farzlar):**\n1. Abdest/Gusül (Hadesten taharet)\n2. Necasetten temizlik\n3. Avret örtmek\n4. Kıbleye dönmek\n5. Vakit girmesi\n6. Niyet\n7. İftitah tekbiri\n\n**5 RÜKÜN (Namaz İçi Farzlar):**\n1. Kıyam (Ayakta durmak)\n2. Kıraat (Kur'an okumak)\n3. Rükû\n4. Secde\n5. Son oturuş (Ka'de-i ahire)\n\n**ŞARTLAR OLMADAN:**\n• Namaz başlamaz\n• Geçersizdir\n\n**RÜKÜNLER OLMADAN:**\n• Namaz tamamlanmaz\n• Eksik kalır",
+        "source": "Diyanet İşleri Başkanlığı İlmihali - Hanefi"
+    },
+    
+    {
+        "category": "namaz",
+        "question": "Namazın vacipleri nelerdir?",
+        "answer": "Namazın vacipleri:\n\n**VACİPLER (6 Tane):**\n\n**1. FATİHA SURESİ:**\n• Her rekatta\n• İmam okur (cehri namazda)\n• Münferid mutlaka okur\n\n**2. FATIHA'YA İLAVE SURE:**\n• İlk iki rekatta\n• Fatiha'dan sonra\n• Kısa bir sure veya 3 ayet\n\n**3. İLK İKİ REKAT ÖNCELİĞİ:**\n• Sure ilk iki rekatta\n• Sonrakilerde değil\n\n**4. RÜKÛ VE SECDE SIRASAI:**\n• Önce rükû\n• Sonra secde\n• Sıra bozulmasın\n\n**5. İKİ SECDE:**\n• Her rekatta 2 secde\n• Birincisi\n• İkincisi\n\n**6. SON OTURUŞ (KADAR):**\n• Tehiyyat okuyacak kadar\n• Oturmak\n\n**VACİP TERKEDİLİRSE:**\n• Sehiv secdesi gerekir\n• Kaza edilmez\n• Namaz sahih ama eksik\n• Günah var",
+        "source": "Diyanet İşleri Başkanlığı İlmihali - Hanefi"
+    },
+    
+    {
+        "category": "namaz",
+        "question": "Avret nedir ve nasıl örtülür?",
+        "answer": "Avret, örtülmesi gereken beden kısımlarıdır.\n\n**ERKEK AVRETİ:**\n• Göbekten dizkapağına kadar\n• Diz dahil\n• Göbek hariç\n• Sırt, göğüs açık olabilir\n\n**KADIN AVRETİ:**\n\n**Namazda:**\n• Yüz ve eller hariç\n• Tüm vücut\n• Saçlar\n• Ayaklar (üstü)\n• Bilekler\n\n**Namaz Dışında (Yabancı Erkek Önünde):**\n• Yüz ve eller hariç (bazı alimlere göre bunlar da)\n• Tüm vücut kapalı\n• Tesettür\n\n**ÇOCUK:**\n• 7 yaşından önce avret yok\n• 7-10 arası eğitim\n• 10 yaşından sonra tam avret\n\n**ÖRTME ŞARTI:**\n• İnce olmamalı (ten görünmesin)\n• Dar olmamalı (vücut belli olmasın)\n• Rüzgarda uçmamalı\n• Hareketle açılmamalı\n\n**NAMAZDA:**\n• Avret açılırsa namaz bozulur\n• Hemen örterse devam\n• Çeyrek avret (kısa süre) affedilebilir\n• Uzun süre açık kalırsa bozulur\n\n**KADINLARA ÖZEL:**\n• Başörtüsü takılı\n• Boyun kapalı\n• Saç telfiş bile görünmemeli\n• Kulak kapalı\n• Alt dudak altı kapalı",
+        "source": "Diyanet İşleri Başkanlığı İlmihali"
+    }
+]
