@@ -248,9 +248,8 @@ export default function App() {
     const today = new Date();
     const dayOfWeek = today.getDay(); // 5 = Friday
     
-    // For testing: set to true always, change back to dayOfWeek === 5 for production
-    // Today is Wednesday (3), Friday is (5)
-    const isFridayToday = true; // dayOfWeek === 5; // Enable for production
+    // dayOfWeek: 0=Sunday, 1=Monday, ..., 5=Friday, 6=Saturday
+    const isFridayToday = dayOfWeek === 5;
     setIsFriday(isFridayToday);
     
     if (isFridayToday) {
