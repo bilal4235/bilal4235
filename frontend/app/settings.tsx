@@ -12,7 +12,6 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Notifications from 'expo-notifications';
 
 export default function SettingsScreen() {
   const router = useRouter();
@@ -20,7 +19,6 @@ export default function SettingsScreen() {
   const [fontSize, setFontSize] = useState('orta');
   const [arabicFont, setArabicFont] = useState('mushaf');
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [notificationHour, setNotificationHour] = useState(9);
   const [fridayReminder, setFridayReminder] = useState(false);
   const [showComments, setShowComments] = useState(true);
   const [showDua, setShowDua] = useState(true);
@@ -36,14 +34,10 @@ export default function SettingsScreen() {
       setIsDark(theme === 'dark');
 
       const savedFontSize = await AsyncStorage.getItem('fontSize');
-      if (savedFontSize) {
-        setFontSize(savedFontSize);
-      }
+      if (savedFontSize) setFontSize(savedFontSize);
 
-      const notifications = await AsyncStorage.getItem('notificationsEnabled');
-      if (notifications !== null) {
-        setNotificationsEnabled(notifications === 'true');
-      }
+      const savedArabicFont = await AsyncStorage.getItem('arabicFont');
+      if (savedArabicFont) setArabicFont(savedArabicFont);
     } catch (error) {
       console.error('Error loading settings:', error);
     }
@@ -57,46 +51,11 @@ export default function SettingsScreen() {
   const handleFontSizeChange = async (size: string) => {
     setFontSize(size);
     await AsyncStorage.setItem('fontSize', size);
-    Alert.alert('Başarılı', 'Yazı boyutu değiştirildi. Uygulamayı yeniden başlatın.');
   };
 
-  const handleNotificationsToggle = async (value: boolean) => {
-    setNotificationsEnabled(value);
-    await AsyncStorage.setItem('notificationsEnabled', value.toString());
-    
-    if (value) {
-      // Schedule notifications
-      await scheduleNotifications();
-      Alert.alert('Bildirimler Açıldı', 'Her gün saat 09:00\'da hatırlatma alacaksınız.');
-    } else {
-      // Cancel all notifications
-      if (Platform.OS !== 'web') {
-        await Notifications.cancelAllScheduledNotificationsAsync();
-      }
-      Alert.alert('Bildirimler Kapatıldı', 'Günlük hatırlatmalar durduruldu.');
-    }
-  };
-
-  const scheduleNotifications = async () => {
-    if (Platform.OS === 'web') return;
-
-    try {
-      await Notifications.cancelAllScheduledNotificationsAsync();
-
-      await Notifications.scheduleNotificationAsync({
-        content: {
-          title: 'Günün Ayeti 📖',
-          body: 'Bugünün ayeti sizi bekliyor.',
-        },
-        trigger: {
-          hour: 9,
-          minute: 0,
-          repeats: true,
-        },
-      });
-    } catch (error) {
-      console.error('Error scheduling notifications:', error);
-    }
+  const handleArabicFontChange = async (font: string) => {
+    setArabicFont(font);
+    await AsyncStorage.setItem('arabicFont', font);
   };
 
   const colors = isDark ? {
@@ -106,13 +65,15 @@ export default function SettingsScreen() {
     text: '#F5F5DC',
     textSecondary: '#C0C0A0',
     border: '#3A3A3A',
+    inactive: '#666666',
   } : {
     background: '#F5F5DC',
     surface: '#FFFFFF',
     primary: '#2C5F2D',
     text: '#1A1A1A',
-    textSecondary: '#4A4A4A',
+    textSecondary: '#666666',
     border: '#D4C5A9',
+    inactive: '#BBBBBB',
   };
 
   return (
@@ -120,129 +81,285 @@ export default function SettingsScreen() {
       {/* Header */}
       <View style={[styles.header, { backgroundColor: colors.surface, borderBottomColor: colors.border }]}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={24} color={colors.text} />
+          <Ionicons name="arrow-back-outline" size={24} color={colors.text} />
         </TouchableOpacity>
-        <Text style={[styles.headerTitle, { color: colors.text }]}>Ayarlar</Text>
+        <View style={styles.headerContent}>
+          <Text style={[styles.headerTitle, { color: colors.text }]}>Ayarlar</Text>
+          <Text style={[styles.headerSubtitle, { color: colors.textSecondary }]}>Okuma deneyimini düzenle</Text>
+        </View>
         <View style={{ width: 40 }} />
       </View>
 
-      <ScrollView style={styles.content}>
-        {/* Diyanet Logo/Banner */}
-        <View style={[styles.diyanetBanner, { backgroundColor: colors.primary }]}>
-          <Text style={styles.diyanetText}>T.C. Diyanet İşleri Başkanlığı</Text>
-          <Text style={styles.diyanetSubtext}>Resmi Kaynak</Text>
-        </View>
-
-        {/* Görünüm Ayarları */}
+      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+        {/* 1. GÖRÜNÜM */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.text }]}>Görünüm</Text>
+          <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>GÖRÜNÜM</Text>
           
-          <View style={[styles.settingItem, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-            <View style={styles.settingLeft}>
-              <Ionicons name={isDark ? 'moon' : 'sunny'} size={22} color={colors.primary} />
-              <Text style={[styles.settingLabel, { color: colors.text }]}>Gece Modu</Text>
+          {/* Gece Modu */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="moon-outline" size={24} color={colors.primary} />
+                <Text style={[styles.settingLabel, { color: colors.text }]}>Gece Modu</Text>
+              </View>
+              <Switch
+                value={isDark}
+                onValueChange={handleThemeToggle}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="#FFFFFF"
+                ios_backgroundColor={colors.border}
+              />
             </View>
-            <Switch
-              value={isDark}
-              onValueChange={handleThemeToggle}
-              trackColor={{ false: '#D4C5A9', true: colors.primary }}
-              thumbColor="#FFFFFF"
-            />
           </View>
 
-          <View style={[styles.settingItem, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-            <View style={styles.settingLeft}>
-              <Ionicons name="text" size={22} color={colors.primary} />
+          {/* Yazı Boyutu */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingHeader}>
+              <Ionicons name="text-outline" size={24} color={colors.primary} />
               <Text style={[styles.settingLabel, { color: colors.text }]}>Yazı Boyutu</Text>
             </View>
+            <Text style={[styles.settingDescription, { color: colors.textSecondary }]}>
+              Arapça ve meal birlikte değişir
+            </Text>
+            <View style={styles.optionButtons}>
+              {['küçük', 'orta', 'büyük'].map((size) => (
+                <TouchableOpacity
+                  key={size}
+                  onPress={() => handleFontSizeChange(size)}
+                  style={[
+                    styles.optionButton,
+                    {
+                      backgroundColor: fontSize === size ? colors.primary : 'transparent',
+                      borderColor: fontSize === size ? colors.primary : colors.border,
+                    }
+                  ]}
+                >
+                  <Text style={[
+                    styles.optionButtonText,
+                    { color: fontSize === size ? '#FFFFFF' : colors.text }
+                  ]}>
+                    {size.charAt(0).toUpperCase() + size.slice(1)}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
 
-          <View style={styles.fontSizeButtons}>
-            {['küçük', 'orta', 'büyük'].map((size) => (
-              <TouchableOpacity
-                key={size}
-                onPress={() => handleFontSizeChange(size)}
-                style={[
-                  styles.fontSizeButton,
-                  { 
-                    backgroundColor: fontSize === size ? colors.primary : colors.surface,
-                    borderColor: colors.border
-                  }
-                ]}
-              >
-                <Text style={[
-                  styles.fontSizeButtonText,
-                  { color: fontSize === size ? '#FFFFFF' : colors.text }
-                ]}>
-                  {size.charAt(0).toUpperCase() + size.slice(1)}
-                </Text>
-              </TouchableOpacity>
-            ))}
+          {/* Arapça Font */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingHeader}>
+              <Ionicons name="book-outline" size={24} color={colors.primary} />
+              <Text style={[styles.settingLabel, { color: colors.text }]}>Arapça Font</Text>
+            </View>
+            <View style={styles.optionButtons}>
+              {['mushaf', 'klasik', 'modern'].map((font) => (
+                <TouchableOpacity
+                  key={font}
+                  onPress={() => handleArabicFontChange(font)}
+                  style={[
+                    styles.optionButton,
+                    {
+                      backgroundColor: arabicFont === font ? colors.primary : 'transparent',
+                      borderColor: arabicFont === font ? colors.primary : colors.border,
+                    }
+                  ]}
+                >
+                  <Text style={[
+                    styles.optionButtonText,
+                    { color: arabicFont === font ? '#FFFFFF' : colors.text }
+                  ]}>
+                    {font.charAt(0).toUpperCase() + font.slice(1)}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
         </View>
 
-        {/* Bildirim Ayarları */}
+        {/* 2. BİLDİRİMLER */}
         <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.text }]}>Bildirimler</Text>
+          <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>BİLDİRİMLER</Text>
           
-          <View style={[styles.settingItem, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-            <View style={styles.settingLeft}>
-              <Ionicons name="notifications" size={22} color={colors.primary} />
-              <View>
-                <Text style={[styles.settingLabel, { color: colors.text }]}>Günlük Hatırlatma</Text>
-                <Text style={[styles.settingDescription, { color: colors.textSecondary }]}>
-                  Her gün saat 09:00'da
+          {/* Günün Ayeti */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="notifications-outline" size={24} color={colors.primary} />
+                <View>
+                  <Text style={[styles.settingLabel, { color: colors.text }]}>Günün Ayeti</Text>
+                  <Text style={[styles.settingDescription, { color: colors.textSecondary }]}>
+                    Her gün saat 09:00'da
+                  </Text>
+                </View>
+              </View>
+              <Switch
+                value={notificationsEnabled}
+                onValueChange={setNotificationsEnabled}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="#FFFFFF"
+                ios_backgroundColor={colors.border}
+              />
+            </View>
+          </View>
+
+          {/* Cuma Hatırlatması */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="calendar-outline" size={24} color={colors.primary} />
+                <Text style={[styles.settingLabel, { color: colors.text }]}>Cuma Hatırlatması</Text>
+              </View>
+              <Switch
+                value={fridayReminder}
+                onValueChange={setFridayReminder}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="#FFFFFF"
+                ios_backgroundColor={colors.border}
+              />
+            </View>
+          </View>
+        </View>
+
+        {/* 3. İÇERİK TERCİHLERİ */}
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>İÇERİK</Text>
+          
+          {/* Yorumları Göster */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="document-text-outline" size={24} color={colors.primary} />
+                <Text style={[styles.settingLabel, { color: colors.text }]}>Yorumları Göster</Text>
+              </View>
+              <Switch
+                value={showComments}
+                onValueChange={setShowComments}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="#FFFFFF"
+                ios_backgroundColor={colors.border}
+              />
+            </View>
+          </View>
+
+          {/* Ayetle Dua */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="hand-right-outline" size={24} color={colors.primary} />
+                <Text style={[styles.settingLabel, { color: colors.text }]}>Ayetle Dua Bölümü</Text>
+              </View>
+              <Switch
+                value={showDua}
+                onValueChange={setShowDua}
+                trackColor={{ false: colors.border, true: colors.primary }}
+                thumbColor="#FFFFFF"
+                ios_backgroundColor={colors.border}
+              />
+            </View>
+          </View>
+
+          {/* Sadece Arapça / Meal */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingHeader}>
+              <Ionicons name="book-outline" size={24} color={colors.primary} />
+              <Text style={[styles.settingLabel, { color: colors.text }]}>Gösterim Modu</Text>
+            </View>
+            <View style={styles.optionButtons}>
+              {[
+                { value: 'arabic', label: 'Sadece Arapça' },
+                { value: 'both', label: 'Arapça + Meal' },
+              ].map((option) => (
+                <TouchableOpacity
+                  key={option.value}
+                  onPress={() => setContentMode(option.value)}
+                  style={[
+                    styles.optionButton,
+                    {
+                      backgroundColor: contentMode === option.value ? colors.primary : 'transparent',
+                      borderColor: contentMode === option.value ? colors.primary : colors.border,
+                    }
+                  ]}
+                >
+                  <Text style={[
+                    styles.optionButtonText,
+                    { color: contentMode === option.value ? '#FFFFFF' : colors.text }
+                  ]}>
+                    {option.label}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          </View>
+        </View>
+
+        {/* 4. HAKKINDA */}
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: colors.textSecondary }]}>HAKKINDA</Text>
+          
+          {/* Uygulama Amacı */}
+          <TouchableOpacity style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="information-circle-outline" size={24} color={colors.primary} />
+                <Text style={[styles.settingLabel, { color: colors.text }]}>Uygulama Amacı</Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={20} color={colors.inactive} />
+            </View>
+          </TouchableOpacity>
+
+          {/* Kaynaklar */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingHeader}>
+              <Ionicons name="business-outline" size={24} color={colors.primary} />
+              <Text style={[styles.settingLabel, { color: colors.text }]}>Kaynaklar</Text>
+            </View>
+            <View style={styles.sourceInfo}>
+              <View style={styles.sourceRow}>
+                <Ionicons name="checkmark-circle" size={16} color={colors.primary} />
+                <Text style={[styles.sourceText, { color: colors.textSecondary }]}>
+                  T.C. Diyanet İşleri Başkanlığı
+                </Text>
+              </View>
+              <View style={styles.sourceRow}>
+                <Ionicons name="checkmark-circle" size={16} color={colors.primary} />
+                <Text style={[styles.sourceText, { color: colors.textSecondary }]}>
+                  Quran.com (Arapça Metin)
                 </Text>
               </View>
             </View>
-            <Switch
-              value={notificationsEnabled}
-              onValueChange={handleNotificationsToggle}
-              trackColor={{ false: '#D4C5A9', true: colors.primary }}
-              thumbColor="#FFFFFF"
-            />
           </View>
+
+          {/* Sürüm */}
+          <View style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="code-outline" size={24} color={colors.primary} />
+                <Text style={[styles.settingLabel, { color: colors.text }]}>Sürüm</Text>
+              </View>
+              <Text style={[styles.versionText, { color: colors.textSecondary }]}>1.0.0</Text>
+            </View>
+          </View>
+
+          {/* Geri Bildirim */}
+          <TouchableOpacity 
+            style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}
+            onPress={() => Alert.alert('Geri Bildirim', 'Bu özellik yakında eklenecek.')}
+          >
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="mail-outline" size={24} color={colors.primary} />
+                <Text style={[styles.settingLabel, { color: colors.text }]}>Geri Bildirim</Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={20} color={colors.inactive} />
+            </View>
+          </TouchableOpacity>
         </View>
 
-        {/* Hakkında */}
-        <View style={styles.section}>
-          <Text style={[styles.sectionTitle, { color: colors.text }]}>Hakkında</Text>
-          
-          <View style={[styles.aboutCard, { backgroundColor: colors.surface, borderColor: colors.border }]}>
-            <View style={styles.aboutRow}>
-              <Text style={[styles.aboutLabel, { color: colors.textSecondary }]}>Uygulama</Text>
-              <Text style={[styles.aboutValue, { color: colors.text }]}>Bir Ayet Bir Yorum</Text>
-            </View>
-            
-            <View style={styles.aboutRow}>
-              <Text style={[styles.aboutLabel, { color: colors.textSecondary }]}>Versiyon</Text>
-              <Text style={[styles.aboutValue, { color: colors.text }]}>1.0.0</Text>
-            </View>
-            
-            <View style={styles.aboutRow}>
-              <Text style={[styles.aboutLabel, { color: colors.textSecondary }]}>Kaynak</Text>
-              <Text style={[styles.aboutValue, { color: colors.text }]}>Diyanet İşleri Başkanlığı</Text>
-            </View>
-            
-            <View style={styles.aboutRow}>
-              <Text style={[styles.aboutLabel, { color: colors.textSecondary }]}>Ayet Sayısı</Text>
-              <Text style={[styles.aboutValue, { color: colors.text }]}>6,236</Text>
-            </View>
-          </View>
-        </View>
-
-        {/* Footer */}
-        <View style={styles.footer}>
-          <Text style={[styles.footerText, { color: colors.textSecondary }]}>
-            Bu uygulama T.C. Diyanet İşleri Başkanlığı'nın
+        {/* Manevi Kapanış */}
+        <View style={styles.spiritualFooter}>
+          <Text style={[styles.spiritualText, { color: colors.textSecondary }]}>
+            Kur'an hidayettir.
           </Text>
-          <Text style={[styles.footerText, { color: colors.textSecondary }]}>
-            resmi kaynaklarını kullanmaktadır.
-          </Text>
-          <View style={styles.footerIcon}>
-            <Ionicons name="checkmark-circle" size={16} color={colors.primary} />
-            <Text style={[styles.footerBadge, { color: colors.primary }]}>Resmi Kaynak</Text>
-          </View>
         </View>
       </ScrollView>
     </View>
@@ -268,51 +385,46 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headerContent: {
+    flex: 1,
+    alignItems: 'center',
+  },
   headerTitle: {
     fontSize: 20,
     fontWeight: '700',
     fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
   },
+  headerSubtitle: {
+    fontSize: 11,
+    fontWeight: '300',
+    marginTop: 2,
+    fontStyle: 'italic',
+  },
   content: {
     flex: 1,
   },
-  diyanetBanner: {
-    padding: 24,
-    alignItems: 'center',
-    marginBottom: 24,
-  },
-  diyanetText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#FFFFFF',
-    textAlign: 'center',
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
-  },
-  diyanetSubtext: {
-    fontSize: 12,
-    color: '#F5F5DC',
-    marginTop: 4,
-    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
-  },
   section: {
-    marginBottom: 32,
-    paddingHorizontal: 16,
+    marginTop: 24,
+    marginBottom: 8,
   },
   sectionTitle: {
-    fontSize: 14,
+    fontSize: 11,
     fontWeight: '600',
+    letterSpacing: 1.5,
+    paddingHorizontal: 16,
     marginBottom: 12,
-    textTransform: 'uppercase',
-    letterSpacing: 1,
   },
-  settingItem: {
+  settingCard: {
+    marginHorizontal: 16,
+    marginBottom: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    padding: 16,
+  },
+  settingRow: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 1,
-    marginBottom: 12,
   },
   settingLeft: {
     flexDirection: 'row',
@@ -320,72 +432,64 @@ const styles = StyleSheet.create({
     gap: 12,
     flex: 1,
   },
+  settingHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: 8,
+  },
   settingLabel: {
     fontSize: 16,
     fontWeight: '500',
   },
   settingDescription: {
     fontSize: 12,
-    marginTop: 2,
+    marginTop: 4,
+    marginBottom: 12,
+    paddingLeft: 36,
   },
-  fontSizeButtons: {
+  optionButtons: {
     flexDirection: 'row',
-    gap: 12,
-    paddingLeft: 34,
+    gap: 8,
+    marginTop: 8,
   },
-  fontSizeButton: {
+  optionButton: {
     flex: 1,
     paddingVertical: 10,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     borderRadius: 8,
     borderWidth: 1,
     alignItems: 'center',
   },
-  fontSizeButtonText: {
+  optionButtonText: {
+    fontSize: 13,
+    fontWeight: '500',
+  },
+  sourceInfo: {
+    marginTop: 8,
+    gap: 8,
+  },
+  sourceRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  sourceText: {
+    fontSize: 13,
+  },
+  versionText: {
     fontSize: 14,
     fontWeight: '500',
   },
-  aboutCard: {
-    borderRadius: 12,
-    borderWidth: 1,
-    padding: 16,
-  },
-  aboutRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0E8',
-  },
-  aboutLabel: {
-    fontSize: 14,
-  },
-  aboutValue: {
-    fontSize: 14,
-    fontWeight: '600',
-  },
-  footer: {
+  spiritualFooter: {
     alignItems: 'center',
-    paddingVertical: 32,
+    paddingVertical: 40,
     paddingHorizontal: 24,
   },
-  footerText: {
-    fontSize: 12,
-    textAlign: 'center',
-    lineHeight: 18,
-  },
-  footerIcon: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-    marginTop: 12,
-    paddingVertical: 6,
-    paddingHorizontal: 12,
-    borderRadius: 16,
-    backgroundColor: 'rgba(44, 95, 45, 0.1)',
-  },
-  footerBadge: {
-    fontSize: 11,
-    fontWeight: '600',
+  spiritualText: {
+    fontSize: 13,
+    fontStyle: 'italic',
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+    opacity: 0.5,
   },
 });
