@@ -259,7 +259,7 @@ async def get_diyanet_questions(category: Optional[str] = None):
 @api_router.get("/autocomplete")
 async def autocomplete_questions(query: str, limit: int = 10):
     """Kullanıcı yazarken Diyanet sorularından öneri getir"""
-    if not query or len(query) < 2:
+    if not query or len(query) < 1:  # 1 harften itibaren ara
         return {"suggestions": []}
     
     query_lower = query.lower().strip()
@@ -267,9 +267,12 @@ async def autocomplete_questions(query: str, limit: int = 10):
     
     for qa in ALL_DIYANET_QA:
         question_lower = qa['question'].lower()
+        answer_lower = qa['answer'][:200].lower()  # Cevabın ilk 200 karakterinde de ara
         
-        # Başlangıç eşleşmesi veya kelime içi eşleşme
-        if question_lower.startswith(query_lower) or query_lower in question_lower:
+        # Başlangıç eşleşmesi veya kelime içi eşleşme (soruda veya cevapta)
+        if (question_lower.startswith(query_lower) or 
+            query_lower in question_lower or 
+            query_lower in answer_lower):
             suggestions.append({
                 "question": qa['question'],
                 "category": qa['category'],
