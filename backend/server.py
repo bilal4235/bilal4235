@@ -451,9 +451,12 @@ def get_basic_tafsir(surah_number: int, ayah_number: int) -> str:
 # ==================== FAVORITES ENDPOINTS ====================
 
 @app.post("/api/favorites")
-async def add_favorite(verse_id: int, user_id: str = "default"):
+async def add_favorite(request: FavoriteRequest):
     """Add verse to favorites"""
     try:
+        verse_id = request.verse_id
+        user_id = request.user_id
+        
         # Check if verse exists
         verse = await verses_collection.find_one({"verse_number": verse_id})
         if not verse:
