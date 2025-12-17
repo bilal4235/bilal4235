@@ -922,4 +922,93 @@ const styles = StyleSheet.create({
     fontSize: 13,
     textAlign: 'center',
   },
+  // Share Modal Styles
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-end',
+  },
+  shareModalContent: {
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    paddingBottom: Platform.OS === 'ios' ? 40 : 24,
+    maxHeight: '70%',
+  },
+  shareModalHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+  },
+  shareModalTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',
+  },
+  closeButton: {
+    padding: 4,
+  },
+  shareOptionsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingVertical: 24,
+    paddingHorizontal: 16,
+  },
+  shareOption: {
+    alignItems: 'center',
+    gap: 8,
+  },
+  shareIconCircle: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  shareOptionText: {
+    fontSize: 12,
+    fontWeight: '500',
+  },
+  xLogo: {
+    fontSize: 28,
+    fontWeight: '700',
+    color: '#FFFFFF',
+  },
+  shareDivider: {
+    height: 1,
+    marginHorizontal: 20,
+  },
+  moreShareButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 16,
+    marginHorizontal: 20,
+    marginTop: 16,
+    borderWidth: 1,
+    borderRadius: 12,
+  },
+  moreShareText: {
+    fontSize: 14,
+    fontWeight: '500',
+  },
+  sharePreview: {
+    marginHorizontal: 20,
+    marginTop: 16,
+    padding: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+  },
+  sharePreviewText: {
+    fontSize: 13,
+    lineHeight: 20,
+  },
+  sharePreviewSource: {
+    fontSize: 12,
+    fontWeight: '600',
+    marginTop: 8,
+  },
 });
