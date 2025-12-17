@@ -43,8 +43,57 @@ export default function SearchScreen() {
   const [activeTab, setActiveTab] = useState<'search' | 'surahs'>('search');
   const [surahVerses, setSurahVerses] = useState<SearchResult[]>([]);
   const [selectedSurah, setSelectedSurah] = useState<number | null>(null);
+  const [favorites, setFavorites] = useState<Set<number>>(new Set());
 
   const backendUrl = Constants.expoConfig?.extra?.backendUrl || process.env.EXPO_PUBLIC_BACKEND_URL || '';
+
+  // Favorileri yükle
+  const loadFavorites = async () => {
+    try {
+      const response = await fetch(`${backendUrl}/api/favorites`);
+      const data = await response.json();
+      const favIds = new Set<number>(data.favorites?.map((f: any) => f.verse_id) || []);
+      setFavorites(favIds);
+    } catch (error) {
+      console.error('Error loading favorites:', error);
+    }
+  };
+
+  // Favorilere ekle/çıkar
+  const toggleFavorite = async (verseNumber: number) => {
+    try {
+      const isFav = favorites.has(verseNumber);
+      
+      if (isFav) {
+        // Favorilerden çıkar
+        await fetch(`${backendUrl}/api/favorites/${verseNumber}`, {
+          method: 'DELETE',
+        });
+        setFavorites(prev => {
+          const newSet = new Set(prev);
+          newSet.delete(verseNumber);
+          return newSet;
+        });
+        Alert.alert('✓', 'Favorilerden çıkarıldı');
+      } else {
+        // Favorilere ekle
+        await fetch(`${backendUrl}/api/favorites`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ verse_id: verseNumber }),
+        });
+        setFavorites(prev => new Set(prev).add(verseNumber));
+        Alert.alert('✓', 'Favorilere eklendi');
+      }
+    } catch (error) {
+      console.error('Error toggling favorite:', error);
+      Alert.alert('Hata', 'İşlem başarısız oldu');
+    }
+  };
+
+  useEffect(() => {
+    loadFavorites();
+  }, []);
 
   useEffect(() => {
     if (activeTab === 'surahs') {
