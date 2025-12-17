@@ -399,6 +399,20 @@ export default function SettingsScreen() {
               <Ionicons name="chevron-forward-outline" size={20} color={colors.inactive} />
             </View>
           </TouchableOpacity>
+
+          {/* Gizlilik Politikası */}
+          <TouchableOpacity 
+            style={[styles.settingCard, { backgroundColor: colors.surface, borderColor: colors.border }]}
+            onPress={() => router.push('/privacy')}
+          >
+            <View style={styles.settingRow}>
+              <View style={styles.settingLeft}>
+                <Ionicons name="shield-checkmark-outline" size={24} color={colors.primary} />
+                <Text style={[styles.settingLabel, { color: colors.text }]}>Gizlilik Politikası</Text>
+              </View>
+              <Ionicons name="chevron-forward-outline" size={20} color={colors.inactive} />
+            </View>
+          </TouchableOpacity>
         </View>
 
         {/* Manevi Kapanış */}
