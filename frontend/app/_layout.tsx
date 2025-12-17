@@ -56,6 +56,7 @@ export default function Layout() {
       <Stack.Screen name="browse" />
       <Stack.Screen name="favorites" />
       <Stack.Screen name="statistics" />
+      <Stack.Screen name="settings" />
     </Stack>
   );
 }
