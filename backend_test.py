@@ -4,7 +4,7 @@ import json
 from datetime import datetime
 
 class IlmihalAPITester:
-    def __init__(self, base_url="https://islamic-daily-15.preview.emergentagent.com"):
+    def __init__(self, base_url="https://islam-catechism.preview.emergentagent.com"):
         self.base_url = base_url
         self.api_url = f"{base_url}/api"
         self.tests_run = 0
