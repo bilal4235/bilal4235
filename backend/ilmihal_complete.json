@@ -893,6 +893,426 @@
       "question": "Namaz tesbihatı nasıl yapılır?",
       "answer": "Farz namazlardan sonra: 3 kez 'Estağfirullah', 1 kez 'Allahümme ente's-selamu ve minke's-selam tebarekte ya ze'l-celali ve'l-ikram', Ayet'el-Kürsi, 33 Sübhanallah, 33 Elhamdülillah, 33 Allahu Ekber, 1 kez 'La ilahe illallahu vahdehu la şerike leh...' Sonra dua yapılır.",
       "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "İmanın şartları nelerdir?",
+      "answer": "İmanın şartları 6 tanedir: 1) Allah'a iman, 2) Meleklere iman, 3) Kitaplara iman, 4) Peygamberlere iman, 5) Ahiret gününe iman, 6) Kadere (hayır ve şerrin Allah'tan olduğuna) iman. Bunlara 'Amentü' denilir ve her Müslümanın inanması farzdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Allah'ın sıfatları nelerdir?",
+      "answer": "Allah'ın sıfatları: Zati sıfatlar: Vücud (var olmak), Kıdem (başlangıcı olmamak), Beka (sonu olmamak), Vahdaniyet (bir olmak), Muhalefetün li'l-havadis (yaratılmışlara benzememek), Kıyam bi-nefsihi (varlığı kendinden olmak). Subuti sıfatlar: Hayat, İlim, Semi, Basar, İrade, Kudret, Kelam, Tekvin.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Meleklere iman ne demektir?",
+      "answer": "Melekler, nurdan yaratılmış, günah işlemeyen, Allah'ın emrinden çıkmayan varlıklardır. Dört büyük melek: Cebrail (vahiy), Mikail (rızık, tabiat), İsrafil (sur), Azrail (ruh almak). Ayrıca Kiramen Katibin, Münker-Nekir, Ridvan, Malik ve sayısız melek vardır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "İlahi kitaplar nelerdir?",
+      "answer": "Allah'ın indirdiği kitaplar: Tevrat (Hz. Musa'ya), Zebur (Hz. Davud'a), İncil (Hz. İsa'ya), Kur'an-ı Kerim (Hz. Muhammed'e). Ayrıca suhuflar (sayfalar) vardır: Hz. Adem'e 10, Hz. Şit'e 50, Hz. İdris'e 30, Hz. İbrahim'e 10 sayfa. Kur'an, son ve tahrif edilmemiş kitaptır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Peygamberlerin sıfatları nelerdir?",
+      "answer": "Peygamberlerde bulunması gereken sıfatlar: 1) Sıdk (doğruluk), 2) Emanet (güvenilirlik), 3) Tebliğ (Allah'ın emirlerini bildirme), 4) Fetanet (üstün zeka), 5) İsmet (günahsızlık). Toplam 124.000 veya 224.000 peygamber gönderilmiştir. 25 tanesi Kur'an'da adıyla geçer.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Ahirete iman ne demektir?",
+      "answer": "Ahiret, ölümden sonraki ebedi hayattır. Kabir hayatı, kıyamet, haşir, hesap, mizan, sırat, cennet ve cehennem ahiretin aşamalarıdır. Cennet ebedi nimet yurdu, cehennem azap yurdudur. Ahirete iman, dünya hayatını anlamlı kılar ve salih amele teşvik eder.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Kadere iman nedir?",
+      "answer": "Kader, Allah'ın her şeyi ezeli ilmiyle bilip takdir etmesidir. Kaza, takdir edilenin gerçekleşmesidir. Hayır ve şer Allah'tandır, ancak insan iradesini kullanarak sorumludur. İnsan fiillerinde mecbur değil, cüz'i irade sahibidir. Kadere iman, sabır ve tevekkülü gerektirir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "İslam'ın şartları nelerdir?",
+      "answer": "İslam'ın şartları 5'tir: 1) Kelime-i şehadet getirmek, 2) Namaz kılmak, 3) Oruç tutmak, 4) Zekat vermek, 5) Hacca gitmek (gücü yetene). Bunlar İslam'ın temel ibadetleridir. Kelime-i şehadet: 'Eşhedü en la ilahe illallah ve eşhedü enne Muhammeden abdühü ve resulüh.'",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Şirk nedir ve çeşitleri nelerdir?",
+      "answer": "Şirk, Allah'a ortak koşmaktır ve en büyük günahtır, affedilmez. Çeşitleri: 1) Şirk-i celi (açık şirk): Puta tapmak. 2) Şirk-i hafi (gizli şirk): Riya, gösteriş için ibadet. Allah'tan başkasından medet ummak, tılsım-muska takmak (Allah'ın adı yazılı değilse) şirke yaklaştırır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Küfür ve mürtedlik nedir?",
+      "answer": "Küfür, iman esaslarını inkâr etmektir. Mürtedlik, Müslüman iken dinden çıkmaktır. Küfre götüren şeyler: Allah'ı, peygamberi, Kur'an'ı inkâr, farz bir ibadeti inkâr, haramı helal saymak, helali haram saymak. Tevbe etmeden vefat eden ebedi cehennemde kalır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Büyük günahlar (kebâir) nelerdir?",
+      "answer": "Büyük günahlar: Şirk, adam öldürme, zina, livata, hırsızlık, faiz, yetim malı yeme, savaştan kaçma, namuslu kadına iftira, ana-babaya isyan, sihir, içki, kumar, yalan şahitlik, gıybet. Büyük günahlar tevbe ile bağışlanır. Küçük günahlar da ısrar edilirse büyür.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Tevbenin şartları nelerdir?",
+      "answer": "Tevbenin şartları: 1) Günahı terk etmek, 2) Pişmanlık duymak, 3) Bir daha yapmamaya azmetmek, 4) Kul hakkı varsa iade etmek veya helallik almak. Allah tevbeleri kabul eder: 'Allah tevbe edenleri sever' (Bakara 222). Tevbe kapısı ölüm anına kadar açıktır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Kuşluk (Duha) namazı nasıl kılınır?",
+      "answer": "Kuşluk namazı, güneş doğduktan 45-50 dakika sonra başlar, öğle namazına 45-50 dakika kalana kadar kılınabilir. En az 2, en çok 12 rekât kılınır. Hz. Peygamber bunu 'Evvâbîn namazı' olarak nitelemiştir. İkişer rekât kılınır. Sabah erken kalkan için önerilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazda huşu nasıl sağlanır?",
+      "answer": "Huşu, Allah'ın huzurunda olduğunu hissederek namaz kılmaktır. Yolları: Namaza hazırlanmak (abdest, temiz kıyafet), niyet etmek, okunanı düşünmek, acele etmemek, gözleri secde yerine dikmek, dünya düşüncelerini bırakmak, 'son namazım' gibi düşünmek, kalbi meşgul eden şeylerden uzak durmak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Seferi (yolcu) namazında hangi kolaylıklar vardır?",
+      "answer": "Yolculukta: 1) Dört rekâtlı farzlar 2 rekât kılınır (kasr), 2) Sünnetler düşer (sabah sünneti ve vitir kılınabilir), 3) Öğle-ikindi, akşam-yatsı cem edilebilir (birleştirilebilir), 4) Mest üzerine 3 gün mesh edilebilir. 90 km ve üzeri mesafe, 15 günden az kalma şartı vardır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazda unutulan şeyler için ne yapılır?",
+      "answer": "Farz unutulursa: Namaz geçersiz, yeniden kılınır. Vacip unutulursa: Sehiv secdesi yapılır. Sünnet unutulursa: Bir şey gerekmez. Rükün unutulup hatırlanırsa: Yapılır ve sehiv secdesi yapılır. Kaç rekât kıldığı şüpheli: Az olana hükmeder, devam eder, sehiv secdesi yapar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Mesbuk ve lahik kimdir?",
+      "answer": "Mesbuk: Cemaate geç katılan kişi. İmamla birlikte yetiştiği kadar kılar, imam selam verince kalkar, kaçırdıklarını tamamlar. Lahik: Cemaate baştan katılan ama namazda bir sebeple ara veren (abdest bozulması). Kaçırdıklarını kaza eder, cemaatle devam eder.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Tesbih namazı nasıl kılınır?",
+      "answer": "Tesbih namazı, 300 kez 'Sübhanallahi velhamdülillahi vela ilahe illallahu vallahu ekber' denilerek kılınır. 4 rekâttır. Her rekâtta Fatiha'dan sonra 15, rükûda 10, rükûdan kalkınca 10, secdede 10, oturuşta 10, secdede 10, oturuşta 10 denir. Haftada, ayda veya ömürde bir kez kılınması tavsiye edilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Mazereti olan kişiler orucu nasıl kaza eder?",
+      "answer": "Hasta, yolcu, hamile, emzikli: Sonra kaza eder. Çok yaşlı, kronik hasta: Fidye verir (her gün bir fakiri doyurur). Hayız, nifas: Tutar sonra kaza eder, peş peşe tutması gerekmez. Kaza orucu Ramazan'dan Ramazan'a kadar tutulmalıdır. Geciktiren ayrıca fidye verir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruçluyken göz/kulak damlası kullanmak orucu bozar mı?",
+      "answer": "İhtilaf vardır. Hanefî mezhebine göre: Göze damlatılan ilaç boğaza ulaşırsa orucu bozar. Kulak damlası zarı delik değilse bozmaz, delikse bozar. Günümüz fetvalarına göre: Modern ilaçların çoğu emilimle çalıştığından orucu bozmaz. İhtiyaten iftar sonrası kullanmak tavsiye edilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruç tutarken kan vermek veya kan tahlili yaptırmak caiz midir?",
+      "answer": "Evet, kan vermek ve kan tahlili orucu bozmaz. Kan çıkışı abdesti bozabilir ama orucu etkilemez. Ancak kan verme sonrası halsizlik hissedilirse oruç tutmaya devam etmek zor olabilir. Bu durumda iftara yakın kan vermek tercih edilebilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Astım spreyi ve ağrı kesici iğne orucu bozar mı?",
+      "answer": "Astım spreyi: Ciğere giden ilaç mideye ulaşmadığından orucu bozmaz (güncel fetva). İğne: Besleyici olmayan (ağrı kesici, antibiyotik) iğne Hanefî'ye göre orucu bozmaz. Serum, vitamin, glikoz gibi besleyici iğneler orucu bozar. Hastalık durumunda iftar edip kaza etmek caizdir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Araba, ev ve arsanın zekâtı var mıdır?",
+      "answer": "Kullandığınız ev ve araba zekâta tabi değildir (temel ihtiyaç). Satmak için alınan ev, arsa veya araba ticaret malı sayılır, piyasa değerinin %2.5'i zekât verilir. Kiraya verilen mülkün kendisinden değil, biriken kira gelirinden zekât verilir (nisaba ulaşırsa).",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât akrabaya verilebilir mi?",
+      "answer": "Usul (anne, baba, dede, nine) ve fürua (çocuk, torun) zekât verilemez çünkü nafakaları sizin üzerinizedir. Kardeş, amca, teyze, hala, dayı ve çocuklarına verilebilir (fakirse). Akrabaya zekât vermek hem zekât hem sıla-i rahim sevabı kazandırır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât cami, okul veya hayır kurumuna verilebilir mi?",
+      "answer": "Zekât doğrudan 8 sınıfa (Tevbe 60) verilmelidir. Cami, okul, köprü gibi yapılara doğrudan zekât verilmez. Ancak bu kurumlar fakir öğrencilere, muhtaçlara burs/yardım dağıtıyorsa, zekâtı bu amaçla toplar ve dağıtırsa caiz olur. Sağlam güvenilir bir kurum olmalıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Tavaf-ı kudüm, ziyaret ve veda tavafı farkları nelerdir?",
+      "answer": "Tavaf-ı kudüm: Mekke'ye varışta yapılan sünnet tavaf (ifrad haccı yapanlar için). Tavaf-ı ziyaret: Arafat vakfesinden sonra yapılan farz tavaf (haccın rüknü). Tavaf-ı veda: Mekke'den ayrılırken yapılan vacip tavaf. Mekkeliler ve hayızlı kadınlar veda tavafından muaftır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac ve umrede ihram yasaklarını ihlal edenin cezası nedir?",
+      "answer": "Dem (kurban): Dikişli elbise, tıraş, koku, ihramlıyken cinsel ilişki (hac bozulur, devam edilir, ertesi yıl yeniden yapılır). Sadaka: Bir uzvu giydirmek, birkaç tüy koparmak. Bedene (deve/sığır): Arefe'den önce cinsel ilişki. Bazı ihlaller fidye ile (oruç veya sadaka) telafi edilebilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac ibadeti sırasında ziyaret edilecek yerler nerelerdir?",
+      "answer": "Mekke: Kâbe, Makam-ı İbrahim, Zemzem, Safa-Merve, Mina, Arafat, Müzdelife, Hira ve Sevr mağaraları, Cennetü'l-Mualla. Medine: Mescid-i Nebevi, Ravza-i Mutahhara, Cennetü'l-Baki, Uhud şehitliği, Kuba Mescidi, Kıbleteyn Mescidi. Medine ziyareti vacip değil sünnettir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "İslam'da temizlik nasıl olmalıdır?",
+      "answer": "Temizlik imanın yarısıdır (hadis). Beden temizliği: Gusül, abdest, misvak, tırnak kesme, koltuk altı-kasık temizliği. Elbise temizliği: Necasetten arındırma. Mekan temizliği: Namaz kılınacak yer temiz olmalı. Manevi temizlik: Kalbi şirk, riya, haset gibi kötülüklerden arındırma.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "İslam'da yeme içme adabı nedir?",
+      "answer": "Yemekten önce el yıkamak, besmele çekmek, sağ elle yemek, önünden yemek, lokmayı küçük almak, ağız dolu konuşmamak, suyu oturarak ve üç yudumda içmek, kaba üflemamek, yemeği ayıplamamak, israf etmemek, yemekten sonra hamd etmek, el yıkamak. Haram yememek en önemli adaptır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Cuma gününün fazileti ve sünnetleri nelerdir?",
+      "answer": "Cuma, haftanın en faziletli günüdür. Hz. Adem Cuma günü yaratılmış, cennete girmiş, dünyaya indirilmiştir. Kıyamet Cuma günü kopacaktır. Sünnetleri: Gusül almak, güzel koku sürünmek, temiz elbise giymek, erken camiye gitmek, Kehf suresi okumak, çokça salavat getirmek, dua etmek.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "İslam'da uyku adabı nedir?",
+      "answer": "Erken yatıp erken kalkmak sünnettir. Yatsı namazından sonra gereksiz oturulmaz. Abdestli yatılır. Sağ yanına yatılır, sağ el yanağın altına konur. Ayet'el-Kürsi, İhlas, Felak, Nas okunur. Yatarken ve uyanınca dua edilir. Karın üstü yatmak mekruhtur. Sabah namazına kalkılır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Beddua etmek caiz midir?",
+      "answer": "Zulme uğrayan kişinin zalime beddua etmesi caizdir. Ancak affetmek ve sabretmek daha faziletlidir. Kendi çocuğuna, malına, canına beddua etmek doğru değildir, kabul olunabilir. Hz. Peygamber kendisine kötülük yapanlara bile beddua etmemiştir. En güzeli hayır dua etmektir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Rüya ve rüya tabiri hakkında İslam ne der?",
+      "answer": "Rüyalar 3 çeşittir: 1) Salih rüya (Allah'tan, müjde), 2) Nefsin rüyası (gündüz düşünceler), 3) Şeytandan rüya (korkutucu). Güzel rüya anlatılır, kötü rüya anlatılmaz, sol tarafa tükürülür, eûzü çekilir. Rüya tabiri ilim gerektirir, herkes yorumlamamalıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Bereket duası nasıl yapılır?",
+      "answer": "Rızık ve bereket için: 'Allahümme'rzuknâ rızkan halâlen tayyiben' (Allah'ım bize helal ve temiz rızık ver). Sabah akşam: 'Allahümme innî es'elüke ilmen nâfian ve rızkan tayyiben ve amelen mütekabbelen.' Eve girerken besmele ve selam vermek bereketi artırır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Sıkıntıdan kurtulma duası nedir?",
+      "answer": "Hz. Yunus'un duası: 'Lâ ilâhe illâ ente sübhâneke innî küntü mine'z-zâlimîn.' Hz. Peygamber: 'Kardeşim Yunus'un duasını yapan mümin için Allah mutlaka icabet eder' buyurmuştur. Ayrıca 'Hasbünallahu ve ni'mel vekîl' ve istiğfar çokça yapılmalıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Ölüm anında ve kabir ziyaretinde okunacak dualar nelerdir?",
+      "answer": "Ölüm anında: Kelime-i tevhid telkin edilir, Yasin okunur. Ölüm sonrası: İnnâ lillâhi ve innâ ileyhi râciûn. Kabir ziyaretinde: 'Esselâmü aleyküm yâ ehle'l-kubûr, yağfirullâhu lenâ ve leküm, entüm selefünâ ve nahnü bi'l-eser.' Fatiha, İhlas (11 kez), Yasin okunur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Yeni ay görüldüğünde ne denir?",
+      "answer": "Yeni ay (hilal) görüldüğünde: 'Allahümme ehillehü aleynâ bi'l-yümni ve'l-îmâni ve's-selâmeti ve'l-İslâm. Rabbî ve Rabbükellâh.' (Allah'ım! Bu ayı üzerimize uğur, iman, selamet ve İslam ile doğur. Benim ve senin Rabbin Allah'tır). Özellikle Ramazan hilali için önemlidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Evlilik ve düğün duaları nelerdir?",
+      "answer": "Nikâh duası: 'Bârekallâhu leke ve bâreke aleyke ve cemea beynekümâ fî hayr.' (Allah sana bereket versin, üzerinize bereket indirsin, ikinizi hayırda birleştirsin). Gerdek gecesi: 'Allahümme innî es'elüke hayrehâ ve hayre mâ cebeltehâ aleyhi ve eûzü bike min şerrihâ.'",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Cin ve şeytan hakkında ne bilmeliyiz?",
+      "answer": "Cinler, ateşten yaratılmış, gözle görülmeyen varlıklardır. Mümin ve kâfir cinler vardır. Şeytan, kibir sebebiyle Allah'a isyan eden İblis ve onun soyudur. Şeytan insanı saptırmaya çalışır. Korunma: Eûzü besmele, Muavvizat, Ayet'el-Kürsi, Allah'ı zikir, günahlardan kaçınma.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Kıyamet alametleri nelerdir?",
+      "answer": "Küçük alametler: İlmin azalması, cehaletin artması, zinanın yayılması, içkinin yaygınlaşması, emanete ihanet, yalan çoğalması. Büyük alametler: Deccal, Hz. İsa'nın inişi, Ye'cüc-Me'cüc, Dabbetü'l-arz, güneşin batıdan doğması, Kâbe'nin yıkılması, Kur'an'ın kaldırılması.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Kabir hayatı nasıl olacaktır?",
+      "answer": "Ölümle kabir hayatı (berzah) başlar. Münker ve Nekir melekleri 'Rabbin kim? Dinin ne? Peygamberin kim?' diye sorar. Mümin rahat cevap verir, kabri genişler, cennet bahçesi olur. Kâfir cevap veremez, kabri daralır, cehennem çukuru olur. Kabir azabı veya nimeti ruhla birlikte bedene de olur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "Cennet ve cehennem nasıl yerlerdir?",
+      "answer": "Cennet: Ebedi nimet yurdu, 8 kapısı var. En yükseği Firdevs. Nehirler, köşkler, huriler, ebedi gençlik, hastalık yok. En büyük nimet: Ru'yetullah (Allah'ı görmek). Cehennem: Ebedi azap yeri, 7 kapısı var. Ateş, zakkum, kaynar su. Kâfirler ebedi kalır, günahkâr müminler cezalarını çekip çıkar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Sehiv secdesini gerektiren durumlar nelerdir?",
+      "answer": "Sehiv secdesi gerektiren durumlar: Fatiha'yı unutmak, zamm-ı sureyi farzda okumak yerine nafilede okumak, birinci oturuşu unutmak, son oturuşta tahiyyattan sonra hemen ayağa kalkmak, secdede 3'ten az tesbih çekmek, rükünlerin sırasını karıştırmak, namazda konuştuğunu zannetmek.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Cenaze namazı kılınmayan kişiler kimlerdir?",
+      "answer": "Cenaze namazı kılınmayanlar: 1) Gayrimüslimler, 2) Düşük (4 ayı doldurmamış), 3) Anne karnında ölen, 4) Savaşta düşman tarafında ölen. İhtilaf olanlar: İntihar eden (kılınır, imam geçmez), bid'atçi, zina ve içki ile ölen (kılınır). Her Müslümanın cenaze namazı kılınır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazda el bağlama ve kaldırma nasıl yapılır?",
+      "answer": "Hanefî'de: Erkekler göbek altında, kadınlar göğüs üzerinde el bağlar. İftitah tekbirinde eller kulak hizasına kalkar. Diğer tekbirlerde eller kaldırılmaz. Şâfiî ve Hanbelî'de: Eller rükûya giderken ve kalkarken de kaldırılır, göğüs üzerinde bağlanır. Her mezhep kendi usulünce kılar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Hamileyken veya emzirirken oruç tutulur mu?",
+      "answer": "Hamile veya emziren kadın, kendisi veya bebeği için zarar görme endişesi varsa oruç tutmayabilir, sonra kaza eder. Doktor tavsiyesi alınmalıdır. Zarar yoksa tutması gerekir. Fidye mi kaza mı gerektiği ihtilaflıdır; güvenli olan kaza etmektir. Oruç tutamazken fidye verilmesi de uygun görülmüştür.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruçluyken makyaj yapmak caiz midir?",
+      "answer": "Ruj, dudak nemlendiricisi gibi yutulma riski olan maddeler kullanmak sakıncalıdır, yutulursa oruç bozulur. Göz makyajı, fondöten, allık vb. orucu bozmaz çünkü bunlar dışarıda kalır. Ancak oruçlu iken sade kalmak, süslenmemek daha münasiptir. Kocanın isteği ile süslenmek caizdir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Kripto para ve dijital varlıkların zekâtı nasıl verilir?",
+      "answer": "Kripto paralar ticari mal veya para hükmünde değerlendirilebilir. Nisap miktarına ulaşıp üzerinden bir yıl geçerse zekât verilir. Yıl sonundaki piyasa değerinin %2.5'i verilir. Değer dalgalanması nedeniyle yıl içinde ortalama değer alınabileceğini söyleyen görüşler de vardır. Uzmanına danışılmalıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât Batılı ülkelerdeki fakirlere verilebilir mi?",
+      "answer": "Zekât öncelikle yakın çevredeki fakirlere verilmelidir. Ancak başka ülke veya şehirdeki Müslüman fakirlere de verilebilir. Gayrimüslim fakirlere zekât verilmez, sadaka verilebilir. Zekâtın daha muhtaç yerlere ulaştırılması için güvenilir kurumlara teslim edilebilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Engelli veya yaşlı kişiler haccı nasıl yapar?",
+      "answer": "Yürüyemeyen: Tekerlekli sandalye ile tavaf ve sa'y yapabilir. Çok yaşlı veya ağır hasta: Bedel (vekil) gönderebilir; vekil önce kendi haccını yapmış olmalı. Hac masrafını karşılayamayan: Farz değildir, imkân bulunca yapılır. Mali gücü olan ama sağlığı yerinde olmayan vekil gönderir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Ravza-i Mutahhara ziyaretinin adabı nedir?",
+      "answer": "Medine'ye varınca gusül alınır. Mescid-i Nebevi'ye sağ ayakla girilir. Tahiyyetü'l-mescid kılınır. Ravza'da (Peygamberimizin kabri ile minberi arası) namaz kılmak faziletlidir. Hz. Peygamber'in kabrine yönelip selam verilir, dua edilir. Yüksek sesle konuşulmaz, kabre dokunulmaz.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "İslam'da evcil hayvan beslemenin hükmü nedir?",
+      "answer": "Kedi beslemek caizdir, Hz. Peygamber kedileri severdi. Köpek ev içinde beslenmez (melekler girmez hadisi), ancak bekçilik, çobanlık, avcılık için beslenebilir. Kuş, balık, tavuk vb. caizdir. Hayvana eziyet etmemek, ihtiyaçlarını karşılamak farzdır. Hayvana merhamet cennete vesile olur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Sigorta yaptırmanın hükmü nedir?",
+      "answer": "Sigorta konusu çağdaş bir meseledir. Zorunlu sigortalar (trafik, sağlık) caizdir denilmiştir. İhtiyari sigortalar için farklı görüşler vardır: Garar (belirsizlik) ve kumar unsuru içerdiğini söyleyenler haram, karşılıklı yardımlaşma kapsamında caiz görenler var. Faizsiz/katılım sigortaları tercih edilmelidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Organ bağışı ve nakli caiz midir?",
+      "answer": "İslam âlimlerinin çoğunluğu organ naklini caiz görmüştür: Hayat kurtarmak için zaruret kapsamında, bağışçının izni ile, satış değil bağış olarak. Zorunluluk halinde başka çare yoksa ölüden de alınabilir. Vasiyet etmek faziletlidir. Bazı âlimler ceset dokunulmazlığı sebebiyle karşı çıkmıştır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Kadının çalışmasının hükmü nedir?",
+      "answer": "Kadının çalışması caizdir: Helal iş, tesettüre riayet, fitne ortamı olmaması şartıyla. Hz. Hatice tüccar, Havle binti Hakim ilim kadını idi. Öğretmenlik, doktorluk, hemşirelik gibi meslekler özellikle kadınlara ihtiyaç duyulan alanlardır. Ailesini ihmal etmemesi esastır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Zulme uğrayan ne yapmalı, hangi duaları okumalı?",
+      "answer": "Mazlumun duası makbuldür. Sabretmeli, Allah'a sığınmalı. Dua: 'Allahümme münzile'l-kitâbi serîa'l-hisâb, ihzimi'l-ahzâb. Allahümme'hzimhüm ve zelzilhüm.' Ayrıca Hasbunallah, İnna lillah, istiğfar okunmalı. Zulme boyun eğmemeli, hakkını aramalı. Sabır ve tevekkül asıldır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Vesvese ve şüphe için ne yapılmalıdır?",
+      "answer": "Vesvese şeytandandır. Eûzü besmele çekmek, 'Âmentü billahi ve rusulih' demek, Muavvizat okumak, abdest almak, namaz kılmak, düşünceyi başka yöne çevirmek, ilim öğrenmek. Aşırı vesvese hastalıksa tedavi olunmalı. Vesveseye itibar etmemek, önemsememek en etkili çaredir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Borç ödeme güçlüğü için hangi dualar okunur?",
+      "answer": "Hz. Ali'ye Peygamberimizin öğrettiği dua: 'Allahümme'kfinî bi halâlike an harâmike ve ağninî bi fadlike ammen sivâke.' (Allah'ım beni helalinle haramından koru, lütfunla senden başkasına muhtaç etme). Borçtan kurtulmak için helal rızık aramak, israf etmemek, sadaka vermek de önemlidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Çocuk sahibi olmak için hangi dualar edilir?",
+      "answer": "Hz. Zekeriyya'nın duası: 'Rabbi lâ tezernî ferden ve ente hayru'l-vârisîn' (Rabbim beni yalnız bırakma, sen varislerin en hayırlısısın). 'Rabbi heb lî min ledünke zürriyyeten tayyibeten inneke semîu'd-duâ' (Rabbim bana katından temiz nesil bağışla). Sabır, tevekkül ve tedavi de önemlidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Fotoğraf ve video çekmenin hükmü nedir?",
+      "answer": "Fotoğraf ve video, resim yapma (tasvir) yasağından farklı değerlendirilmiştir. Çoğu çağdaş âlim: Canlı varlık görüntüsü olan fotoğraf caizdir, makine aynaya benzer. Haram olan el ile put şeklinde heykel yapmaktır. Aşırı süsleme, asılı resim, haram içerikli görüntü yasaktır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Müzik ve şarkı dinlemenin hükmü nedir?",
+      "answer": "Müzik konusunda görüşler farklıdır: Haram diyenler çalgı aletlerini yasaklayan hadislere dayanır. Helal diyenler aşırı olmayan, harama teşvik etmeyen müziği caiz görür. Ortak görüş: Fuhuş, içki, isyan temalı müzik haramdır. Def, ilahi, neşid caizdir. Orta yol ve ihtiyat tercih edilmelidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Dövme yaptırmanın hükmü nedir?",
+      "answer": "Dövme yaptırmak haramdır. Hz. Peygamber dövme yapanı ve yaptıranı lanetlemiştir. Sebepleri: Vücudu değiştirmek, acı vermek, sağlığa zarar, temizliği engellemek. Kalıcı dövme varsa tövbe edilir, mümkünse sildirilir, değilse günahı kalkar. Geçici dövme (kına) caizdir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Estetik ameliyat yaptırmanın hükmü nedir?",
+      "answer": "Tedavi amaçlı (yanık, kaza, doğuştan kusur düzeltme) estetik caizdir. Güzelleşme amaçlı (burun küçültme, dudak büyütme) estetik ihtilaflıdır; Allah'ın yaratışını değiştirmek yasağına girer. Sağlık gerekçesiyle yapılan ameliyatlar (mide küçültme vb.) caiz görülmüştür. Niyet ve zaruret önemlidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "iman",
+      "question": "İman ve İslam arasındaki fark nedir?",
+      "answer": "İman, kalp ile tasdik ve dil ile ikrardır. İslam, teslim olmak ve şeriatı uygulamaktır. İman iç, İslam dış boyuttur. Gerçek mümin hem inanır hem yaşar. İman artıp eksilebilir (amellere göre). Büyük günah işleyen günahkâr mümindir, kâfir olmaz. İman olmadan amel geçersizdir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Özürlü kişinin namazı nasıl olur?",
+      "answer": "Özür sahibi: Bir namaz vakti boyunca abdesti bozan hal (idrar kaçırma, yara akması vb.) devam eden kişi. Her namaz için ayrı abdest alır, namazı kılar. Abdesti bozan hal tekrarlasa da namaz sahihtir. Özür, en az bir tam vakit sürmelidir. Özür bitince normal hükümler uygulanır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruçluyken aşı olmak orucu bozar mı?",
+      "answer": "Aşılar genellikle kas içine yapılır ve besleyici değildir, bu yüzden orucu bozmaz. Ancak ağızdan veya burundan verilen aşılar mideye ulaşırsa orucu bozar. Korona aşısı gibi kas içi aşılar orucu bozmaz. Yan etkilerden endişe ediliyorsa akşam yaptırılabilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Biriktirilen paranın zekâtı her yıl verilir mi?",
+      "answer": "Evet, nisap miktarını aşan ve üzerinden bir yıl geçen para her yıl zekâta tabidir. Örnek: 100.000 TL birikiminiz varsa her yıl %2.5 = 2.500 TL verirsiniz. Kalan 97.500 TL üzerinden ertesi yıl yine zekât verilir. Para harcanmadıkça her yıl zekât verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac ve umrede neler sünnet, neler nafiledir?",
+      "answer": "Sünnetler: Kudüm tavafı, tavafta remel (hızlı yürüme), sa'y'da hervele (yeşil direkler arası koşma), Müzdelife'de sabah namazını erken kılma, Mina'da geceleme, Arafat'ta hutbe dinleme. Nafileler: Umre çoğaltma, Kâbe'de namaz kılma, Zemzem içme, Mültezem'de dua.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Deprem, sel gibi afetlerde hangi dualar okunur?",
+      "answer": "Afet anında: 'Bismillahi tevekkeltü alellahi lâ havle velâ kuvvete illâ billah.' Korku halinde: 'Hasbiyallahu lâ ilâhe illâ huve aleyhi tevekkeltü.' Afet sonrası: Sabır duası, ölenlere rahmet, yaralılara şifa, evsizlere yardım. Çokça istiğfar etmek, sadaka vermek, tövbe etmek gerekir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
     }
   ]
 }
