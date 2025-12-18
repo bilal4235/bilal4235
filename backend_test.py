@@ -866,14 +866,23 @@ def main():
     
     tester = IlmihalAPITester()
     
-    # Run all tests - prioritizing İlmihal specific tests and Quiz tests
+    # Run all tests - prioritizing İslami Takvim (Islamic Calendar) tests as requested
     tests = [
         tester.test_root_endpoint,
+        # İSLAMİ TAKVİM API TESTS (PRIORITY - User Request)
+        tester.test_islamic_calendar_main,
+        tester.test_upcoming_events,
+        tester.test_event_details_mirac,
+        tester.test_event_details_ramazan_bayrami,
+        tester.test_category_kandil,
+        tester.test_category_bayram,
+        tester.test_category_ozel_gun,
+        tester.test_hijri_months,
         # İlmihal Database Tests
         tester.test_diyanet_questions_total,
         tester.test_diyanet_questions_namaz_category,
         tester.test_diyanet_questions_iman_category,
-        # Quiz API Tests (NEW FEATURE)
+        # Quiz API Tests
         tester.test_quiz_categories,
         tester.test_quiz_random_questions,
         tester.test_quiz_namaz_category,
