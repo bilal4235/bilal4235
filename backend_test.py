@@ -68,15 +68,17 @@ class IlmihalAPITester:
             "categories",
             200
         )
-        if success and isinstance(response, list) and len(response) == 6:
+        if success and isinstance(response, list) and len(response) == 7:
             print(f"   Found {len(response)} categories as expected")
-            # Check if all required categories exist
+            # Check if all required categories exist including new 'iman' category
             category_ids = [cat.get('id') for cat in response]
-            expected_categories = ['namaz', 'oruc', 'zekat', 'hac', 'gunluk', 'dua']
+            expected_categories = ['namaz', 'oruc', 'zekat', 'hac', 'gunluk', 'dua', 'iman']
             if all(cat_id in category_ids for cat_id in expected_categories):
-                print("   All expected categories found")
+                print("   All expected categories found including 'iman'")
             else:
                 print(f"   Missing categories: {set(expected_categories) - set(category_ids)}")
+        else:
+            print(f"   Expected 7 categories, found {len(response) if isinstance(response, list) else 0}")
         return success
 
     def test_ask_question(self):
