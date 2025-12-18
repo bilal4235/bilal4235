@@ -292,7 +292,7 @@ frontend:
     file: "/app/frontend/src/pages/Home.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
@@ -304,11 +304,35 @@ frontend:
     file: "/app/frontend/src/pages/QuestionAnswer.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Soru, cevap ve kaynak gösteriliyor. Favorilere ekleme, sesli okuma, paylaşım butonları mevcut."
+
+  - task: "Ayarlar Sayfası"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Settings.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Ayarlar sayfası kapsamlı test edildi. Karanlık mod toggle (açık/kapalı renk değişimi), 4 tema rengi butonu (Turkuaz, Yeşil, Mavi, Mor), 4 yazı boyutu seçeneği (14px-20px), 3 yazı tipi seçeneği (Varsayılan, Klasik, Modern), önizleme alanı, bildirim toggle - TÜM ÖZELLİKLER ÇALIŞIYOR. Minor: Alt navigasyon overlay sorunu (force click ile çözüldü)."
+
+  - task: "Hatırlatıcılar Sayfası"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Reminders.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Hatırlatıcılar sayfası kapsamlı test edildi. Namaz Vakitleri tabı: 5 vakit namaz (Sabah, Öğle, İkindi, Akşam, Yatsı), saat güncelleme, 'Tümünü Aç/Kapat' butonları, bireysel switch'ler. Dua & Zikir tabı: 3 dua hatırlatıcısı (Sabah, Akşam, Uyku Öncesi), switch'ler. Özel tabı: 'Özel Ekle' butonu, form doldurma, kaydetme, switch toggle - TÜM ÖZELLİKLER ÇALIŞIYOR."
 
 metadata:
   created_by: "main_agent"
