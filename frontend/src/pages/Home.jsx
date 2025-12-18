@@ -194,9 +194,9 @@ const Home = () => {
             <Trophy size={24} />
             <span>Quiz</span>
           </div>
-          <div className="nav-item" data-testid="nav-settings" onClick={() => navigate('/settings')}>
-            <SettingsIcon size={24} />
-            <span>Ayarlar</span>
+          <div className="nav-item" data-testid="nav-reminders" onClick={() => navigate('/reminders')}>
+            <Bell size={24} />
+            <span>Hatırlatma</span>
           </div>
         </div>
       </div>
