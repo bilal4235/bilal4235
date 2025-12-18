@@ -581,6 +581,112 @@ async def get_quiz_categories():
         logging.error(f"Error in get_quiz_categories: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
+# ==================== İSLAMİ TAKVİM API ====================
+
+def load_islamic_calendar():
+    """İslami takvim verilerini JSON dosyasından yükle"""
+    calendar_path = ROOT_DIR / 'islamic_calendar.json'
+    try:
+        with open(calendar_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get('calendar_data', {})
+    except Exception as e:
+        logging.error(f"İslami takvim JSON yüklenemedi: {e}")
+        return {}
+
+ISLAMIC_CALENDAR = load_islamic_calendar()
+
+@api_router.get("/calendar")
+async def get_islamic_calendar():
+    """Tüm İslami takvim verilerini getir"""
+    try:
+        return {
+            "year": ISLAMIC_CALENDAR.get("year"),
+            "hijri_year": ISLAMIC_CALENDAR.get("hijri_year"),
+            "source": ISLAMIC_CALENDAR.get("source"),
+            "important_dates": ISLAMIC_CALENDAR.get("important_dates", []),
+            "total_events": len(ISLAMIC_CALENDAR.get("important_dates", []))
+        }
+    except Exception as e:
+        logging.error(f"Error in get_islamic_calendar: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/calendar/upcoming")
+async def get_upcoming_events(limit: int = 5):
+    """Yaklaşan önemli günleri getir"""
+    try:
+        from datetime import date
+        today = date.today()
+        
+        upcoming = []
+        for event in ISLAMIC_CALENDAR.get("important_dates", []):
+            event_date = date.fromisoformat(event["date"])
+            if event_date >= today:
+                days_until = (event_date - today).days
+                upcoming.append({
+                    **event,
+                    "days_until": days_until,
+                    "is_today": days_until == 0,
+                    "is_tomorrow": days_until == 1,
+                    "is_this_week": days_until <= 7
+                })
+        
+        # Tarihe göre sırala
+        upcoming.sort(key=lambda x: x["date"])
+        
+        return {
+            "upcoming_events": upcoming[:limit],
+            "total": len(upcoming)
+        }
+    except Exception as e:
+        logging.error(f"Error in get_upcoming_events: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/calendar/event/{event_id}")
+async def get_event_details(event_id: str):
+    """Belirli bir etkinliğin detaylarını getir"""
+    try:
+        for event in ISLAMIC_CALENDAR.get("important_dates", []):
+            if event["id"] == event_id:
+                return event
+        
+        raise HTTPException(status_code=404, detail="Etkinlik bulunamadı")
+    except HTTPException:
+        raise
+    except Exception as e:
+        logging.error(f"Error in get_event_details: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/calendar/category/{category}")
+async def get_events_by_category(category: str):
+    """Kategoriye göre etkinlikleri getir (kandil, bayram, ozel_gun)"""
+    try:
+        events = [
+            event for event in ISLAMIC_CALENDAR.get("important_dates", [])
+            if event.get("category") == category
+        ]
+        
+        return {
+            "category": category,
+            "events": events,
+            "total": len(events)
+        }
+    except Exception as e:
+        logging.error(f"Error in get_events_by_category: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/calendar/months")
+async def get_monthly_info():
+    """Hicri aylar hakkında bilgi getir"""
+    try:
+        return {
+            "months": ISLAMIC_CALENDAR.get("monthly_events", {}),
+            "source": ISLAMIC_CALENDAR.get("source")
+        }
+    except Exception as e:
+        logging.error(f"Error in get_monthly_info: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Include the router in the main app
 app.include_router(api_router)
 
