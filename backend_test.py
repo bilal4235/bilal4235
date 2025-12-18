@@ -423,6 +423,219 @@ class IlmihalAPITester:
                 success = False
         return success
 
+    # ==================== QUIZ API TESTS ====================
+    
+    def test_quiz_categories(self):
+        """Test GET /api/quiz/categories - Quiz kategorileri ve soru sayıları"""
+        success, response = self.run_test(
+            "Quiz Categories API",
+            "GET",
+            "quiz/categories",
+            200
+        )
+        if success:
+            categories = response.get('categories', [])
+            print(f"   Found {len(categories)} quiz categories")
+            if categories:
+                for cat in categories:
+                    print(f"   - {cat.get('name', 'N/A')}: {cat.get('question_count', 0)} soru")
+                # Check if namaz and iman categories exist
+                category_ids = [cat.get('id') for cat in categories]
+                if 'namaz' in category_ids and 'iman' in category_ids:
+                    print("   ✅ Namaz ve İman kategorileri mevcut")
+                else:
+                    print("   ❌ Namaz veya İman kategorisi eksik")
+                    success = False
+        return success
+
+    def test_quiz_random_questions(self):
+        """Test GET /api/quiz?count=5 - Karışık 5 soru"""
+        success, response = self.run_test(
+            "Quiz Random 5 Questions",
+            "GET",
+            "quiz?count=5",
+            200
+        )
+        if success:
+            questions = response.get('questions', [])
+            total = response.get('total', 0)
+            print(f"   Received {len(questions)} questions (total: {total})")
+            
+            if len(questions) == 5:
+                print("   ✅ Correct number of questions")
+                # Check question structure
+                first_q = questions[0] if questions else {}
+                required_fields = ['id', 'question', 'options', 'correct_answer', 'category', 'explanation', 'source']
+                missing_fields = [field for field in required_fields if field not in first_q]
+                
+                if not missing_fields:
+                    print("   ✅ All required fields present")
+                    # Check options count
+                    options = first_q.get('options', [])
+                    if len(options) == 4:
+                        print("   ✅ 4 seçenek mevcut")
+                    else:
+                        print(f"   ❌ Expected 4 options, found {len(options)}")
+                        success = False
+                    
+                    # Check correct_answer is valid index
+                    correct_answer = first_q.get('correct_answer', -1)
+                    if 0 <= correct_answer <= 3:
+                        print(f"   ✅ Doğru cevap indexi geçerli: {correct_answer}")
+                    else:
+                        print(f"   ❌ Invalid correct_answer index: {correct_answer}")
+                        success = False
+                        
+                    # Check explanation and source exist
+                    if first_q.get('explanation') and first_q.get('source'):
+                        print("   ✅ Açıklama ve kaynak mevcut")
+                    else:
+                        print("   ❌ Açıklama veya kaynak eksik")
+                        success = False
+                else:
+                    print(f"   ❌ Missing fields: {missing_fields}")
+                    success = False
+            else:
+                print(f"   ❌ Expected 5 questions, got {len(questions)}")
+                success = False
+        return success
+
+    def test_quiz_namaz_category(self):
+        """Test GET /api/quiz?category=namaz&count=3 - Namaz kategorisinden 3 soru"""
+        success, response = self.run_test(
+            "Quiz Namaz Category 3 Questions",
+            "GET",
+            "quiz?category=namaz&count=3",
+            200
+        )
+        if success:
+            questions = response.get('questions', [])
+            category = response.get('category')
+            print(f"   Received {len(questions)} questions from category: {category}")
+            
+            if len(questions) == 3:
+                print("   ✅ Correct number of questions")
+                # Check all questions are from namaz category
+                all_namaz = all(q.get('category') == 'namaz' for q in questions)
+                if all_namaz:
+                    print("   ✅ Tüm sorular namaz kategorisinden")
+                else:
+                    print("   ❌ Bazı sorular farklı kategorilerden")
+                    success = False
+            else:
+                print(f"   ❌ Expected 3 questions, got {len(questions)}")
+                success = False
+        return success
+
+    def test_quiz_iman_category(self):
+        """Test GET /api/quiz?category=iman&count=3 - İman kategorisinden 3 soru"""
+        success, response = self.run_test(
+            "Quiz İman Category 3 Questions",
+            "GET",
+            "quiz?category=iman&count=3",
+            200
+        )
+        if success:
+            questions = response.get('questions', [])
+            category = response.get('category')
+            print(f"   Received {len(questions)} questions from category: {category}")
+            
+            if len(questions) >= 1:  # İman kategorisinde az soru olabilir
+                print(f"   ✅ İman kategorisinden {len(questions)} soru alındı")
+                # Check all questions are from iman category
+                all_iman = all(q.get('category') == 'iman' for q in questions)
+                if all_iman:
+                    print("   ✅ Tüm sorular iman kategorisinden")
+                else:
+                    print("   ❌ Bazı sorular farklı kategorilerden")
+                    success = False
+            else:
+                print(f"   ❌ No questions received from iman category")
+                success = False
+        return success
+
+    def test_quiz_submit(self):
+        """Test POST /api/quiz/submit - Quiz sonuçlarını gönder ve puan hesapla"""
+        # First get a quiz to have valid question data
+        quiz_success, quiz_response = self.run_test(
+            "Get Quiz for Submit Test",
+            "GET",
+            "quiz?category=namaz&count=2",
+            200
+        )
+        
+        if not quiz_success:
+            print("   ❌ Could not get quiz for submit test")
+            return False
+            
+        questions = quiz_response.get('questions', [])
+        if len(questions) < 2:
+            print("   ❌ Not enough questions for submit test")
+            return False
+            
+        # Prepare answers (mix of correct and incorrect)
+        answers = []
+        for i, q in enumerate(questions):
+            answers.append({
+                "question_id": q['id'],
+                "selected": q['correct_answer'] if i == 0 else (q['correct_answer'] + 1) % 4,  # First correct, second wrong
+                "correct_answer": q['correct_answer']
+            })
+        
+        submit_data = {
+            "answers": answers,
+            "category": "namaz"
+        }
+        
+        success, response = self.run_test(
+            "Quiz Submit Results",
+            "POST",
+            "quiz/submit",
+            200,
+            data=submit_data
+        )
+        
+        if success:
+            score = response.get('score')
+            total = response.get('total')
+            percentage = response.get('percentage')
+            
+            print(f"   Score: {score}/{total} ({percentage}%)")
+            
+            # Check required fields
+            if score is not None and total is not None and percentage is not None:
+                print("   ✅ Score, total, percentage dönüyor")
+                # Verify calculation
+                expected_percentage = (score / total * 100) if total > 0 else 0
+                if abs(percentage - expected_percentage) < 0.1:
+                    print("   ✅ Percentage calculation correct")
+                else:
+                    print(f"   ❌ Percentage calculation wrong: expected {expected_percentage}, got {percentage}")
+                    success = False
+            else:
+                print("   ❌ Missing score, total, or percentage in response")
+                success = False
+        return success
+
+    def test_quiz_history(self):
+        """Test GET /api/quiz/history - Quiz geçmişi"""
+        success, response = self.run_test(
+            "Quiz History",
+            "GET",
+            "quiz/history",
+            200
+        )
+        if success:
+            results = response.get('results', [])
+            print(f"   Found {len(results)} quiz results in history")
+            if results:
+                latest = results[0]
+                print(f"   Latest result: {latest.get('score', 0)}/{latest.get('total', 0)} ({latest.get('percentage', 0)}%)")
+                print("   ✅ Quiz geçmişi başarıyla alındı")
+            else:
+                print("   ℹ️ No quiz history found (expected after submit test)")
+        return success
+
 def main():
     print("🚀 Starting İlmihal Asistanı API Tests")
     print("=" * 50)
