@@ -138,11 +138,14 @@ backend:
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "POST /api/ask çalışıyor. İman şartları sorusu başarıyla cevaplandı."
+      - working: true
+        agent: "testing"
+        comment: "✅ Soru-Cevap API mükemmel çalışıyor. Test edilen sorular: 'Namazın farzları nelerdir?', 'İmanın şartları nelerdir?', 'Oruç tutmak kimlere farzdır?' - Hepsi Diyanet kaynağından doğru cevaplar aldı."
 
   - task: "Kategori API"
     implemented: true
