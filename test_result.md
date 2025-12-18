@@ -220,3 +220,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "İlmihal veritabanı 85 sorudan 219 soruya genişletildi. JSON formatı kullanıldı. Yeni kategoriler eklendi (iman). Backend ve frontend çalışıyor. Kapsamlı test gerekli."
+  - agent: "testing"
+    message: "✅ İlmihal Asistanı backend API'leri kapsamlı test edildi. 21/22 test başarılı. Ana özellikler (veritabanı, autocomplete, soru-cevap, kategoriler) mükemmel çalışıyor. Sadece Text-to-Speech API'si çalışmıyor (OpenAI TTS anahtar sorunu). Diyanet kaynaklı cevaplar doğru şekilde sunuluyor."
