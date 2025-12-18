@@ -210,10 +210,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "İlmihal veritabanı genişletme testi"
-    - "Autocomplete performans testi"
-    - "Kategori filtreleme testi"
-  stuck_tasks: []
+    - "Text-to-Speech API düzeltme"
+  stuck_tasks: 
+    - "Text-to-Speech API"
   test_all: false
   test_priority: "high_first"
 
