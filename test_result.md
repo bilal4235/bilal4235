@@ -165,6 +165,18 @@ backend:
         agent: "testing"
         comment: "✅ Kategori API doğru çalışıyor. 7 kategori bulundu: namaz, oruc, zekat, hac, gunluk, dua, iman. Yeni eklenen 'iman' kategorisi mevcut."
 
+  - task: "Text-to-Speech API"
+    implemented: true
+    working: false
+    file: "/app/backend/server.py"
+    stuck_count: 1
+    priority: "low"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "❌ Text-to-Speech API çalışmıyor. 520 hatası alınıyor: 'Text-to-Speech şu anda kullanılamıyor. Lütfen tarayıcınızın sesli okuma özelliğini kullanın.' OpenAI TTS API anahtarı sorunu olabilir."
+
 frontend:
   - task: "Ana Sayfa ve Arama"
     implemented: true
