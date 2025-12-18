@@ -636,6 +636,230 @@ class IlmihalAPITester:
                 print("   ℹ️ No quiz history found (expected after submit test)")
         return success
 
+    # ==================== İSLAMİ TAKVİM API TESTS ====================
+    
+    def test_islamic_calendar_main(self):
+        """Test GET /api/calendar - Tüm takvim verilerini getir"""
+        success, response = self.run_test(
+            "Islamic Calendar Main API",
+            "GET",
+            "calendar",
+            200
+        )
+        if success:
+            year = response.get('year')
+            hijri_year = response.get('hijri_year')
+            source = response.get('source')
+            important_dates = response.get('important_dates', [])
+            total_events = response.get('total_events', 0)
+            
+            print(f"   Year: {year}")
+            print(f"   Hijri Year: {hijri_year}")
+            print(f"   Source: {source}")
+            print(f"   Total Events: {total_events}")
+            
+            # Verify required fields
+            if year and hijri_year and source and isinstance(important_dates, list):
+                print("   ✅ All required fields present")
+                if source == "Diyanet İşleri Başkanlığı":
+                    print("   ✅ Correct source: Diyanet İşleri Başkanlığı")
+                else:
+                    print(f"   ❌ Unexpected source: {source}")
+                    success = False
+                    
+                if total_events == len(important_dates):
+                    print("   ✅ Total events count matches important_dates length")
+                else:
+                    print(f"   ❌ Total events mismatch: {total_events} vs {len(important_dates)}")
+                    success = False
+            else:
+                print("   ❌ Missing required fields")
+                success = False
+        return success
+
+    def test_upcoming_events(self):
+        """Test GET /api/calendar/upcoming?limit=5 - Yaklaşan etkinlikleri getir"""
+        success, response = self.run_test(
+            "Upcoming Events API",
+            "GET",
+            "calendar/upcoming?limit=5",
+            200
+        )
+        if success:
+            upcoming_events = response.get('upcoming_events', [])
+            total = response.get('total', 0)
+            
+            print(f"   Found {len(upcoming_events)} upcoming events (total: {total})")
+            
+            if upcoming_events:
+                first_event = upcoming_events[0]
+                required_fields = ['days_until', 'is_today', 'is_tomorrow', 'is_this_week']
+                missing_fields = [field for field in required_fields if field not in first_event]
+                
+                if not missing_fields:
+                    print("   ✅ All required fields present (days_until, is_today, is_tomorrow, is_this_week)")
+                    print(f"   First event: {first_event.get('name')} - {first_event.get('days_until')} days until")
+                else:
+                    print(f"   ❌ Missing fields: {missing_fields}")
+                    success = False
+            else:
+                print("   ℹ️ No upcoming events found")
+        return success
+
+    def test_event_details_mirac(self):
+        """Test GET /api/calendar/event/mirac - Miraç Kandili detayları"""
+        success, response = self.run_test(
+            "Event Details - Miraç Kandili",
+            "GET",
+            "calendar/event/mirac",
+            200
+        )
+        if success:
+            required_fields = ['name', 'date', 'hijri_date', 'description', 'practices']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if not missing_fields:
+                print("   ✅ All required fields present (name, date, hijri_date, description, practices)")
+                print(f"   Event: {response.get('name')}")
+                print(f"   Date: {response.get('date')} ({response.get('hijri_date')})")
+                print(f"   Practices count: {len(response.get('practices', []))}")
+            else:
+                print(f"   ❌ Missing fields: {missing_fields}")
+                success = False
+        return success
+
+    def test_event_details_ramazan_bayrami(self):
+        """Test GET /api/calendar/event/ramazan_bayrami - Ramazan Bayramı detayları"""
+        success, response = self.run_test(
+            "Event Details - Ramazan Bayramı",
+            "GET",
+            "calendar/event/ramazan_bayrami",
+            200
+        )
+        if success:
+            required_fields = ['name', 'date', 'hijri_date', 'description', 'practices']
+            missing_fields = [field for field in required_fields if field not in response]
+            
+            if not missing_fields:
+                print("   ✅ All required fields present (name, date, hijri_date, description, practices)")
+                print(f"   Event: {response.get('name')}")
+                print(f"   Date: {response.get('date')} ({response.get('hijri_date')})")
+                print(f"   Practices count: {len(response.get('practices', []))}")
+            else:
+                print(f"   ❌ Missing fields: {missing_fields}")
+                success = False
+        return success
+
+    def test_category_kandil(self):
+        """Test GET /api/calendar/category/kandil - Kandil günleri"""
+        success, response = self.run_test(
+            "Calendar Category - Kandil",
+            "GET",
+            "calendar/category/kandil",
+            200
+        )
+        if success:
+            category = response.get('category')
+            events = response.get('events', [])
+            total = response.get('total', 0)
+            
+            print(f"   Category: {category}")
+            print(f"   Found {len(events)} kandil events (total: {total})")
+            
+            if category == "kandil" and isinstance(events, list):
+                print("   ✅ Correct category and events structure")
+                if events:
+                    kandil_names = [event.get('name') for event in events]
+                    print(f"   Kandil events: {', '.join(kandil_names)}")
+            else:
+                print("   ❌ Incorrect category or events structure")
+                success = False
+        return success
+
+    def test_category_bayram(self):
+        """Test GET /api/calendar/category/bayram - Bayramlar"""
+        success, response = self.run_test(
+            "Calendar Category - Bayram",
+            "GET",
+            "calendar/category/bayram",
+            200
+        )
+        if success:
+            category = response.get('category')
+            events = response.get('events', [])
+            total = response.get('total', 0)
+            
+            print(f"   Category: {category}")
+            print(f"   Found {len(events)} bayram events (total: {total})")
+            
+            if category == "bayram" and isinstance(events, list):
+                print("   ✅ Correct category and events structure")
+                if events:
+                    bayram_names = [event.get('name') for event in events]
+                    print(f"   Bayram events: {', '.join(bayram_names)}")
+            else:
+                print("   ❌ Incorrect category or events structure")
+                success = False
+        return success
+
+    def test_category_ozel_gun(self):
+        """Test GET /api/calendar/category/ozel_gun - Özel günler"""
+        success, response = self.run_test(
+            "Calendar Category - Özel Günler",
+            "GET",
+            "calendar/category/ozel_gun",
+            200
+        )
+        if success:
+            category = response.get('category')
+            events = response.get('events', [])
+            total = response.get('total', 0)
+            
+            print(f"   Category: {category}")
+            print(f"   Found {len(events)} özel gün events (total: {total})")
+            
+            if category == "ozel_gun" and isinstance(events, list):
+                print("   ✅ Correct category and events structure")
+                if events:
+                    ozel_gun_names = [event.get('name') for event in events]
+                    print(f"   Özel gün events: {', '.join(ozel_gun_names)}")
+            else:
+                print("   ❌ Incorrect category or events structure")
+                success = False
+        return success
+
+    def test_hijri_months(self):
+        """Test GET /api/calendar/months - Hicri aylar hakkında bilgi"""
+        success, response = self.run_test(
+            "Hijri Months API",
+            "GET",
+            "calendar/months",
+            200
+        )
+        if success:
+            months = response.get('months', {})
+            source = response.get('source')
+            
+            print(f"   Source: {source}")
+            print(f"   Found {len(months)} hijri months")
+            
+            if isinstance(months, dict) and len(months) == 12:
+                print("   ✅ All 12 hijri months present")
+                expected_months = ['Muharrem', 'Safer', 'Rebiülevvel', 'Rebiülahir', 
+                                 'Cemaziyelevvel', 'Cemaziyelahir', 'Recep', 'Şaban', 
+                                 'Ramazan', 'Şevval', 'Zilkade', 'Zilhicce']
+                missing_months = [month for month in expected_months if month not in months]
+                
+                if not missing_months:
+                    print("   ✅ All expected hijri months found")
+                else:
+                    print(f"   ❌ Missing months: {missing_months}")
+                    success = False
+            else:
+                print(f"   ❌ Expected 12 months, found {len(months) if isinstance(months, dict) else 0}")
+                success = False
+        return success
+
 def main():
     print("🚀 Starting İlmihal Asistanı API Tests")
     print("=" * 50)
