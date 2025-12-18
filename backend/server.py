@@ -4,6 +4,7 @@ from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
+import json
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
@@ -11,14 +12,25 @@ import uuid
 from datetime import datetime, timezone
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 import base64
-from diyanet_data import DIYANET_QA_DATABASE
-from diyanet_extended_data import EXTENDED_DIYANET_QA
-from diyanet_complete_data import COMPLETE_DIYANET_QA
-from diyanet_comprehensive import COMPREHENSIVE_DIYANET_QA
 import difflib
 
-# Tüm Diyanet sorularını birleştir
-ALL_DIYANET_QA = DIYANET_QA_DATABASE + EXTENDED_DIYANET_QA + COMPLETE_DIYANET_QA + COMPREHENSIVE_DIYANET_QA
+ROOT_DIR = Path(__file__).parent
+
+# İlmihal veritabanını JSON dosyasından yükle
+def load_ilmihal_database():
+    """Kapsamlı İlmihal veritabanını JSON dosyasından yükle"""
+    json_path = ROOT_DIR / 'ilmihal_complete.json'
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            return data.get('ilmihal_database', [])
+    except Exception as e:
+        logging.error(f"İlmihal JSON yüklenemedi: {e}")
+        return []
+
+# Tüm İlmihal sorularını yükle
+ALL_DIYANET_QA = load_ilmihal_database()
+logging.info(f"İlmihal veritabanı yüklendi: {len(ALL_DIYANET_QA)} soru")
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
