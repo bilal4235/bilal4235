@@ -177,6 +177,54 @@ backend:
         agent: "testing"
         comment: "❌ Text-to-Speech API çalışmıyor. 520 hatası alınıyor: 'Text-to-Speech şu anda kullanılamıyor. Lütfen tarayıcınızın sesli okuma özelliğini kullanın.' OpenAI TTS API anahtarı sorunu olabilir."
 
+  - task: "Quiz Kategorileri API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Quiz kategorileri API mükemmel çalışıyor. GET /api/quiz/categories 7 kategori döndürüyor: Namaz (55 soru), Gunluk (45 soru), Dua (29 soru), Oruc (26 soru), Hac (24 soru), Zekat (23 soru), İman (17 soru). Tüm kategoriler soru sayıları ile birlikte geliyor."
+
+  - task: "Quiz Soruları API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Quiz soruları API tam çalışıyor. GET /api/quiz?count=5 karışık 5 soru, GET /api/quiz?category=namaz&count=3 namaz kategorisinden 3 soru, GET /api/quiz?category=iman&count=3 iman kategorisinden 3 soru döndürüyor. Her soruda 4 seçenek, doğru cevap indexi (0-3), açıklama ve kaynak mevcut."
+
+  - task: "Quiz Gönderme API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Quiz gönderme API mükemmel çalışıyor. POST /api/quiz/submit quiz sonuçlarını alıyor ve doğru puan hesaplıyor. Score, total, percentage değerleri doğru şekilde döndürülüyor. Test: 1/2 soru doğru = 50.0% hesaplaması başarılı."
+
+  - task: "Quiz Geçmişi API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Quiz geçmişi API çalışıyor. GET /api/quiz/history quiz sonuçları geçmişini döndürüyor. Test sonrası 1 quiz sonucu geçmişte görüldü: 1/2 (50.0%) skoru ile."
+
 frontend:
   - task: "Ana Sayfa ve Arama"
     implemented: true
