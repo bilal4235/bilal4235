@@ -221,3 +221,5 @@ agent_communication:
     message: "İlmihal veritabanı 85 sorudan 219 soruya genişletildi. JSON formatı kullanıldı. Yeni kategoriler eklendi (iman). Backend ve frontend çalışıyor. Kapsamlı test gerekli."
   - agent: "testing"
     message: "✅ İlmihal Asistanı backend API'leri kapsamlı test edildi. 21/22 test başarılı. Ana özellikler (veritabanı, autocomplete, soru-cevap, kategoriler) mükemmel çalışıyor. Sadece Text-to-Speech API'si çalışmıyor (OpenAI TTS anahtar sorunu). Diyanet kaynaklı cevaplar doğru şekilde sunuluyor."
+  - agent: "main"
+    message: "Mini Quiz özelliği eklendi. Backend API'leri: GET /api/quiz, POST /api/quiz/submit, GET /api/quiz/history, GET /api/quiz/categories. Frontend Quiz.jsx sayfası oluşturuldu. Kategori seçimi, soru-cevap, açıklama ve sonuç ekranları çalışıyor."
