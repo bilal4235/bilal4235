@@ -159,7 +159,8 @@ async def init_categories():
         {"id": "zekat", "name": "Zekât", "name_en": "Zakat", "description": "Mal, fitre ve sadaka", "icon": "💰"},
         {"id": "hac", "name": "Hac & Umre", "name_en": "Hajj & Umrah", "description": "Hac ve umre ibadetleri", "icon": "🕋"},
         {"id": "gunluk", "name": "Günlük Hayat", "name_en": "Daily Life", "description": "Adab ve günlük yaşam", "icon": "📖"},
-        {"id": "dua", "name": "Dua ve Zikir", "name_en": "Prayers & Dhikr", "description": "Dualar ve zikir çeşitleri", "icon": "🤲"}
+        {"id": "dua", "name": "Dua ve Zikir", "name_en": "Prayers & Dhikr", "description": "Dualar ve zikir çeşitleri", "icon": "🤲"},
+        {"id": "iman", "name": "İman Esasları", "name_en": "Faith Essentials", "description": "İmanın şartları ve akaid", "icon": "✨"}
     ]
     
     existing = await db.categories.count_documents({})
