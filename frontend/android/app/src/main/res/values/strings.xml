@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">İlmihal Asistanı</string>
+    <string name="title_activity_main">İlmihal Asistanı</string>
+    <string name="package_name">com.ilmihal.asistani</string>
+    <string name="custom_url_scheme">com.ilmihal.asistani</string>
+</resources>
