@@ -429,10 +429,25 @@ def main():
     
     tester = IlmihalAPITester()
     
-    # Run all tests
+    # Run all tests - prioritizing İlmihal specific tests
     tests = [
         tester.test_root_endpoint,
+        # İlmihal Database Tests
+        tester.test_diyanet_questions_total,
+        tester.test_diyanet_questions_namaz_category,
+        tester.test_diyanet_questions_iman_category,
+        # Autocomplete Tests
+        tester.test_autocomplete_namaz,
+        tester.test_autocomplete_iman,
+        tester.test_autocomplete_oruc,
+        tester.test_autocomplete_nafile,
+        # Question-Answer Tests
+        tester.test_ask_namaz_farzlari,
+        tester.test_ask_iman_sartlari,
+        tester.test_ask_oruc_farz,
+        # Category Tests
         tester.test_get_categories,
+        # Other functionality tests
         tester.test_ask_question,
         tester.test_get_history,
         tester.test_add_favorite,
