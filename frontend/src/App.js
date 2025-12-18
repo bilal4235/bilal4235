@@ -9,6 +9,7 @@ import Favorites from './pages/Favorites';
 import Reminders from './pages/Reminders';
 import Settings from './pages/Settings';
 import Quiz from './pages/Quiz';
+import Calendar from './pages/Calendar';
 import { Toaster } from '@/components/ui/sonner';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -28,6 +29,7 @@ function App() {
           <Route path="/reminders" element={<Reminders />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/quiz" element={<Quiz />} />
+          <Route path="/calendar" element={<Calendar />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="top-center" richColors />
