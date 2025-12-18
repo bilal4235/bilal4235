@@ -642,13 +642,20 @@ def main():
     
     tester = IlmihalAPITester()
     
-    # Run all tests - prioritizing İlmihal specific tests
+    # Run all tests - prioritizing İlmihal specific tests and Quiz tests
     tests = [
         tester.test_root_endpoint,
         # İlmihal Database Tests
         tester.test_diyanet_questions_total,
         tester.test_diyanet_questions_namaz_category,
         tester.test_diyanet_questions_iman_category,
+        # Quiz API Tests (NEW FEATURE)
+        tester.test_quiz_categories,
+        tester.test_quiz_random_questions,
+        tester.test_quiz_namaz_category,
+        tester.test_quiz_iman_category,
+        tester.test_quiz_submit,
+        tester.test_quiz_history,
         # Autocomplete Tests
         tester.test_autocomplete_namaz,
         tester.test_autocomplete_iman,
