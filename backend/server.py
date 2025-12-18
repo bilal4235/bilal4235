@@ -422,6 +422,165 @@ async def text_to_speech(request: TextToSpeechRequest):
         # Using browser-based speech synthesis as fallback
         raise HTTPException(status_code=503, detail="Text-to-Speech şu anda kullanılamıyor. Lütfen tarayıcınızın sesli okuma özelliğini kullanın.")
 
+# ==================== QUIZ API ====================
+import random
+
+def generate_wrong_answers(correct_answer: str, all_answers: List[str], count: int = 3) -> List[str]:
+    """Doğru cevaba benzer yanlış seçenekler oluştur"""
+    wrong_options = [a for a in all_answers if a != correct_answer]
+    random.shuffle(wrong_options)
+    return wrong_options[:count]
+
+def create_quiz_from_qa(qa_list: List[dict], num_questions: int = 10) -> List[QuizQuestion]:
+    """İlmihal veritabanından quiz soruları oluştur"""
+    import random
+    
+    # Yeterli soru var mı kontrol et
+    if len(qa_list) < num_questions:
+        num_questions = len(qa_list)
+    
+    # Rastgele sorular seç
+    selected_questions = random.sample(qa_list, num_questions)
+    quiz_questions = []
+    
+    # Tüm cevapları topla (yanlış seçenek havuzu için)
+    all_answers = [qa['answer'][:100] for qa in ALL_DIYANET_QA]
+    
+    for qa in selected_questions:
+        correct_answer = qa['answer'][:150] + "..." if len(qa['answer']) > 150 else qa['answer']
+        
+        # Yanlış seçenekler oluştur
+        wrong_answers = []
+        same_category_qas = [q for q in ALL_DIYANET_QA if q['category'] == qa['category'] and q['question'] != qa['question']]
+        
+        if len(same_category_qas) >= 3:
+            wrong_qas = random.sample(same_category_qas, 3)
+            wrong_answers = [q['answer'][:150] + "..." if len(q['answer']) > 150 else q['answer'] for q in wrong_qas]
+        else:
+            # Farklı kategorilerden al
+            other_qas = [q for q in ALL_DIYANET_QA if q['question'] != qa['question']]
+            wrong_qas = random.sample(other_qas, min(3, len(other_qas)))
+            wrong_answers = [q['answer'][:150] + "..." if len(q['answer']) > 150 else q['answer'] for q in wrong_qas]
+        
+        # Seçenekleri karıştır
+        options = [correct_answer] + wrong_answers[:3]
+        random.shuffle(options)
+        correct_index = options.index(correct_answer)
+        
+        quiz_questions.append(QuizQuestion(
+            id=str(uuid.uuid4()),
+            question=qa['question'],
+            options=options,
+            correct_answer=correct_index,
+            category=qa['category'],
+            explanation=qa['answer'],
+            source=qa.get('source', 'Diyanet İşleri Başkanlığı İlmihali')
+        ))
+    
+    return quiz_questions
+
+@api_router.get("/quiz", response_model=QuizResponse)
+async def get_quiz(category: Optional[str] = None, count: int = 10):
+    """Quiz soruları getir"""
+    try:
+        if category:
+            qa_list = [qa for qa in ALL_DIYANET_QA if qa['category'] == category]
+        else:
+            qa_list = ALL_DIYANET_QA
+        
+        if len(qa_list) == 0:
+            raise HTTPException(status_code=404, detail="Bu kategori için soru bulunamadı")
+        
+        questions = create_quiz_from_qa(qa_list, min(count, len(qa_list)))
+        
+        return QuizResponse(
+            questions=questions,
+            total=len(questions),
+            category=category
+        )
+    except Exception as e:
+        logging.error(f"Error in get_quiz: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.post("/quiz/submit")
+async def submit_quiz(submission: QuizSubmit):
+    """Quiz sonuçlarını kaydet ve puanla"""
+    try:
+        correct_count = 0
+        results = []
+        
+        for answer in submission.answers:
+            question_id = answer.get('question_id')
+            selected = answer.get('selected', -1)
+            correct = answer.get('correct_answer', -1)
+            
+            is_correct = selected == correct
+            if is_correct:
+                correct_count += 1
+            
+            results.append({
+                "question_id": question_id,
+                "selected": selected,
+                "correct": correct,
+                "is_correct": is_correct
+            })
+        
+        total = len(submission.answers)
+        percentage = (correct_count / total * 100) if total > 0 else 0
+        
+        # Sonucu kaydet
+        result_doc = {
+            "id": str(uuid.uuid4()),
+            "score": correct_count,
+            "total": total,
+            "percentage": round(percentage, 1),
+            "category": submission.category,
+            "answers": results,
+            "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+        
+        await db.quiz_results.insert_one(result_doc)
+        
+        return {
+            "score": correct_count,
+            "total": total,
+            "percentage": round(percentage, 1),
+            "results": results,
+            "message": f"Tebrikler! {total} sorudan {correct_count} tanesini doğru cevapladınız."
+        }
+    except Exception as e:
+        logging.error(f"Error in submit_quiz: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/quiz/history")
+async def get_quiz_history(limit: int = 10):
+    """Quiz geçmişini getir"""
+    try:
+        results = await db.quiz_results.find({}, {"_id": 0}).sort("timestamp", -1).to_list(limit)
+        return {"results": results}
+    except Exception as e:
+        logging.error(f"Error in get_quiz_history: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+@api_router.get("/quiz/categories")
+async def get_quiz_categories():
+    """Quiz için mevcut kategorileri ve soru sayılarını getir"""
+    try:
+        category_counts = {}
+        for qa in ALL_DIYANET_QA:
+            cat = qa['category']
+            category_counts[cat] = category_counts.get(cat, 0) + 1
+        
+        categories = [
+            {"id": cat, "name": cat.title(), "question_count": count}
+            for cat, count in category_counts.items()
+        ]
+        
+        return {"categories": sorted(categories, key=lambda x: -x['question_count'])}
+    except Exception as e:
+        logging.error(f"Error in get_quiz_categories: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Include the router in the main app
 app.include_router(api_router)
 
