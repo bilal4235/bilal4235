@@ -225,6 +225,66 @@ backend:
         agent: "testing"
         comment: "✅ Quiz geçmişi API çalışıyor. GET /api/quiz/history quiz sonuçları geçmişini döndürüyor. Test sonrası 1 quiz sonucu geçmişte görüldü: 1/2 (50.0%) skoru ile."
 
+  - task: "İslami Takvim Ana API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ İslami Takvim Ana API mükemmel çalışıyor. GET /api/calendar tüm takvim verilerini getiriyor: Year: 2025, Hijri Year: 1446-1447, Source: Diyanet İşleri Başkanlığı, Total Events: 13. Tüm gerekli alanlar mevcut ve doğru."
+
+  - task: "Yaklaşan Etkinlikler API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Yaklaşan Etkinlikler API çalışıyor. GET /api/calendar/upcoming?limit=5 gerekli alanları (days_until, is_today, is_tomorrow, is_this_week) döndürüyor. Şu anda yaklaşan etkinlik yok (geçmiş tarihler)."
+
+  - task: "Etkinlik Detay API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Etkinlik Detay API mükemmel çalışıyor. GET /api/calendar/event/mirac ve GET /api/calendar/event/ramazan_bayrami tüm gerekli alanları döndürüyor: name, date, hijri_date, description, practices. Miraç Kandili: 2025-01-27 (27 Recep 1446), Ramazan Bayramı: 2025-03-30 (1-3 Şevval 1446)."
+
+  - task: "Kategori API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Kategori API mükemmel çalışıyor. GET /api/calendar/category/kandil (5 kandil), GET /api/calendar/category/bayram (2 bayram), GET /api/calendar/category/ozel_gun (6 özel gün) doğru kategorileri döndürüyor. Kandiller: Regaib, Miraç, Berat, Kadir, Mevlid. Bayramlar: Ramazan, Kurban."
+
+  - task: "Hicri Aylar API"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "✅ Hicri Aylar API mükemmel çalışıyor. GET /api/calendar/months tüm 12 hicri ayı ve açıklamalarını döndürüyor. Kaynak: Diyanet İşleri Başkanlığı. Muharrem'den Zilhicce'ye kadar tüm aylar mevcut."
+
 frontend:
   - task: "Ana Sayfa ve Arama"
     implemented: true
