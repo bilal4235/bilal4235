@@ -223,3 +223,5 @@ agent_communication:
     message: "✅ İlmihal Asistanı backend API'leri kapsamlı test edildi. 21/22 test başarılı. Ana özellikler (veritabanı, autocomplete, soru-cevap, kategoriler) mükemmel çalışıyor. Sadece Text-to-Speech API'si çalışmıyor (OpenAI TTS anahtar sorunu). Diyanet kaynaklı cevaplar doğru şekilde sunuluyor."
   - agent: "main"
     message: "Mini Quiz özelliği eklendi. Backend API'leri: GET /api/quiz, POST /api/quiz/submit, GET /api/quiz/history, GET /api/quiz/categories. Frontend Quiz.jsx sayfası oluşturuldu. Kategori seçimi, soru-cevap, açıklama ve sonuç ekranları çalışıyor."
+  - agent: "testing"
+    message: "✅ Mini Quiz özelliği kapsamlı test edildi. Tüm Quiz API'leri mükemmel çalışıyor: Quiz kategorileri (7 kategori, soru sayıları), rastgele sorular (5 soru, 4 seçenek, doğru cevap indexi), kategori bazlı sorular (namaz: 55 soru, iman: 17 soru), quiz gönderme (puan hesaplama), quiz geçmişi. 28/29 test başarılı. Sadece Text-to-Speech API çalışmıyor (OpenAI TTS anahtar sorunu)."
