@@ -239,6 +239,190 @@ class IlmihalAPITester:
             print(f"   Audio base64 length: {len(response['audio_base64'])}")
         return success
 
+    def test_diyanet_questions_total(self):
+        """Test total Diyanet questions count (should be 219)"""
+        success, response = self.run_test(
+            "Diyanet Questions Total Count",
+            "GET",
+            "diyanet-questions",
+            200
+        )
+        if success:
+            total = response.get('total', 0)
+            if total == 219:
+                print(f"   ✅ Correct total: {total} questions")
+            else:
+                print(f"   ❌ Expected 219 questions, found {total}")
+                success = False
+        return success
+
+    def test_diyanet_questions_namaz_category(self):
+        """Test Diyanet questions in namaz category"""
+        success, response = self.run_test(
+            "Diyanet Questions - Namaz Category",
+            "GET",
+            "diyanet-questions?category=namaz",
+            200
+        )
+        if success:
+            total = response.get('total', 0)
+            questions = response.get('questions', [])
+            print(f"   Found {total} questions in 'namaz' category")
+            if total > 0:
+                print(f"   Sample question: {questions[0].get('question', 'N/A')[:50]}...")
+        return success
+
+    def test_diyanet_questions_iman_category(self):
+        """Test Diyanet questions in iman category"""
+        success, response = self.run_test(
+            "Diyanet Questions - İman Category",
+            "GET",
+            "diyanet-questions?category=iman",
+            200
+        )
+        if success:
+            total = response.get('total', 0)
+            questions = response.get('questions', [])
+            print(f"   Found {total} questions in 'iman' category")
+            if total > 0:
+                print(f"   Sample question: {questions[0].get('question', 'N/A')[:50]}...")
+        return success
+
+    def test_autocomplete_namaz(self):
+        """Test autocomplete with 'namaz' query"""
+        success, response = self.run_test(
+            "Autocomplete - Namaz Query",
+            "GET",
+            "autocomplete?query=namaz",
+            200
+        )
+        if success:
+            suggestions = response.get('suggestions', [])
+            print(f"   Found {len(suggestions)} suggestions for 'namaz'")
+            if suggestions:
+                print(f"   First suggestion: {suggestions[0].get('question', 'N/A')[:50]}...")
+        return success
+
+    def test_autocomplete_iman(self):
+        """Test autocomplete with 'iman' query"""
+        success, response = self.run_test(
+            "Autocomplete - İman Query",
+            "GET",
+            "autocomplete?query=iman",
+            200
+        )
+        if success:
+            suggestions = response.get('suggestions', [])
+            print(f"   Found {len(suggestions)} suggestions for 'iman'")
+            if suggestions:
+                print(f"   First suggestion: {suggestions[0].get('question', 'N/A')[:50]}...")
+        return success
+
+    def test_autocomplete_oruc(self):
+        """Test autocomplete with 'oruç' query"""
+        success, response = self.run_test(
+            "Autocomplete - Oruç Query",
+            "GET",
+            "autocomplete?query=oruç",
+            200
+        )
+        if success:
+            suggestions = response.get('suggestions', [])
+            print(f"   Found {len(suggestions)} suggestions for 'oruç'")
+            if suggestions:
+                print(f"   First suggestion: {suggestions[0].get('question', 'N/A')[:50]}...")
+        return success
+
+    def test_autocomplete_nafile(self):
+        """Test autocomplete with 'nafile' query"""
+        success, response = self.run_test(
+            "Autocomplete - Nafile Query",
+            "GET",
+            "autocomplete?query=nafile",
+            200
+        )
+        if success:
+            suggestions = response.get('suggestions', [])
+            print(f"   Found {len(suggestions)} suggestions for 'nafile'")
+            if suggestions:
+                print(f"   First suggestion: {suggestions[0].get('question', 'N/A')[:50]}...")
+        return success
+
+    def test_ask_namaz_farzlari(self):
+        """Test asking about namaz obligations"""
+        test_question = "Namazın farzları nelerdir?"
+        success, response = self.run_test(
+            "Ask Question - Namazın Farzları",
+            "POST",
+            "ask",
+            200,
+            data={"question": test_question}
+        )
+        if success:
+            answer = response.get('answer', '')
+            if answer:
+                print(f"   Answer received (length: {len(answer)} chars)")
+                print(f"   Answer preview: {answer[:100]}...")
+                # Check if it's from Diyanet source
+                if "📚 Kaynak:" in answer:
+                    print("   ✅ Answer from Diyanet source")
+                elif "🤖 AI Asistan" in answer:
+                    print("   ℹ️ Answer from AI assistant")
+            else:
+                print("   ❌ No answer received")
+                success = False
+        return success
+
+    def test_ask_iman_sartlari(self):
+        """Test asking about faith conditions"""
+        test_question = "İmanın şartları nelerdir?"
+        success, response = self.run_test(
+            "Ask Question - İmanın Şartları",
+            "POST",
+            "ask",
+            200,
+            data={"question": test_question}
+        )
+        if success:
+            answer = response.get('answer', '')
+            if answer:
+                print(f"   Answer received (length: {len(answer)} chars)")
+                print(f"   Answer preview: {answer[:100]}...")
+                # Check if it's from Diyanet source
+                if "📚 Kaynak:" in answer:
+                    print("   ✅ Answer from Diyanet source")
+                elif "🤖 AI Asistan" in answer:
+                    print("   ℹ️ Answer from AI assistant")
+            else:
+                print("   ❌ No answer received")
+                success = False
+        return success
+
+    def test_ask_oruc_farz(self):
+        """Test asking about fasting obligations"""
+        test_question = "Oruç tutmak kimlere farzdır?"
+        success, response = self.run_test(
+            "Ask Question - Oruç Farzı",
+            "POST",
+            "ask",
+            200,
+            data={"question": test_question}
+        )
+        if success:
+            answer = response.get('answer', '')
+            if answer:
+                print(f"   Answer received (length: {len(answer)} chars)")
+                print(f"   Answer preview: {answer[:100]}...")
+                # Check if it's from Diyanet source
+                if "📚 Kaynak:" in answer:
+                    print("   ✅ Answer from Diyanet source")
+                elif "🤖 AI Asistan" in answer:
+                    print("   ℹ️ Answer from AI assistant")
+            else:
+                print("   ❌ No answer received")
+                success = False
+        return success
+
 def main():
     print("🚀 Starting İlmihal Asistanı API Tests")
     print("=" * 50)
