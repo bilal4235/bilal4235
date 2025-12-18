@@ -1,0 +1,155 @@
+{
+  "calendar_data": {
+    "year": 2025,
+    "hijri_year": "1446-1447",
+    "source": "Diyanet İşleri Başkanlığı",
+    "important_dates": [
+      {
+        "id": "regaib",
+        "name": "Regaib Kandili",
+        "date": "2025-01-02",
+        "hijri_date": "2 Recep 1446",
+        "description": "Recep ayının ilk Cuma gecesi. Hz. Peygamber'in anne rahmine düştüğü gece olarak kabul edilir. Bu gecede ibadet, dua ve istiğfar ile meşgul olunur.",
+        "practices": ["Namaz kılmak", "Kur'an okumak", "Dua ve istiğfar etmek", "Sadaka vermek"],
+        "category": "kandil",
+        "icon": "🌙"
+      },
+      {
+        "id": "mirac",
+        "name": "Miraç Kandili",
+        "date": "2025-01-27",
+        "hijri_date": "27 Recep 1446",
+        "description": "Hz. Peygamber'in Mescid-i Haram'dan Mescid-i Aksa'ya (İsra), oradan da göklere yükseldiği (Miraç) mübarek gece. Beş vakit namaz bu gece farz kılınmıştır.",
+        "practices": ["Namaz kılmak", "Kur'an okumak", "İsra ve Miraç olayını hatırlamak", "Tefekkür etmek"],
+        "category": "kandil",
+        "icon": "✨"
+      },
+      {
+        "id": "berat",
+        "name": "Berat Kandili",
+        "date": "2025-02-13",
+        "hijri_date": "15 Şaban 1446",
+        "description": "Günahların affedildiği, kulların bir yıllık kaderlerinin belirlendiği mübarek gece. 'Berat' kurtuluş demektir. Bu gece tövbe ve istiğfar ile geçirilir.",
+        "practices": ["Tövbe ve istiğfar etmek", "Namaz kılmak", "Kur'an okumak", "Kabir ziyareti yapmak"],
+        "category": "kandil",
+        "icon": "🌟"
+      },
+      {
+        "id": "uc_aylar",
+        "name": "Üç Aylar Başlangıcı",
+        "date": "2024-12-31",
+        "hijri_date": "1 Recep 1446",
+        "description": "Recep, Şaban ve Ramazan aylarından oluşan mübarek üç ayların başlangıcı. Bu aylarda ibadet ve hayırlar artırılır.",
+        "practices": ["Oruç tutmak", "Sadaka vermek", "Kur'an okumak", "Nafile namaz kılmak"],
+        "category": "ozel_gun",
+        "icon": "📿"
+      },
+      {
+        "id": "ramazan_baslangic",
+        "name": "Ramazan Ayı Başlangıcı",
+        "date": "2025-03-01",
+        "hijri_date": "1 Ramazan 1446",
+        "description": "Kur'an-ı Kerim'in indirildiği, bin aydan hayırlı Kadir Gecesi'nin bulunduğu mübarek Ramazan ayının başlangıcı. Oruç ibadetinin başladığı gün.",
+        "practices": ["Oruç tutmak", "Teravih namazı kılmak", "Kur'an okumak", "İftar vermek", "Sadaka vermek"],
+        "category": "ozel_gun",
+        "icon": "🌙"
+      },
+      {
+        "id": "kadir",
+        "name": "Kadir Gecesi",
+        "date": "2025-03-27",
+        "hijri_date": "27 Ramazan 1446",
+        "description": "Kur'an-ı Kerim'in indirilmeye başlandığı, bin aydan hayırlı olan mübarek gece. 'Kadir Gecesi bin aydan hayırlıdır' (Kadir Suresi). Bu gece ibadet ile ihya edilir.",
+        "practices": ["Geceyi ibadetle geçirmek", "Kur'an okumak", "Namaz kılmak", "Dua ve istiğfar etmek", "İtikâfa girmek"],
+        "category": "kandil",
+        "icon": "📖"
+      },
+      {
+        "id": "ramazan_bayrami",
+        "name": "Ramazan Bayramı (Şeker Bayramı)",
+        "date": "2025-03-30",
+        "end_date": "2025-04-01",
+        "hijri_date": "1-3 Şevval 1446",
+        "description": "Bir aylık Ramazan orucunun ardından kutlanan üç günlük bayram. Fitre sadakası verilir, bayram namazı kılınır, akraba ve komşular ziyaret edilir.",
+        "practices": ["Bayram namazı kılmak", "Fitre vermek", "Akraba ziyareti yapmak", "Mezarlık ziyareti yapmak", "Bayramlaşmak"],
+        "category": "bayram",
+        "icon": "🎉"
+      },
+      {
+        "id": "arefe_ramazan",
+        "name": "Ramazan Bayramı Arefesi",
+        "date": "2025-03-29",
+        "hijri_date": "29 Ramazan 1446",
+        "description": "Ramazan Bayramı'ndan önceki gün. Bu gün hazırlıklar yapılır, fitre verilir.",
+        "practices": ["Fitre vermek", "Bayram hazırlığı yapmak", "Dua etmek"],
+        "category": "ozel_gun",
+        "icon": "🌅"
+      },
+      {
+        "id": "arefe_kurban",
+        "name": "Kurban Bayramı Arefesi",
+        "date": "2025-06-05",
+        "hijri_date": "9 Zilhicce 1446",
+        "description": "Kurban Bayramı'ndan önceki gün. Hacıların Arafat'ta vakfe yaptığı gündür. Arefe günü oruç tutmak çok faziletlidir.",
+        "practices": ["Arefe orucu tutmak", "Dua etmek", "Tekbir getirmek", "Kurban hazırlığı yapmak"],
+        "category": "ozel_gun",
+        "icon": "🌅"
+      },
+      {
+        "id": "kurban_bayrami",
+        "name": "Kurban Bayramı",
+        "date": "2025-06-06",
+        "end_date": "2025-06-09",
+        "hijri_date": "10-13 Zilhicce 1446",
+        "description": "Hz. İbrahim'in oğlu İsmail'i kurban etme hadisesinin anısına kutlanan dört günlük bayram. Hac ibadeti bu günlerde tamamlanır, kurban kesilir.",
+        "practices": ["Bayram namazı kılmak", "Kurban kesmek", "Tekbir getirmek", "Akraba ziyareti yapmak", "Et dağıtmak"],
+        "category": "bayram",
+        "icon": "🐑"
+      },
+      {
+        "id": "hicri_yilbasi",
+        "name": "Hicri Yılbaşı (1 Muharrem)",
+        "date": "2025-06-26",
+        "hijri_date": "1 Muharrem 1447",
+        "description": "Hicri takvimde yeni yılın başlangıcı. Hz. Peygamber'in Mekke'den Medine'ye hicretinin yıldönümü. İslam tarihinin başlangıç noktası.",
+        "practices": ["Hicret'i anmak", "Dua etmek", "Muhasebe yapmak", "Muharrem orucu tutmak"],
+        "category": "ozel_gun",
+        "icon": "📅"
+      },
+      {
+        "id": "asure",
+        "name": "Aşure Günü (10 Muharrem)",
+        "date": "2025-07-05",
+        "hijri_date": "10 Muharrem 1447",
+        "description": "Hz. Musa'nın kavmiyle birlikte Firavun'dan kurtulduğu gün. Hz. Nuh'un gemisinin Cudi Dağı'na oturduğu gün. Aşure orucu tutulur.",
+        "practices": ["Aşure orucu tutmak (9-10 veya 10-11)", "Aşure tatlısı yapmak", "Sadaka vermek", "Dua etmek"],
+        "category": "ozel_gun",
+        "icon": "🍲"
+      },
+      {
+        "id": "mevlid",
+        "name": "Mevlid Kandili",
+        "date": "2025-09-04",
+        "hijri_date": "12 Rebiülevvel 1447",
+        "description": "Hz. Peygamber Muhammed Mustafa'nın (s.a.v.) dünyaya teşrif ettiği mübarek gece. Mevlid-i Şerif okunur, Peygamberimizin hayatı anlatılır.",
+        "practices": ["Mevlid okumak/dinlemek", "Salavat getirmek", "Siyer okumak", "Sadaka vermek"],
+        "category": "kandil",
+        "icon": "🕌"
+      }
+    ],
+    "monthly_events": {
+      "Muharrem": "Hicri yılın ilk ayı. Aşure günü bu aydadır. Oruç tutmak faziletlidir.",
+      "Safer": "Hicri takvimin ikinci ayı.",
+      "Rebiülevvel": "Hz. Peygamber'in doğduğu ay. Mevlid Kandili bu aydadır.",
+      "Rebiülahir": "Hicri takvimin dördüncü ayı.",
+      "Cemaziyelevvel": "Hicri takvimin beşinci ayı.",
+      "Cemaziyelahir": "Hicri takvimin altıncı ayı.",
+      "Recep": "Üç ayların ilki. Regaib ve Miraç Kandili bu aydadır.",
+      "Şaban": "Üç ayların ikincisi. Berat Kandili bu aydadır.",
+      "Ramazan": "Oruç ayı. Kur'an bu ayda indirilmiştir. Kadir Gecesi bu aydadır.",
+      "Şevval": "Ramazan Bayramı bu ayın başında kutlanır. 6 gün oruç tutmak sünnettir.",
+      "Zilkade": "Hac mevsiminin başladığı ay.",
+      "Zilhicce": "Kurban Bayramı ve Hac bu aydadır. İlk 10 günü çok faziletlidir."
+    }
+  }
+}
