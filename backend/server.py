@@ -151,6 +151,35 @@ class TextToSpeechRequest(BaseModel):
 class TextToSpeechResponse(BaseModel):
     audio_base64: str
 
+# Quiz Models
+class QuizQuestion(BaseModel):
+    id: str
+    question: str
+    options: List[str]
+    correct_answer: int  # 0-3 arası index
+    category: str
+    explanation: str
+    source: str
+
+class QuizResponse(BaseModel):
+    questions: List[QuizQuestion]
+    total: int
+    category: Optional[str] = None
+
+class QuizResult(BaseModel):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    score: int
+    total: int
+    percentage: float
+    category: Optional[str] = None
+    answers: List[dict]
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+
+class QuizSubmit(BaseModel):
+    answers: List[dict]  # [{"question_id": "...", "selected": 0}]
+    category: Optional[str] = None
+
 # Initialize categories
 async def init_categories():
     categories = [
