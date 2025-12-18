@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, BookOpen, Heart, Bell, Settings as SettingsIcon } from 'lucide-react';
+import { Search, BookOpen, Heart, Bell, Settings as SettingsIcon, Trophy } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { API, axios } from '../App';
