@@ -32,7 +32,6 @@ def load_ilmihal_database():
 ALL_DIYANET_QA = load_ilmihal_database()
 logging.info(f"İlmihal veritabanı yüklendi: {len(ALL_DIYANET_QA)} soru")
 
-ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection
