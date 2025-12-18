@@ -116,6 +116,9 @@ backend:
       - working: true
         agent: "main"
         comment: "219 soru JSON formatında yüklendi. Python modülü yerine JSON kullanıldı."
+      - working: true
+        agent: "testing"
+        comment: "✅ İlmihal veritabanı mükemmel çalışıyor. Toplam 219 soru doğrulandı. Namaz kategorisinde 55 soru, İman kategorisinde 17 soru bulundu. GET /api/diyanet-questions API'si başarıyla çalışıyor."
 
   - task: "Autocomplete API"
     implemented: true
