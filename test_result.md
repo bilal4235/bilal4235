@@ -153,11 +153,14 @@ backend:
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "7 kategori mevcut: namaz, oruc, zekat, hac, gunluk, dua, iman"
+      - working: true
+        agent: "testing"
+        comment: "✅ Kategori API doğru çalışıyor. 7 kategori bulundu: namaz, oruc, zekat, hac, gunluk, dua, iman. Yeni eklenen 'iman' kategorisi mevcut."
 
 frontend:
   - task: "Ana Sayfa ve Arama"
