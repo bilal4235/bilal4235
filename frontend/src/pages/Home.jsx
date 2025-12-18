@@ -186,13 +186,13 @@ const Home = () => {
             <BookOpen size={24} />
             <span>Ana Sayfa</span>
           </div>
+          <div className="nav-item" data-testid="nav-calendar" onClick={() => navigate('/calendar')}>
+            <Calendar size={24} />
+            <span>Takvim</span>
+          </div>
           <div className="nav-item" data-testid="nav-quiz" onClick={() => navigate('/quiz')}>
             <Trophy size={24} />
             <span>Quiz</span>
-          </div>
-          <div className="nav-item" data-testid="nav-favorites" onClick={() => navigate('/favorites')}>
-            <Heart size={24} />
-            <span>Favoriler</span>
           </div>
           <div className="nav-item" data-testid="nav-settings" onClick={() => navigate('/settings')}>
             <SettingsIcon size={24} />
