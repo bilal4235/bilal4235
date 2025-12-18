@@ -1,0 +1,898 @@
+{
+  "ilmihal_database": [
+    {
+      "category": "namaz",
+      "question": "Namaz nedir ve farz olmasının şartları nelerdir?",
+      "answer": "Namaz, belirli rükünlerden oluşan, tekbirle başlayıp selamla biten bir ibadettir. Namazın farz olması için kişinin Müslüman, akıllı ve buluğ çağına ermiş olması gerekir. Namaz, Hicret'in birinci yılında Miraç gecesinde farz kılınmıştır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazın farzları nelerdir?",
+      "answer": "Namazın farzları 12 tanedir: 6'sı şart (dışında), 6'sı rükün (içinde). Şartlar: Hadesten taharet, necasetten taharet, setr-i avret, istikbal-i kıble, vakit, niyet. Rükünler: İftitah tekbiri, kıyam, kıraat, rükû, secde, ka'de-i ahire.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazın vacipleri nelerdir?",
+      "answer": "Namazın vacipleri: Fatiha okumak, Fatiha'yı zamm-ı sureden önce okumak, zamm-ı sure okumak, tertibe riayet, ta'dil-i erkân, ilk oturuşta oturmak, her iki oturuşta tahiyyat okumak, namazı selamla bitirmek, vitir namazında kunut duası okumak, bayram namazlarında tekbirler almak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazın sünnetleri nelerdir?",
+      "answer": "Namazın sünnetleri: Ezan ve kamet, eller kulak hizasına kaldırarak tekbir almak, sübhaneke okumak, eûzü-besmele çekmek, âmin demek, rükû ve secde tesbihlerini üçer kez söylemek, tahiyyattan sonra salavat okumak, selam verirken başı sağa ve sola çevirmek.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazı bozan şeyler nelerdir?",
+      "answer": "Namazı bozan şeyler: Konuşmak, yemek-içmek, amel-i kesir (çok hareket), kıbleden göğsü çevirmek, avret yerinin açılması, abdest bozulması, sesli gülmek, ağlamak (dünyevi sebeple), öksürmeye çalışmak, inlemek, ah çekmek, başkasının selamını almak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Beş vakit namaz ne zaman farz kılındı?",
+      "answer": "Beş vakit namaz, Hicret'ten bir buçuk yıl önce Miraç gecesinde farz kılınmıştır. Önce elli vakit olarak emredilmiş, Hz. Musa'nın tavsiyesi üzerine Hz. Peygamber'in müracaatıyla beş vakte indirilmiştir. Ancak sevabı elli vakit namaz sevabı olarak kalmıştır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namaz vakitleri nasıl belirlenir?",
+      "answer": "Sabah namazı: İkinci fecirden güneş doğana kadar. Öğle namazı: Güneş tepe noktasından batıya meyledince başlar, her şeyin gölgesi iki misli olunca biter. İkindi: Öğle bitiminden güneş batana kadar. Akşam: Güneş batınca başlar, şafak kaybolunca biter. Yatsı: Şafak kaybolduktan imsak vaktine kadar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Farz namazların rekât sayıları kaçtır?",
+      "answer": "Sabah namazı: 2 rekât farz. Öğle namazı: 4 rekât farz. İkindi namazı: 4 rekât farz. Akşam namazı: 3 rekât farz. Yatsı namazı: 4 rekât farz. Cuma namazı: 2 rekât farz. Toplam günlük farz: 17 rekât.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Sünnet namazları ve rekât sayıları nelerdir?",
+      "answer": "Sabah namazının sünneti: 2 rekât (farzdan önce). Öğle namazının sünneti: 4 rekât ilk sünnet + 2 rekât son sünnet. İkindi namazının sünneti: 4 rekât (farzdan önce, gayr-i müekked). Akşam namazının sünneti: 2 rekât (farzdan sonra). Yatsı namazının sünneti: 4 rekât ilk sünnet + 2 rekât son sünnet.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Vitir namazı nedir ve nasıl kılınır?",
+      "answer": "Vitir namazı 3 rekât olup vaciptir. Yatsı namazından sonra kılınır. Her rekâtta Fatiha ve zamm-ı sure okunur. Üçüncü rekâtta zamm-ı sureden sonra tekbir alınıp kunut duaları okunur. Tek oturuşla selam verilir veya ikinci rekâtta oturup üçüncü rekâttan sonra selam verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Kunut duaları nelerdir?",
+      "answer": "Kunut duaları: 'Allahümme innâ nesteînüke ve nestağfiruke ve nestehdîke ve nü'minü bike ve netûbü ileyke ve netevekkelü aleyke...' ve 'Allahümme iyyâke na'büdü ve leke nusallî ve nescüdü ve ileyke nes'â ve nahfidü nercû rahmeteke ve nahşâ azâbeke inne azâbeke bilküffâri mülhık.'",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Nafile namaz nedir ve çeşitleri nelerdir?",
+      "answer": "Nafile namaz, farz ve vacip dışında kılınan namazlardır. Çeşitleri: Teheccüd namazı (gece namazı), Kuşluk (Duha) namazı, Evvâbîn namazı, Tahiyyetü'l-mescid, Abdest namazı, İstihare namazı, Hacet namazı, Tesbih namazı, Küsuf ve Husuf namazları.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Teheccüd namazı nedir ve nasıl kılınır?",
+      "answer": "Teheccüd namazı, gece uyuduktan sonra kalkıp kılınan nafile namazdır. En az 2, en çok 12 rekât kılınır. İkişer rekât kılmak efdaldir. Hz. Peygamber genellikle 8 rekât kılmıştır. Gece namazı dünya ve ahiret saadetine vesiledir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Teravih namazı nedir ve kaç rekâttır?",
+      "answer": "Teravih namazı, Ramazan gecelerinde yatsı namazından sonra kılınan sünnet-i müekkede bir namazdır. 20 rekât olup 2 veya 4 rekâtta bir selam verilir. Hz. Ömer zamanında cemaatle kılınması yaygınlaşmıştır. Her 4 rekâtta istirahat edilir, bu yüzden 'teravih' (dinlenme) adını almıştır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Cuma namazı kimlere farzdır?",
+      "answer": "Cuma namazı; Müslüman, akıllı, buluğa ermiş, hür, erkek, sağlıklı, mukim olan ve özrü bulunmayan kişilere farzdır. Kadınlara, çocuklara, hastalara, yolculara, körlere (refakatçisi yoksa), çok yaşlılara ve özürlülere farz değildir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Cuma namazının şartları nelerdir?",
+      "answer": "Cuma namazının vücub şartları: Erkek olmak, hür olmak, mukim olmak, sağlıklı olmak, özürsüz olmak. Sıhhat şartları: Cuma namazı kılınan yerde olmak, vakit içinde kılmak, cemaatle kılmak, hutbe okunması, izn-i âm (herkese açık yer).",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Cuma namazı nasıl kılınır?",
+      "answer": "Önce 4 rekât ilk sünnet kılınır. Sonra imam hutbe okur. Hutbeden sonra 2 rekât farz cemaatle kılınır. Ardından 4 rekât son sünnet, 4 rekât vaktin son sünneti (zuhr-i ahir) kılınır. Toplam 14 rekât olur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Bayram namazları nasıl kılınır?",
+      "answer": "Bayram namazı 2 rekâttır ve vaciptir. Birinci rekâtta 3 tekbir alınır (eller yana salınır), Fatiha ve sure okunur. İkinci rekâtta önce Fatiha ve sure okunur, sonra 3 tekbir alınıp rükûya gidilir. Namazdan sonra hutbe okunur. Ramazan bayramı namazı güneş doğduktan 45-50 dakika sonra kılınır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Cenaze namazı nasıl kılınır?",
+      "answer": "Cenaze namazı 4 tekbirle kılınır, rükû ve secde yoktur. Birinci tekbirden sonra Sübhaneke, ikinci tekbirden sonra Salli-Barik, üçüncü tekbirden sonra cenaze duası okunur. Dördüncü tekbirden sonra selam verilir. Cemaatle kılınır, tek kişi de kılabilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Seferî (yolcu) namazı nasıl kılınır?",
+      "answer": "90 km ve daha uzak yere giden kişi seferî sayılır. Dört rekâtlı farz namazlar 2 rekât kılınır (kasr). Sünnetler düşer (sabah sünneti ve vitir hariç). 15 günden az kalınacaksa seferîlik devam eder. Namazları cem etmek (birleştirmek) de caizdir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Hasta namazı nasıl kılınır?",
+      "answer": "Hasta ayakta duramıyorsa oturarak, oturamıyorsa yan yatarak, o da olmazsa sırt üstü yatarak ima ile kılar. Baş ile rükû ve secde işareti yapılır. Secde işaretinde baş biraz daha eğilir. İma da yapamayan kişi namazı kazaya bırakır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Kaza namazı nedir ve nasıl kılınır?",
+      "answer": "Vaktinde kılınmayan namazın sonradan kılınmasıdır. Kaza namazı, kılınamayan namazın aynı şekilde kılınır. Tertip sahibi kişi beş vakitten az kaza borcu varsa önce kazayı kılar. Çok kazası olan dilediği vakitte kılabilir. Kaza namazı borcu olanın nafile kılması mekruhtur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Secdei sehiv (yanılma secdesi) ne zaman yapılır?",
+      "answer": "Namazda bir vacip terk edilir veya geciktirilirse sehiv secdesi yapılır. Son oturuşta tahiyyattan sonra sağa selam verip iki secde yapılır, sonra tahiyyat, salavat ve dualar okunup her iki tarafa selam verilir. Farz geciktirilirse de sehiv secdesi gerekir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Tilavet secdesi nedir ve nasıl yapılır?",
+      "answer": "Kur'an'da 14 secde ayeti vardır. Bu ayetleri okuyan veya dinleyen kişiye tilavet secdesi vacip olur. Niyet edip tekbir alarak secdeye gidilir, secdede 3 kez tesbih söylenir, tekbirle kalkılır. Abdestsiz dinleyen abdest alınca secde eder.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Şükür secdesi nedir?",
+      "answer": "Bir nimet veya sevinç karşısında Allah'a şükretmek için yapılan secdedir. Müstehaptır. Namaz içinde yapılmaz, namaz bozulur. Namaz dışında kıbleye dönülüp tekbir ile secdeye gidilir, tesbih ve dua edilerek kalkılır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "İmamlık şartları nelerdir?",
+      "answer": "İmamın Müslüman, akıllı, buluğa ermiş olması gerekir. Kıraati düzgün olan, fıkıh bilgisi olan tercih edilir. Kadın erkeğe imam olamaz. Çocuk yetişkine farz namazda imam olamaz. Fasık olan (açıktan günah işleyen) kişinin imamlığı mekruhtur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Cemaatle namaz kılmanın fazileti nedir?",
+      "answer": "Cemaatle kılınan namaz, tek başına kılınan namazdan 27 derece daha faziletlidir. Cemaatle namaz Müslümanlar arasında birlik ve beraberliği güçlendirir. Erkekler için cemaate devam etmek sünnet-i müekkededir. Cemaati terk etmek ciddi bir özür olmadıkça doğru değildir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazda okunan dualar nelerdir?",
+      "answer": "Sübhaneke, Ettehiyyatü, Allahümme salli, Allahümme barik, Rabbena atina, Rabbena firli duaları okunur. Kur'an'dan en az 3 ayet veya bir kısa sure (Fatiha ile birlikte) okunur. Rükûda 'Sübhane rabbiyel azim', secdede 'Sübhane rabbiyel a'la' denir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Abdest nasıl alınır?",
+      "answer": "Abdestin farzları: 1) Yüzü yıkamak, 2) Kolları dirseklerle birlikte yıkamak, 3) Başın dörtte birini mesh etmek, 4) Ayakları topuklarla birlikte yıkamak. Sünnetleri: Besmele, misvak, niyet, tertip, eller-ağız-burun yıkama, başın tamamını mesh, kulakları mesh, uzuvları üçer kez yıkama.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Abdesti bozan şeyler nelerdir?",
+      "answer": "Abdesti bozan şeyler: Önden ve arkadan çıkan her şey (idrar, dışkı, yel), vücuttan kan-irin akması, ağız dolusu kusmak, uyumak (yan yatmak veya yaslanmak), bayılmak, delirmek, sarhoş olmak, namazda kahkaha ile gülmek, cünüp olmak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Gusül (boy abdesti) nasıl alınır?",
+      "answer": "Guslün farzları: 1) Ağza su vermek, 2) Burna su çekmek, 3) Bütün vücudu yıkamak. Sünnetleri: Besmele, niyet, önce elleri-avret yerini yıkamak, abdest almak, üç defa baştan aşağı su dökmek, vücudu ovmak. Tüm vücutta kuru yer kalmamalıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Guslü gerektiren haller nelerdir?",
+      "answer": "Guslü gerektiren haller: 1) Cünüplük (cinsel ilişki veya meninin gelmesi), 2) Hayız (kadının âdet hali), 3) Nifas (lohusalık), 4) Ölüm (cenazeyi yıkama), 5) İslam'a giriş (müstehap). Cuma ve bayram için gusül sünnettir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Teyemmüm nedir ve nasıl yapılır?",
+      "answer": "Su bulunmadığında veya kullanılamadığında temiz toprak/taş ile yapılan temizliktir. Niyet edilir, iki el temiz toprağa vurulup yüze sürülür, tekrar vurulup kollar dirseklerle mesh edilir. Namaz vakti girmeden teyemmüm yapılmaz. Su bulununca teyemmüm bozulur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Mesh üzerine mesh caiz midir?",
+      "answer": "Mest (ayağı örten deri çorap) üzerine mesh caizdir. Şartları: Abdestli iken giyilmesi, topuğu örtmesi, suya dayanıklı olması. Mukim 24 saat, yolcu 72 saat mesh edebilir. Mest çıkarılırsa veya gusül gerekirse mesh bozulur. Çorap üzerine mesh ihtilafı var; kalın ve suyu geçirmeyen çoraba mesh edilebilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruç nedir ve kimlere farzdır?",
+      "answer": "Oruç, imsak vaktinden iftar vaktine kadar yeme, içme ve cinsel ilişkiden uzak durmaktır. Müslüman, akıllı ve buluğa ermiş her kişiye farzdır. Ramazan orucu Hicret'in 2. yılında farz kılınmıştır. Oruç kalkan gibidir, cehennemden korur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Orucun farz olmasının şartları nelerdir?",
+      "answer": "Orucun farz olması için: Müslüman olmak, akıllı olmak, buluğ çağına ermiş olmak gerekir. Sıhhat şartları: Hayız ve nifastan temiz olmak, mukim veya yolcu olmak, tutmaya gücü yetmek. Yolcu ve hasta oruç tutmayıp sonra kaza eder.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Orucu bozan ve kaza-kefaret gerektiren şeyler nelerdir?",
+      "answer": "Hem kaza hem kefaret gerektiren: Kasten yemek, içmek, cinsel ilişki. Sadece kaza gerektiren: Mazeretli yemek-içmek, kusturmak, gıybet etmek (bir görüşe göre), iğne yaptırmak (besleyici), göze-burna ilaç damlatmak. Kefaret: 60 gün peş peşe oruç veya 60 fakiri doyurmak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Orucu bozmayan şeyler nelerdir?",
+      "answer": "Orucu bozmayan şeyler: Unutarak yemek-içmek, uyurken ihtilam olmak, gözüne sürme çekmek, misvak kullanmak, kan aldırmak, koku koklamak, öpmek (meniyi getirmezse), ağza su kaçması (kasıtsız), kusmak (kasıtsız), tükürük yutmak, toz-duman yutmak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Sahur ve iftarın hükmü nedir?",
+      "answer": "Sahur yapmak sünnettir, berekettir. Hz. Peygamber: 'Sahur yapın, çünkü sahurda bereket vardır' buyurmuştur. Sahuru geciktirmek müstehaptır. İftarı acele etmek sünnettir. İftar hurma veya su ile açılır. İftar duası yapılır: 'Allahümme leke sumtü ve bike amentü ve aleyke tevekkeltü ve ala rızkıke eftartü.'",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruç tutamayanlara ne gerekir?",
+      "answer": "Çok yaşlı veya iyileşme umudu olmayan hastalar fidye verir: Her gün için bir fakiri doyurur veya bedelini verir. Hamile ve emzikli kadınlar tutamıyorsa kaza eder. Yolcu kaza eder. Hayız ve nifas halindeki kadın tutar sonra kaza eder.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruçluyken misvak kullanmak caiz midir?",
+      "answer": "Evet, oruçluyken misvak kullanmak caizdir ve sünnettir. Ağzın temizlenmesi ibadete hazırlıktır. Ancak diş macunu gibi tadı olan maddeler kullanmaktan kaçınılmalıdır. Yutulması halinde oruç bozulabilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "İtikâf nedir?",
+      "answer": "İtikâf, bir mescitte ibadet niyetiyle kalmaktır. Ramazan'ın son on gününde itikâfa girmek sünnet-i kifayedir. İtikâfta namaz, Kur'an okuma, zikir ve dua ile meşgul olunur. Zorunlu ihtiyaçlar dışında mescidden çıkılmaz. Kadınlar evlerinde itikâfa girebilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Kadir Gecesi nedir ve ne zaman?",
+      "answer": "Kadir Gecesi, Kur'an'ın indirilmeye başlandığı gecedir ve bin aydan hayırlıdır. Ramazan'ın 27. gecesi olması kuvvetle muhtemeldir, ancak son on günün tek gecelerinde aranmalıdır. Bu gece ibadet, dua ve istiğfar ile geçirilmelidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Nafile oruçlar nelerdir?",
+      "answer": "Nafile oruçlar: Pazartesi ve Perşembe oruçları, Arefe günü orucu, Aşure orucu (9-10 veya 10-11 Muharrem), Şevval'de 6 gün oruç, her ayın 13-14-15. günleri (eyyam-ı bıyz), Davud orucu (gün aşırı). Cuma ve Cumartesi tek başına tutmak mekruhtur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruç tutmanın yasak olduğu günler hangileridir?",
+      "answer": "Oruç tutmanın haram olduğu günler: Ramazan Bayramı'nın 1. günü, Kurban Bayramı'nın 4 günü (teşrik günleri). Bu günlerde oruç tutmak haramdır. Ayrıca yalnız Cuma günü, yalnız Cumartesi günü, yalnız Nevruz ve Mihrican günleri oruç tutmak mekruhtur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât nedir ve kimlere farzdır?",
+      "answer": "Zekât, belli şartları taşıyan Müslümanın, malının belli bir kısmını, belli kişilere vermesidir. Hicri 2. yılda farz kılınmıştır. Zekâtın farz olması için: Müslüman, hür, akıllı, buluğa ermiş olmak ve nisap miktarı mala sahip olmak gerekir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Nisap miktarı nedir?",
+      "answer": "Nisap, zekâtın farz olması için gereken asgari mal miktarıdır. Altın nisabı: 85 gram (20 miskal). Gümüş nisabı: 595 gram (200 dirhem). Para ve ticaret malları altın veya gümüş nisabına göre değerlendirilir. Nisap miktarına ulaşan mal üzerinden bir yıl geçmesi gerekir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât kimlere verilir?",
+      "answer": "Zekât verilebilecek 8 sınıf (Tevbe 60): 1) Fakirler, 2) Miskinler, 3) Zekât memurları, 4) Müellefe-i kulûb (kalpleri ısındırılacaklar), 5) Köleler, 6) Borçlular, 7) Allah yolunda olanlar (mücahid, talebe), 8) Yolda kalmışlar. Bunların dışındakilere zekât verilmez.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât kimlere verilmez?",
+      "answer": "Zekât verilmeyenler: Zenginlere (nisap sahibi), usul ve fürua (anne, baba, dede, nine, çocuk, torun), eşlere birbirine, gayrimüslimlere (sadaka verilebilir), Haşimoğulları'na (Peygamber soyuna), zekât toplayan memurlara (maaşlıysa). Borçlu zengin kişiye verilebilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Altın ve gümüşün zekâtı nasıl hesaplanır?",
+      "answer": "Altın: 85 gram ve üzeri altının 1/40'ı (%2.5) zekât olarak verilir. Gümüş: 595 gram ve üzeri gümüşün 1/40'ı verilir. Süs eşyası (bilezik, kolye vb.) olarak kullanılan altın ve gümüşün zekâtı da verilir. Ziynet eşyası kadının kendi malıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Ticaret mallarının zekâtı nasıl hesaplanır?",
+      "answer": "Ticaret malları, nisap miktarına ulaştığı tarihten bir yıl sonra değerlenir. Piyasa değerinin 1/40'ı (%2.5) zekât olarak verilir. Borçlar düşüldükten sonra kalan miktar değerlendirilir. Ortaklıkta herkes kendi payının zekâtını verir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Hayvanların zekâtı nasıl verilir?",
+      "answer": "Deve: 5 deveden 1 koyun, 25'te 1 yaşında deve. Sığır: 30 sığırdan 1 yaşında buzağı, 40'ta 2 yaşında dana. Koyun/keçi: 40'ta 1, 121'de 2, 201'de 3, her 100'de 1 fazla. Yem ile beslenen hayvandan zekât verilmez. Çobanlıkta geçen hayvanlardan verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Tarım ürünlerinin zekâtı (öşür) nasıl verilir?",
+      "answer": "Topraktan çıkan ürünlerde zekât (öşür) vardır. Yağmur, nehir veya kaynakla sulanan ürünlerde 1/10 (%10), kova, dolap veya motorla sulanan ürünlerde 1/20 (%5) öşür verilir. Nisap aranmaz. Her hasatta verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Fitre (Sadaka-i Fıtr) nedir?",
+      "answer": "Fitre, Ramazan bayramından önce verilen vacip sadakadır. Temel ihtiyaçları dışında nisap miktarı mala sahip olan herkese vaciptir. Aile reisi, bakmakla yükümlü olduğu kişilerin fitresini de verir. Bayram namazından önce verilmesi sünnettir. Miktarı: Bir kişinin bir günlük yiyeceği kadardır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Sadaka ile zekât arasındaki fark nedir?",
+      "answer": "Zekât farzdır, şartları ve miktarı bellidir, sadece 8 sınıfa verilir. Sadaka nafiledir, istediğine istediği kadar verebilirsin, gayrimüslime de verilebilir. Zekât temizliktir, sadaka ise iyiliktir. İkisi de Allah rızası için verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac nedir ve kimlere farzdır?",
+      "answer": "Hac, belirli zamanda Kâbe ve çevresindeki mukaddes yerleri usulüne uygun ziyaret etmektir. Ömürde bir kere farzdır. Şartları: Müslüman, akıllı, buluğa ermiş olmak, hür olmak, yol ve konaklama masrafını karşılayacak mali güce sahip olmak, beden sağlığı, yol güvenliği. Kadınlar için mahrem gerekir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Haccın farzları (rükünleri) nelerdir?",
+      "answer": "Haccın farzları: 1) İhrama girmek, 2) Arafat'ta vakfe yapmak, 3) Ziyaret tavafı yapmak. Bu üçü yapılmazsa hac geçersizdir. Arafat vakfesi Zilhicce'nin 9. günü zeval vaktinden 10. günü fecr-i sadıka kadardır. Ziyaret tavafı bayramın ilk üç gününde yapılır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Haccın vacipleri nelerdir?",
+      "answer": "Haccın vacipleri: 1) Mikat'tan ihrama girmek, 2) Safa-Merve arasında sa'y, 3) Müzdelife'de vakfe, 4) Şeytan taşlama (cemrelere), 5) Tıraş olmak veya saç kısaltmak, 6) Veda tavafı. Vacip terk edilirse dem (kurban) gerekir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "İhram nedir ve yasakları nelerdir?",
+      "answer": "İhram, hac veya umre için niyet edip telbiye getirmekle başlayan, belirli yasakların uygulandığı haldir. Erkekler dikişsiz iki parça örtüye bürünür. İhram yasakları: Dikişli elbise, başı örtmek (erkek), yüzü örtmek (kadın), koku sürünmek, tıraş olmak, tırnak kesmek, cinsel ilişki, avlanmak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Tavaf nedir ve nasıl yapılır?",
+      "answer": "Tavaf, Kâbe'nin etrafında 7 şavt (tur) dönmektir. Hacer-i Esved'in hizasından başlanır, Kâbe sol tarafta kalacak şekilde dönülür. Tavafın şartları: Niyet, Mescid-i Haram'da yapmak, Kâbe'yi soluna almak, 7 şavt tamamlamak, tavafı abdestli yapmak. Telbiye getirilmez.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Sa'y nedir ve nasıl yapılır?",
+      "answer": "Sa'y, Safa tepesinden başlayıp Merve'ye, oradan Safa'ya dönmek suretiyle 7 şavt gidip gelmektir. Safa'dan Merve'ye 1, Merve'den Safa'ya 2. şavttır. Yeşil direkler arasında erkekler koşar (hervele). Sa'y için abdest şart değildir ama sünnettir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Umre nedir ve nasıl yapılır?",
+      "answer": "Umre, ihrama girip Kâbe'yi tavaf etmek, sa'y yapmak ve tıraş olmaktan ibarettir. Ramazan dışında her zaman yapılabilir. Sünnet-i müekkededir. Peygamberimiz 4 umre yapmıştır. Umrenin farzları: İhram ve tavaf. Vacipleri: Sa'y ve tıraş.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac çeşitleri nelerdir?",
+      "answer": "1) İfrad haccı: Sadece hac için ihrama girilir. 2) Temettu haccı: Önce umre, ihramdan çıkılır, sonra hac için ihram. Kurban gerekir. 3) Kıran haccı: Hac ve umre için birlikte ihrama girilir. Kurban gerekir. En faziletlisi kıran haccıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac kurbanı (hedy) ne zaman kesilir?",
+      "answer": "Hac kurbanı (hedy), temettu ve kıran haccı yapanların kesmesi gereken kurbandır. Bayramın 1. günü, cemrelere taş attıktan sonra Mina'da kesilir. Kurban kesemeyen, hac esnasında 3, evine döndükten sonra 7 gün olmak üzere 10 gün oruç tutar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Arafat vakfesinin önemi nedir?",
+      "answer": "Hz. Peygamber: 'Hac Arafat'tır' buyurmuştur. Arafat vakfesi haccın en önemli rüknüdür. Zilhicce'nin 9. günü öğleden sonra Arafat'ta bir an bile bulunmak haccı geçerli kılar. Bu vakitte dua, istiğfar ve zikir yapılır. Allah bu günde günahları bağışlar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Başkası adına hac yapılabilir mi?",
+      "answer": "Evet, hac yapamayacak durumda olan (yaşlı, ağır hasta) veya vefat etmiş kişi adına vekâlet haccı yapılabilir. Buna 'bedel haccı' denir. Bedel, önce kendi haccını yapmış olmalıdır. Vasiyeti varsa mirasından karşılanır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Helal ve haram nedir?",
+      "answer": "Helal, İslam'ın mübah (serbest) kıldığı şeylerdir. Haram, kesin delille yasaklanan şeylerdir. Haramı işlemek günahtır, terk etmek sevaptır. Helal ve haram konusunda delil Kur'an ve sünnettir. Şüpheli şeylerden kaçınmak (vera') takvanın gereğidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Haram yiyecekler nelerdir?",
+      "answer": "Haram yiyecekler: Domuz eti, murdar hayvan (boğazlanmadan ölen), kan, Allah'tan başkası adına kesilen, köpek, yırtıcı hayvanlar, pislikle beslenen hayvan (cellâle). İçeceklerden: Şarap ve her türlü alkollü içki. İlaç veya zaruret halinde bazı haramlar mübah olabilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Kurban kesmenin hükmü nedir?",
+      "answer": "Kurban kesmek vaciptir. Şartları: Müslüman, akıllı, buluğa ermiş, mukim, nisap miktarı mala sahip olmak. Kurban bayramının ilk üç gününde (Zilhicce 10-12) kesilir. Kurban: Koyun, keçi (tek kişi), sığır, deve (7 kişiye kadar). En az 1 yaşında olmalı, kusursuz olmalı.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Kurban eti nasıl paylaştırılır?",
+      "answer": "Kurban eti üçe bölünür: Bir bölümü eve, bir bölümü akraba ve komşulara, bir bölümü fakirlere. Tamamını dağıtmak veya tamamını evde bırakmak da caizdir. Derisini satmak veya kasaba ücret olarak vermek caiz değildir; sadaka olarak verilmeli veya evde kullanılmalıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Akika kurbanı nedir?",
+      "answer": "Akika, yeni doğan çocuk için kesilen kurbandır. Sünnettir. Doğumun 7. günü kesilmesi müstehaptır. Erkek çocuk için 2, kız çocuk için 1 koyun/keçi kesilir. Aynı gün çocuğa isim verilir ve saçı kesilip ağırlığınca altın veya gümüş sadaka verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "İslam'da nikâhın şartları nelerdir?",
+      "answer": "Nikâhın sahih olması için: 1) İcab ve kabul (evlenme iradesi), 2) En az iki erkek veya bir erkek iki kadın şahit, 3) Evlenme engeli bulunmaması. Velinin izni (kadın için) sünnettir. Mehir (kadına verilen mal) vaciptir. Nikâh akdi sözlü veya yazılı olabilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Evlenilmesi haram olan kimseler kimlerdir?",
+      "answer": "Sürekli haram (nesep, süt, sıhriyet): Anne, kız, kız kardeş, hala, teyze, yeğen; süt anne, süt kardeş; kayınvalide, üvey kız. Geçici haram: Başkasıyla evli, iddet bekleyen, iki kız kardeşle aynı anda evlilik, dört kadından fazlası. Müslüman kadın gayrimüslimle evlenemez.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Talak (boşanma) nedir ve çeşitleri nelerdir?",
+      "answer": "Talak, evlilik bağını sona erdirmektir. Çeşitleri: 1) Ric'î talak: İddet içinde dönülebilir. 2) Bâin talak: Yeni nikâh gerekir. 3) Talak-ı selâse: Üç talakla ayrılık kesindir, kadın başka biriyle evlenip boşanmadan ilk kocasıyla evlenemez. İddet: 3 hayız veya 3 ay.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Süt emzirmenin hükümleri nelerdir?",
+      "answer": "İki yaşından önce süt emen çocuk ile emziren kadın arasında süt hısımlığı oluşur. Süt anne, öz anne gibidir. Süt kardeşle evlenmek haramdır. Hz. Peygamber: 'Nesepten haram olan, sütten de haramdır' buyurmuştur. Süt baba ve süt kardeş de mahremdir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Cenaze işlemleri nasıl yapılır?",
+      "answer": "Cenaze hizmetleri farz-ı kifayedir: 1) Cenazeyi yıkamak, 2) Kefenlemek (üç parça beyaz bez), 3) Cenaze namazı kılmak, 4) Defnetmek. Cenaze sağ yanına kıbleye dönük defnedilir. Taziye 3 gün sürer. Ölü için Kur'an okunur, hayır yapılır, duası istenir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Miras hükümleri nelerdir?",
+      "answer": "Miras, vefat eden kişinin malının varislerine intikalidir. Önce borçlar ödenir, varsa vasiyet (1/3'ü geçmez) yerine getirilir, kalan varisler arasında paylaşılır. Varisler: Eş, çocuklar, anne-baba, kardeşler vb. Erkek kadının iki katı pay alır (nafaka yükümlülüğü sebebiyle). Katil ve farklı din miras engeli oluşturur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Faizin hükmü nedir?",
+      "answer": "Faiz kesin haramdır. Kur'an'da şiddetle yasaklanmıştır (Bakara 275-279). Faiz alan, veren, şahitlik eden ve yazanın hepsi günahkârdır. Faiz toplumda adaletsizliğe, servet eşitsizliğine yol açar. Helal kazanç için ticaret, ortaklık ve çalışma teşvik edilmiştir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Gıybet nedir ve hükmü nedir?",
+      "answer": "Gıybet, bir kimsenin arkasından hoşlanmayacağı şeyleri söylemektir. Söylenen doğru olsa bile gıybettir, yalan ise iftiradır. Gıybet büyük günahtır. Kur'an'da 'ölü kardeşinin etini yemek' olarak tasvir edilmiştir (Hucurat 12). Gıybet eden hem Allah'tan hem kul hakkından ötürü hesap verir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Kul hakkı nedir?",
+      "answer": "Kul hakkı, insanların birbirleri üzerindeki haklarıdır. Allah hakkından farklıdır, Allah affetse de kul affetmedikçe bağışlanmaz. Kul hakkı: Mal gasbı, hırsızlık, gıybet, iftira, hakaret, aldatma, emanete ihanet vb. Tövbe için hak sahibinden helallik almak veya hakkı iade etmek gerekir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Tesettürün hükmü nedir?",
+      "answer": "Tesettür kadın ve erkek için farzdır. Erkeğin avret yeri göbekle diz arası, kadının avret yeri el, yüz ve ayak dışında tüm vücududur. Kadının kıyafeti vücut hatlarını belli etmemeli, şeffaf olmamalı, erkek kıyafetine benzememeli. Tesettür iffeti korur, toplumda huzur sağlar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "İçki içmenin hükmü nedir?",
+      "answer": "İçki içmek kesin haramdır. Kur'an'da 'şeytanın işi' olarak nitelendirilmiştir (Maide 90). Her sarhoş edici içki haramdır, azı da çoğu da yasaktır. İçki: Akla zarar verir, aileyi yıkar, kazalara sebep olur, sağlığı bozar. İçki içenin 40 gün namazı kabul olunmaz.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Sihir ve büyünün hükmü nedir?",
+      "answer": "Sihir ve büyü yapmak haramdır, büyük günahlardandır. Sihir öğrenmek ve öğretmek de haramdır. Sihirbaza gitmek, ona inanmak, büyü yaptırmak da günahtır. Korunmak için Kur'an okunur, Muavvizat sureleri (Felak, Nas) ve Ayet'el-Kürsi okunur. Sihirden Allah'a sığınılır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Yemin çeşitleri ve keffareti nelerdir?",
+      "answer": "Yemin çeşitleri: 1) Lağv yemini (dil alışkanlığı), 2) Ğamûs yemini (yalan yere, büyük günah), 3) Mün'akid yemin (geleceğe dair). Yemin bozulursa keffaret: 10 fakiri doyurmak veya giydirmek, yapamayan 3 gün oruç tutar. Allah'tan başkasına yemin edilmez.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Adak nedir ve hükmü nedir?",
+      "answer": "Adak, kişinin farz olmayan bir ibadeti kendisine vacip kılmasıdır. Örnek: 'Şu işim olursa kurban keseceğim.' Adak yerine getirilmelidir. Günah olan şey adanmaz, adanırsa yapılmaz. Adak kurbanının tamamı fakirlere verilir, sahibi yiyemez.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Dua nedir ve önemi nedir?",
+      "answer": "Dua, kulun Allah'a yönelip istek ve ihtiyaçlarını arz etmesidir. Hz. Peygamber: 'Dua ibadetin özüdür' buyurmuştur. Dua Allah'ın rahmetine vesile, belaları defeden bir silahtır. Dua kabul olunmasa bile mükâfatı vardır. Allah duaya icabet eder.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Duanın adabı nelerdir?",
+      "answer": "Duanın adabı: Abdestli olmak, kıbleye dönmek, elleri kaldırmak, Allah'a hamd ve Peygamber'e salat ile başlamak, yalvararak ve gizlice dua etmek, helal rızık yemek, duada ısrar etmek, duayı salat-selam ile bitirmek. En makbul dua vakitleri: Seher vakti, Cuma günü, secde, ezan-kamet arası.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Sabah akşam okunacak dualar nelerdir?",
+      "answer": "Sabah-akşam okunacak dualar: Ayet'el-Kürsi, İhlas-Felak-Nas sureleri (3'er kez), Seyyidü'l-istiğfar duası, 'Bismillahillezî lâ yedurru maasmihi şey'ün...', 'Radîtü billâhi Rabben...', 100 kez Sübhanallah, Elhamdülillah, Allahu Ekber. Bu dualar koruma ve bereket sağlar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Yemek duası nasıl yapılır?",
+      "answer": "Yemekten önce: 'Bismillah' veya 'Bismillahi ve ala berekâtillah' denir. Başta unutulursa: 'Bismillahi evvelehu ve âhirehu' denir. Yemekten sonra: 'Elhamdülillahillezî et'amenâ ve sekânâ ve cealenâ mine'l-müslimîn' okunur. Sofradan kalkarken de hamd edilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Eve girerken ve çıkarken hangi dualar okunur?",
+      "answer": "Eve girerken: 'Bismillahi velecnâ ve bismillahi harecnâ ve alâ Rabbinâ tevekkelnâ' denir, selam verilir. Evden çıkarken: 'Bismillahi tevekkeltü alellahi lâ havle velâ kuvvete illâ billah' okunur. Bu dualar evden çıkınca şeytanın vesvesesinden ve kötülüklerden korur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Tuvalete girerken ve çıkarken ne denir?",
+      "answer": "Tuvalete girerken: 'Allahümme innî eûzü bike mine'l-hubsi ve'l-habâis' (Allah'ım pislikten ve pis şeylerden sana sığınırım) okunur. Sol ayakla girilir. Çıkarken: 'Ğufrâneke' (Affını dilerim) denir. Sağ ayakla çıkılır. Tuvalette konuşulmaz, kıbleye dönülmez.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "İstiğfar nedir ve faziletleri nelerdir?",
+      "answer": "İstiğfar, Allah'tan bağışlanma dilemektir. Formülleri: 'Estağfirullah', 'Estağfirullahe'l-azîm', 'Estağfirullahe ve etûbü ileyh'. Faziletleri: Günahların silinmesi, rızkın artması, dertlerin giderilmesi, rahmet inmesi. Hz. Peygamber günde 70-100 kez istiğfar ederdi.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Salavat getirmenin fazileti nedir?",
+      "answer": "Salavat, Hz. Peygamber'e dua etmektir. 'Allahümme salli alâ Muhammedin ve alâ âli Muhammed' en kısa formüldür. Bir salavata Allah 10 rahmet eder. Cuma günü çokça getirilmeli. Dua başında ve sonunda salavat getirilirse kabul olunması umulur. Peygamber adı anılınca salavat vaciptir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Tesbih nasıl çekilir?",
+      "answer": "Namazdan sonra: 33 kez Sübhanallah, 33 kez Elhamdülillah, 33 kez Allahu Ekber, 1 kez Kelime-i Tevhid (La ilahe illallah...) çekilir, toplam 100 eder. Tesbih taneleri veya parmak boğumlarıyla sayılabilir. Sağ elin parmaklarıyla saymak sünnettir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Hasta ziyaretinde hangi dua okunur?",
+      "answer": "Hasta ziyareti sünnettir ve sevabı büyüktür. Hastaya şifa duası yapılır: 'Es'elullâhe'l-azîme Rabbe'l-arşi'l-azîmi en yeşfiyeke' (7 kez). 'Allahümme Rabbe'n-nâsi, ezhibe'l-be'se, işfi ente'ş-şâfî, lâ şifâe illâ şifâuke, şifâen lâ yuğâdiru sekamâ' duası da okunur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Sıkıntı ve korku anında hangi dualar okunur?",
+      "answer": "Sıkıntıda: 'Lâ ilâhe illallâhu'l-azîmu'l-halîm, lâ ilâhe illallâhu Rabbu'l-arşi'l-azîm...' okunur. Korkuda: 'Hasbiyallahu lâ ilâhe illâ huve aleyhi tevekkeltü ve huve Rabbu'l-arşi'l-azîm' okunur. Ayet'el-Kürsi ve Muavvizat sureleri de etkilidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "İstihare namazı nasıl kılınır ve duası nedir?",
+      "answer": "İstihare, bir konuda Allah'tan hayırlı olanı göstermesini istemektir. Gece 2 rekât namaz kılınır, ardından istihare duası okunur: 'Allahümme innî estehîruke bi ilmike ve estakdiruke bi kudretike...' İşaret rüyada veya kalbin bir tarafa meyletmesiyle anlaşılabilir. 7 gün tekrarlanabilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namaz kılmamanın hükmü nedir?",
+      "answer": "Namaz İslam'ın en önemli ibadetlerinden olup terk etmek büyük günahtır. Namazı inkâr eden dinden çıkar. Tembellikten terk eden günahkâr olup tövbe edip kılmaya başlaması gerekir. Kur'an'da namaz kılmayanlar cehenneme girecekleri bildirilmiştir (Müddessir 42-43).",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Mescidin/Caminin adabı nelerdir?",
+      "answer": "Mescide sağ ayakla girilir, dua okunur: 'Allahümmeftah lî ebvâbe rahmetike.' Sol ayakla çıkılır: 'Allahümme innî es'elüke min fadlike.' Mescitte: Yüksek sesle konuşulmaz, alışveriş yapılmaz, kayıp ilan edilmez, soğan-sarımsak kokulu girilmez. Tahiyyetü'l-mescid namazı kılınır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Ezan ve kamet nedir?",
+      "answer": "Ezan, namaz vaktinin girdiğini ilan etmektir. Farz-ı kifayedir. Kelimeleri: Allahu Ekber (4), Eşhedü en la ilahe illallah (2), Eşhedü enne Muhammeden Resûlullah (2), Hayye ale's-salah (2), Hayye ale'l-felah (2), Allahu Ekber (2), La ilahe illallah (1). Sabahta 'es-Salâtü hayrun mine'n-nevm' eklenir. Kamet aynı olup daha hızlı okunur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Ramazan ayının fazileti nedir?",
+      "answer": "Ramazan, Kur'an'ın indirildiği mübarek aydır. Bu ayda cennet kapıları açılır, cehennem kapıları kapanır, şeytanlar bağlanır. Oruç, kalkan gibidir. İyi amellerin sevabı kat kat artar. Kadir Gecesi bu aydadır. Kim bu ayı oruç ve ibadetle geçirirse geçmiş günahları bağışlanır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruç hangi durumda bozulur, kaza mı kefaret mi gerekir?",
+      "answer": "Sadece kaza gerektiren: Zorla bir şey yedirilmek, gıda/ilaç değeri olan şeyin burna veya kulağa damlatılması, iğne yaptırmak (besleyici olan), kasıtlı kusmak, niyet etmeyi unutmak. Hem kaza hem kefaret gerektiren: Bilerek yemek, içmek, cinsel ilişki. Kefaret: 60 gün peş peşe oruç veya 60 fakiri doyurmak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât vermenin faziletleri nelerdir?",
+      "answer": "Zekât malı temizler, bereketlendirir. Fakir ve zengin arasında sevgi bağı kurar. Toplumsal adaleti sağlar. Cimrilikten kurtarır. Ahirette kurtuluş vesilesidir. Zekât vermeyen için şiddetli azap vardır (Tevbe 34-35). Malın şükrü zekâttır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hacer-i Esved nedir?",
+      "answer": "Hacer-i Esved, Kâbe'nin güneydoğu köşesinde bulunan siyah taştır. Cennetten indirildiği rivayet edilir. Tavafa buradan başlanır. İstilam yapılır (selamlanır): El sürülür ve öpülür, kalabalıkta el işareti yapılıp öpülür. Hacer-i Esved'e dokunmak günahları siler.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Zemzem suyu nedir?",
+      "answer": "Zemzem, Hz. İsmail bebek iken Mekke'de Allah'ın çıkardığı mübarek sudur. Hz. Hacer su ararken Cebrail'in işaretiyle çıkmıştır. Her derde devadır. Niyet edilerek içilir. Hz. Peygamber: 'Zemzem ne niyetle içilirse ona şifadır' buyurmuştur. Kâbe'yi ziyaret edenlerin içmesi sünnettir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Selamlaşmanın hükmü ve adabı nedir?",
+      "answer": "Selam vermek sünnet, almak vaciptir (farz-ı kifaye). Küçük büyüğe, yürüyen oturana, az çok olana, binek yayaya önce selam verir. Selam: 'Esselâmü aleyküm ve rahmetullahi ve berekâtüh.' Cevap: 'Ve aleyküm selam ve rahmetullahi ve berekâtüh.' Müslümana selam verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Ana-babaya itaatin hükmü nedir?",
+      "answer": "Ana-babaya itaat farzdır (günah emretmedikçe). Onlara öf bile denmez (İsra 23). İyilik etmek, ihtiyaçlarını karşılamak, güzel söz söylemek gerekir. Vefatlarından sonra dua etmek, hayır yapmak, dostlarına iyilik etmek sünnettir. Ana-baba hakkı Allah hakkından sonra en büyük haktır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Komşu hakkı nedir?",
+      "answer": "Komşu hakkı çok önemlidir. Hz. Peygamber: 'Cebrail komşu hakkını o kadar tavsiye etti ki komşuyu mirasçı yapacak sandım' buyurmuştur. Komşuya eziyet etmemek, yardım etmek, hediyeleşmek, halini sormak, cenazesine katılmak, sırrını saklamak gerekir. Müslüman veya gayrimüslim fark etmez.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Yetime bakmanın fazileti nedir?",
+      "answer": "Yetim, babası vefat etmiş çocuktur. Yetimi korumak, bakımını üstlenmek büyük sevaptır. Hz. Peygamber: 'Ben ve yetime bakan kişi cennette şöyle yanyanayız' buyurup işaret ve orta parmağını göstermiştir. Yetimin malını haksız yere yemek büyük günahtır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Sıla-i rahim (akraba ziyareti) nedir?",
+      "answer": "Sıla-i rahim, akrabalık bağlarını korumak ve akrabayı ziyaret etmektir. Farzdır, terk etmek haramdır. Hz. Peygamber: 'Rızkının çoğalmasını, ömrünün uzamasını isteyen sıla-i rahim yapsın' buyurmuştur. Akraba ziyareti, hediyeleşme, yardımlaşma sıla-i rahimdendir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Uyumadan önce hangi dualar okunur?",
+      "answer": "Uyumadan önce: Ayet'el-Kürsi, İhlas-Felak-Nas sureleri, ellere üflenip vücuda sürülür (3 kez). 'Bismikellâhümme emûtü ve ahyâ' denir. 33 tesbih, 33 hamd, 34 tekbir çekilir. Abdestli yatmak sünnettir. Sağ yanına yatılır, sağ el yanağın altına konur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Uyanınca hangi dua okunur?",
+      "answer": "Uyanınca: 'Elhamdülillâhillezî ahyânâ ba'de mâ emâtenâ ve ileyhi'n-nüşûr' (Bizi öldükten sonra dirilten ve dönüş kendisine olan Allah'a hamd olsun) okunur. Sonra abdest alınır, teheccüd veya sabah namazı kılınır. Güne Allah'ı anarak başlamak bereketli gün getirir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Müstehap namazlar nelerdir?",
+      "answer": "Müstehap namazlar: Tahiyyetü'l-mescid (camiye girince), Abdest namazı (abdestten sonra), Duha namazı (kuşluk vakti), Evvâbîn namazı (akşam farzından sonra), Teheccüd (gece namazı), İstihare namazı, Yolculuk namazı, Şükür namazı (sevinçli haberde). Hepsi 2 rekât kılınır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Kadınların namazda erkeklerden farkı nedir?",
+      "answer": "Kadınlar namazda: Tekbirde eller omuz hizasına kalkar, ayaklar birleşik, rükûda daha az eğilir, secdede kollar yere yapışık, dirsekler vücuda bitişik, oturuşta iki ayak sağ tarafa çıkarılıp sol kalça üzerine oturulur. Cemaat namazında en arka safta durur. Sesli okumaz.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Keffareti gerektiren durumlar nelerdir?",
+      "answer": "Ramazan orucunu kasten yeme, içme veya cinsel ilişkiyle bozan kişiye keffaret gerekir. Keffaret: Bir köle azat etmek (günümüzde yok), yapamayan 60 gün peş peşe oruç tutar (arada bozarsa baştan başlar), yapamayan 60 fakiri doyurur. Hanefî'de her bozulan gün için ayrı keffaret gerekir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Kira gelirinden zekât verilir mi?",
+      "answer": "Kira geliri, nisap miktarına ulaşır ve üzerinden bir yıl geçerse zekât verilir. Ev, dükkan gibi kiraya verilen malın kendisinden değil, gelirleri nisaba ulaşırsa o gelirden zekât verilir. Temel ihtiyaçlar (oturduğu ev, kullandığı araba) zekâta tabi değildir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Hisse senedi ve borsa yatırımlarının zekâtı nasıl verilir?",
+      "answer": "Hisse senetleri ticari mal gibi değerlendirilir. Yıl sonunda piyasa değerinin %2.5'i zekât olarak verilir. Altın ve döviz de aynı şekilde değerlendirilir. Tüm nakdi varlıklar toplanır, borçlar düşülür, nisaba ulaşırsa %2.5 zekât verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac ve umre ibadetinin hikmeti nedir?",
+      "answer": "Hac: Müslümanların dünya çapında birliğini simgeler. İhramla herkes eşitlenir. Kıyamet gününü hatırlatır. Günahlardan arındırır. Hz. Peygamber: 'Makbul haccın karşılığı ancak cennettir' buyurmuştur. Hac mal ve beden ile yapılan tek farzdır. Ömürde bir kez farzdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Bid'at nedir?",
+      "answer": "Bid'at, dinde Hz. Peygamber döneminde olmayan sonradan çıkarılan şeylerdir. Hz. Peygamber: 'Her bid'at dalalettir' buyurmuştur. Bid'at-ı hasene (güzel yenilik) ve bid'at-ı seyyie (kötü yenilik) ayrımı yapan âlimler vardır. Din işlerinde aslolan sünnete uymaktır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Müslümanın ahlakı nasıl olmalıdır?",
+      "answer": "Müslüman: Doğru sözlü, güvenilir, merhametli, adaletli, sabırlı, şükreden, alçakgönüllü, cömert, affedici olmalıdır. Yalan, gıybet, iftira, kibir, haset, cimrilik, zulümden kaçınmalıdır. Hz. Peygamber: 'Ben güzel ahlakı tamamlamak için gönderildim' buyurmuştur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Kabir ziyaretinin adabı nedir?",
+      "answer": "Kabir ziyareti sünnettir, ahireti hatırlatır. Selam verilir: 'Esselâmü aleyküm yâ ehle'l-kubûr...' Fatiha, İhlas, Yasin okunur, dua edilir. Ayakta veya oturarak yapılabilir. Kabirlere basılmaz, üzerine oturulmaz. Kadınların ziyareti ihtilafı var, ağlayıp feryat etmemek şartıyla caizdir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Husuf ve Küsuf namazları nedir?",
+      "answer": "Küsuf namazı güneş tutulmasında, Husuf namazı ay tutulmasında kılınır. Sünnet-i müekkededir. Cemaatle veya tek kılınır. 2 rekâttır, her rekâtta 2 rükû yapılır (bir görüşe göre). Tutulma bitene kadar namaz, dua ve istiğfarla meşgul olunur. Hz. Peygamber oğlu vefat ettiği gün güneş tutulmuş, namaz kıldırmıştır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Yağmur duası namazı nasıl kılınır?",
+      "answer": "Kuraklık zamanında topluca kılınan namazdır. Şehir dışında açık alanda 2 rekât kılınır. Hutbe okunur. Cemaat dua eder, istiğfar eder. İmam cübbesini ters çevirir, sağı sola, solu sağa getirir. Üç gün peş peşe yapılabilir. Sadaka vermek, oruç tutmak da tavsiye edilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruçlu iken gusül almak orucu bozar mı?",
+      "answer": "Hayır, gusül almak orucu bozmaz. Ağza ve burna su vermek farz olduğundan dikkatli olunmalı, su yutulmamalıdır. Yıkanırken kasıtsız su yutulursa oruç bozulmaz. Serinlemek için duş almak caizdir. Denize veya havuza girmek de caizdir, su yutmamaya dikkat edilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Oruçluyken diş tedavisi yaptırmak caiz midir?",
+      "answer": "Diş tedavisi için ağzın açılması ve su-ilaç kullanılması gerektiğinden, mümkünse iftar sonrasına bırakılmalıdır. Zorunlu hallerde tedavi yapılabilir, yutulmamaya dikkat edilir. Su veya ilaç yutulursa oruç bozulur, kaza gerekir. Diş dolgusu, çekim ve röntgen orucu bozmaz.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Emekli maaşı ve maaştan zekât verilir mi?",
+      "answer": "Maaş ve emekli maaşı alındıktan sonra nisap miktarına ulaşıp bir yıl geçerse zekât verilir. Her ay gelen maaşın her biri için ayrı yıl hesabı zordur, bu yüzden yılda bir kez tüm birikim değerlendirilir. Temel ihtiyaçlar düşülür, kalan nisaba ulaşırsa %2.5 verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac ve umrede kadınların özel halleri nelerdir?",
+      "answer": "Hayızlı veya lohusa kadın ihrama girebilir, telbiye getirebilir. Arafat ve Müzdelife vakfesi yapabilir, şeytan taşlayabilir. Ancak tavaf yapamaz, temizleninceye kadar bekler. Tavafsız dönmek zorunda kalırsa ceza kurbanı keser. Sa'y'da ihtilaf var; tavaftan önce yapılmış olmalı.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Hayvan kesimi nasıl yapılır?",
+      "answer": "Kesim: Besmele çekilir (Bismillahi Allahu Ekber), hayvan kıbleye çevrilir, keskin bıçakla yemek ve nefes boruları ile iki şah damarı kesilir. Hayvan can çekişirken bırakılır. Başı tamamen koparılmaz. Hayvana eziyet edilmez, bıçak gösterilmez, başka hayvan önünde kesilmez.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Ehl-i Kitap'ın kestiği yenir mi?",
+      "answer": "Ehl-i Kitap (Yahudi ve Hristiyanlar) dinen usulüne uygun kestiyse yenebilir. Ancak günümüzde çoğu kesim bayıltma, elektrik şoku vb. yöntemlerle yapıldığından şüpheli sayılmaktadır. Domuz ve kan kesinlikle haramdır. Şüpheli şeylerden kaçınmak takvadandır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Yolculuk duaları nelerdir?",
+      "answer": "Araca binince: 'Sübhânellezî sahhare lenâ hâzâ ve mâ künnâ lehû mukrinîn ve innâ ilâ Rabbinâ lemünkalibûn.' Yolculuğa çıkarken: 'Allahümme hawwin aleynâ seferenâ hâzâ...' Dönünce: 'Âyibûne tâibûne âbidûne li Rabbinâ hâmidûn.' Geceyi geçirilen yerde: 'Eûzü bi kelimâtillâhi't-tâmmâti min şerri mâ halak.'",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Korku namazı (Salâtü'l-Havf) nedir?",
+      "answer": "Savaş veya düşman tehlikesi anında kılınan namazdır. Cemaat ikiye ayrılır: Bir kısım nöbet tutar, diğeri namazı kılar, sonra değişir. Tek başına kılan binit üzerinde ima ile kılabilir. Kıbleye dönmek şart değildir. Kur'an'da Nisa 102. ayette anlatılmıştır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Namazda okunan surelerin fazileti nedir?",
+      "answer": "Fatiha: Kur'an'ın anası, şifa. Bakara'nın son 2 ayeti: Her şeye yeter. Ayet'el-Kürsi: En büyük ayet. Yasin: Kur'an'ın kalbi. İhlas: Kur'an'ın üçte biri. Felak-Nas: Şerlerden korunma. Mülk: Kabir azabından kurtarır. Bu sureler namazda okunduğunda fazileti artar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Aşure orucunun fazileti nedir?",
+      "answer": "Aşure günü Muharrem ayının 10. günüdür. Hz. Musa'nın Firavun'dan kurtulduğu gündür. Hz. Peygamber bu gün oruç tutmuş ve tutulmasını tavsiye etmiştir. Bir önceki yılın günahlarına keffaret olur. Yahudilere benzememek için 9 ve 10 veya 10 ve 11. günler tutulur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Borçlunun zekât vermesi gerekir mi?",
+      "answer": "Borçlar maldan düşülür. Kalan miktar nisaba ulaşırsa zekât verilir. Vadeli borçlar için bir yıllık borç düşülür. Ev, araba gibi taksitler de düşülebilir. Temel ihtiyaçlar (ev, araba, ev eşyası) zekâta tabi değildir. Lüks eşyalar değerlendirilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Haccın cem ve takdim-tehir uygulamaları nelerdir?",
+      "answer": "Öğle ve ikindi, akşam ve yatsı namazları birleştirilebilir (cem). Cem-i takdim: Önceki vakitte ikisi birden. Cem-i tehir: Sonraki vakitte ikisi birden. Arafat'ta öğle-ikindi cem-i takdim ile, Müzdelife'de akşam-yatsı cem-i tehir ile kılınır. Yolculukta da cem caizdir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "İslam'da çalışma ve ticaret ahlakı nasıl olmalıdır?",
+      "answer": "Helal kazanç farzdır. Aldatmak, yalan söylemek, hile yapmak haramdır. Tartı ve ölçüde dürüst olunmalı. İşçinin hakkı alın teri kurumadan verilmeli. Stokçuluk, karaborsacılık haramdır. Faiz yasaktır. Hz. Peygamber: 'Doğru tüccar peygamberler, sıddıklar ve şehitlerle beraberdir' buyurmuştur.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Mübarek gün ve gecelerde hangi ibadetler yapılır?",
+      "answer": "Cuma gecesi: Kehf suresi, salavat. Kadir Gecesi: İhya, namaz, Kur'an, dua. Berat Gecesi: Namaz, istiğfar, dua. Miraç Gecesi: Namaz, tefekkür. Regaib Gecesi: Namaz, dua. Mevlid Kandili: Siyer okuma, salavat. Bu gecelerde ibadet, dua, sadaka ve Kur'an okunması müstehaptır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Öğle namazının ilk sünneti nasıl kılınır?",
+      "answer": "Öğle namazının ilk sünneti 4 rekâttır. Tek selamla kılınır. İlk iki rekâtta Fatiha ve sure okunur, ikinci rekâttan sonra oturulup sadece tahiyyat okunur. Üçüncü rekâta kalkılır, yine Fatiha ve sure okunur. Dördüncü rekâttan sonra tahiyyat, salavat ve dua okunup selam verilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Şevval orucu nedir ve fazileti nelerdir?",
+      "answer": "Şevval, Ramazan'dan sonraki aydır. Ramazan orucundan sonra Şevval'de 6 gün oruç tutmak sünnettir. Hz. Peygamber: 'Ramazan'ı oruçla geçirip Şevval'de 6 gün oruç tutan, bütün yılı oruçlu geçirmiş gibidir' buyurmuştur. Peş peşe veya ayrı günlerde tutulabilir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât ne zaman verilmelidir?",
+      "answer": "Zekât, nisap miktarı malın üzerinden bir kameri yıl (354 gün) geçince vacip olur. Yıl dolmadan da verilebilir (ta'cil). Ramazan'da verilmesi fazileti artırır. Zekât borcu ödenmeden vefat eden günahkâr olur, mirasından ödenir. Zekât geciktirilmemelidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Şeytan taşlama nasıl yapılır?",
+      "answer": "Mina'da üç cemreye (Küçük, Orta, Büyük/Akabe) taş atılır. Bayramın 1. günü sadece Akabe cemresine 7 taş atılır. 2., 3. ve 4. günler üç cemreye de 7'şer taş atılır. Toplam 70 taş. Taşlar nohut büyüklüğünde, temiz yerden alınır. Tekbir getirilerek atılır. İzdihamda dikkatli olunmalıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Müslümanın günlük hayatında dikkat edeceği hususlar nelerdir?",
+      "answer": "Sabah erken kalkmak, besmele ile işe başlamak, beş vakit namaz, helal yemek, doğru konuşmak, harama bakmamak, gıybetten kaçınmak, komşu ve akrabayı gözetmek, israf etmemek, temiz olmak, sabırlı olmak, şükretmek, akşam muhasebe yapmak, erken yatmak.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Kur'an-ı Kerim okumanın adabı nedir?",
+      "answer": "Abdestli olmak, kıbleye dönmek, temiz yerde oturmak, eûzü-besmele çekmek, tertil ile (yavaş ve düşünerek) okumak, huşu ile dinlemek, secde ayetinde secde etmek. Kur'an'ı ezberlemek, düşünmek ve yaşamak farzdır. Günde bir miktar okumak âdeti edinilmelidir.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "namaz",
+      "question": "Müezzinlik ve imam hatiplik hakkında bilgi verir misiniz?",
+      "answer": "Müezzinlik, ezan okumak ve kamet getirmektir. Faziletli bir görevdir. Hz. Peygamber: 'Müezzinler kıyamette en uzun boyunlu olacaklardır' buyurmuştur. İmam hatip, cemaate namaz kıldıran ve hutbe okuyan kişidir. İlim, takva ve güzel ahlak sahibi olmalıdır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "oruc",
+      "question": "Kafein içeren içecekler (kahve, çay) orucu etkiler mi?",
+      "answer": "Oruç tutarken (imsak ile iftar arası) hiçbir şey yenilip içilemez, bu kahve ve çay dahildir. Sahurda kafeinli içecek içmek caizdir ancak susuzluğu artırabileceğinden dikkatli olunmalıdır. İftarda içmek serbesttir. Oruçlu iken kahve-çay kokusu orucu bozmaz.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "zekat",
+      "question": "Zekât hesaplama örneği verir misiniz?",
+      "answer": "Örnek: 100 gram altın (85 gr üzeri = nisap), 50.000 TL nakit, 20.000 TL borç. Hesap: Altın değeri (örn: 200.000 TL) + Nakit (50.000 TL) = 250.000 TL. Borç düşülür: 250.000 - 20.000 = 230.000 TL. Zekât: 230.000 x 0.025 = 5.750 TL.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "hac",
+      "question": "Hac ve umre sırasında yapılacak dualar nelerdir?",
+      "answer": "Telbiye: 'Lebbeyk Allahümme lebbeyk, lebbeyk la şerike leke lebbeyk, inne'l-hamde ve'n-ni'mete leke ve'l-mülk, la şerike lek.' Tavafta: Hacer-i Esved'de 'Bismillahi Allahu Ekber', Rükn-i Yemani'de 'Rabbena atina...' Sa'y'da: Safa ve Merve'de dua ve tekbir. Arafat'ta: Bol dua ve istiğfar.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "gunluk",
+      "question": "Müslümanca giyinmenin ölçüleri nelerdir?",
+      "answer": "Avret yerlerini örtmeli, vücut hatlarını belli etmemeli, şeffaf olmamalı. Erkek: Diz ile göbek arası kapalı, dar ve kadın kıyafetine benzememeli. Kadın: El, yüz ve ayak dışı kapalı, süslü ve dikkat çekici olmamalı. İpek ve altın erkeğe haramdır. Kibirlenerek giyinmek yasaktır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    },
+    {
+      "category": "dua",
+      "question": "Namaz tesbihatı nasıl yapılır?",
+      "answer": "Farz namazlardan sonra: 3 kez 'Estağfirullah', 1 kez 'Allahümme ente's-selamu ve minke's-selam tebarekte ya ze'l-celali ve'l-ikram', Ayet'el-Kürsi, 33 Sübhanallah, 33 Elhamdülillah, 33 Allahu Ekber, 1 kez 'La ilahe illallahu vahdehu la şerike leh...' Sonra dua yapılır.",
+      "source": "Diyanet İşleri Başkanlığı İlmihali"
+    }
+  ]
+}
