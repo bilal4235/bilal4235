@@ -74,7 +74,7 @@
       "eas": {
         "projectId": "bir-ayet-bir-yorum"
       },
-      "backendUrl": "https://api.emergent.sh"
+      "backendUrl": "https://versecomment.preview.emergentagent.com"
     },
     "locales": {
       "tr": "./locales/tr.json",
